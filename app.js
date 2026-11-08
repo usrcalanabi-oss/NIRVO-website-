@@ -152,9 +152,17 @@ if(shelf){
    searchBtn.setAttribute("aria-label","Find a NIRVO product");
    searchBtn.title="Search products";
    searchBtn.addEventListener("click",()=>{
-     document.getElementById("products")?.scrollIntoView({behavior:"smooth",block:"start"});
-     window.setTimeout(()=>{searchInput.focus();searchInput.select()},420);
+     if(document.body.classList.contains("page-products")){
+       document.getElementById("products")?.scrollIntoView({behavior:"smooth",block:"start"});
+       window.setTimeout(()=>{searchInput.focus();searchInput.select()},420);
+     }else{
+       window.location.href="products.html?focus=search";
+     }
    });
+   const params=new URLSearchParams(window.location.search);
+   if(params.has("focus")&&params.get("focus")==="search"){
+     window.setTimeout(()=>{document.getElementById("products")?.scrollIntoView({block:"start"});searchInput.focus()},350);
+   }
  }
  const originalOrder=products.slice();
  const priceOf=p=>Number(String(p[4]).replace(/[^0-9]/g,""));
@@ -257,5 +265,41 @@ document.querySelectorAll("[data-open-project]").forEach(link=>link.addEventList
   e.preventDefault();
   feedback.textContent=mode==="signup"?"Your sign-up screen is ready. Secure account creation still needs to be connected.":"Your login screen is ready. Secure sign-in still needs to be connected.";
   feedback.className="account-feedback";
+ });
+})();
+
+
+// NIRVO Daily Signal: a thoughtful greeting for every date, with verified fixed-date occasions.
+(function(){
+ const section=document.getElementById("dailySignal");
+ if(!section)return;
+ const title=document.getElementById("dailyWishTitle"),copy=document.getElementById("dailyWishText"),date=document.getElementById("dailyDate"),share=document.getElementById("shareDailyWish");
+ const now=new Date(),month=now.getMonth()+1,day=now.getDate();
+ const wishes={
+  "1-1":["Happy New Year!","A new chapter begins. Keep learning, building and turning bold ideas into real things."],
+  "1-12":["Happy National Youth Day!","Young minds can shape tomorrow. Stay curious, ask bigger questions and build with purpose."],
+  "1-26":["Happy Republic Day, India!","Today we celebrate the ideas, courage and unity that help our country move forward."],
+  "3-8":["Happy International Women's Day!","Celebrating the women who lead, invent, teach and make the future stronger."],
+  "4-22":["Happy Earth Day!","Build technology that respects our planet. Better ideas can create a cleaner tomorrow."],
+  "5-1":["Happy Labour Day!","Every meaningful achievement begins with effort. Today we celebrate the people who make things happen."],
+  "6-5":["Happy World Environment Day!","Innovation matters most when it helps protect the world we share."],
+  "8-15":["Happy Independence Day, India!","Freedom gives ideas room to grow. Let's build a future filled with knowledge, courage and possibility."],
+  "9-5":["Happy Teachers' Day!","To every teacher who turns curiosity into confidence: thank you for shaping tomorrow."],
+  "10-2":["Remembering Gandhi Jayanti","A reminder that real progress begins with purpose, courage and care for others."],
+  "10-31":["Happy National Unity Day!","Different ideas, one stronger future. Let's build together."],
+  "11-14":["Happy Children's Day!","Every big invention starts with a curious question. Never stop asking yours."],
+  "12-25":["Merry Christmas!","Wishing you peace, kindness and bright new ideas to carry into the days ahead."]
+ };
+ const item=wishes[month+"-"+day]||["Today is your day to build.","A fresh day. A new idea. One small step closer to what you imagine. Keep going — your next chapter starts with what you do today."];
+ title.textContent=item[0];copy.textContent=item[1];
+ date.textContent=now.toLocaleDateString("en-IN",{weekday:"long",day:"numeric",month:"long",year:"numeric"}).toUpperCase();
+ if(wishes[month+"-"+day])section.classList.add("is-special");
+ share?.addEventListener("click",async()=>{
+  const text=item[0]+"\n"+item[1]+"\n— NIRVO | CREATE · BUILD · SOLVE";
+  try{
+   if(navigator.share)await navigator.share({title:"NIRVO Daily Wish",text});
+   else if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(text);share.textContent="Copied to clipboard ✓";}
+   else{window.prompt("Copy today's NIRVO wish:",text);}
+  }catch(error){if(error?.name!=="AbortError")share.textContent="Share unavailable";}
  });
 })();
