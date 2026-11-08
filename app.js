@@ -215,7 +215,6 @@ if(shelf){
   try{
    const response=await fetch("/api/submit",{method:"POST",body:data});
    const result=await response.json();if(!response.ok)throw new Error(result.error||"Submission failed");
-   if(!response.ok)throw new Error("Submission failed");
    form.innerHTML='<div class="submission-success"><span>✓</span><h3>'+successTitle+'</h3><p>'+(result.message||successCopy)+'</p><p>Reference: <b>'+result.id.slice(0,8).toUpperCase()+'</b></p><p>For urgent questions, contact <a href="https://wa.me/919447682486">NIRVO on WhatsApp</a>.</p></div>';
   }catch(error){button.disabled=false;button.innerHTML=original;alert("Your submission could not be sent. Please try again or contact us on WhatsApp +91 94476 82486.");}
  }
