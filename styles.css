@@ -599,3 +599,19 @@ button:disabled{opacity:.55;cursor:not-allowed}
 .loader-top,.loader-bottom{left:clamp(14px,4vw,72px);right:clamp(14px,4vw,72px)}
 @media(max-height:620px){.loader-content{top:52%;width:min(360px,calc(100vw - 36px),calc(100vh - 145px))}.loader-symbol-wrap{width:64px;height:64px;margin-bottom:10px}.loader-logo{width:42px;height:42px}.loader-message{margin-top:12px}.loader-track{margin-top:8px}.loader-steps{margin-top:14px}.loader-bottom{bottom:12px}.loader-top{top:12px;padding-bottom:8px}}
 @media(max-width:360px){.loader-build{display:none}.loader-steps span{font-size:7px}.loader-steps span i{font-size:6px}}
+
+/* Progress-first loader: percentage display, not a skeleton or logo splash */
+.loader-content{width:min(440px,calc(100vw - 36px),calc(100vh - 150px));}
+.loader-kicker{margin-bottom:clamp(18px,4vh,32px);color:#8bb4d9;font-size:clamp(7px,.8vw,9px);font-weight:800;letter-spacing:clamp(1px,.35vw,2.4px)}
+.loader-progress-display{display:flex;align-items:baseline;justify-content:center;gap:3px;color:#f5fbff;font:600 clamp(76px,14vw,124px)/.9 var(--display);letter-spacing:-7px;font-variant-numeric:tabular-nums;text-shadow:0 0 44px #42c9ff38}
+.loader-progress-display small{color:#63c9f0;font:500 clamp(20px,3vw,28px) var(--display);letter-spacing:0}
+.loader-wordmark{margin-top:18px;font-size:clamp(22px,3vw,29px);letter-spacing:clamp(4px,.8vw,7px)}
+.loader-tagline{margin-top:7px}
+.loader-message{margin-top:clamp(20px,4vh,31px)}
+.loader-track{height:5px;margin-top:14px}
+.loader-status{display:flex;justify-content:space-between;gap:12px}
+.loader-live{display:inline-flex;align-items:center;gap:6px;color:#7c9bbc}
+.loader-live i{width:5px;height:5px;border-radius:50%;background:#5ce1b7;box-shadow:0 0 9px #5ce1b7}
+.loader-brand-mini i{font-style:normal;color:#7898b9;font-size:8px;letter-spacing:1px}
+@media(max-height:620px){.loader-kicker{margin-bottom:10px}.loader-progress-display{font-size:clamp(56px,12vh,82px)}.loader-wordmark{margin-top:9px}.loader-message{margin-top:10px}.loader-track{margin-top:7px}}
+@media(max-width:360px){.loader-progress-display{font-size:72px}.loader-status{font-size:7px}.loader-live{font-size:7px}}
