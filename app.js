@@ -280,6 +280,7 @@ document.querySelectorAll("[data-open-project]").forEach(link=>link.addEventList
   "1-12":["Happy National Youth Day!","Young minds can shape tomorrow. Stay curious, ask bigger questions and build with purpose."],
   "1-26":["Happy Republic Day, India!","Today we celebrate the ideas, courage and unity that help our country move forward."],
   "3-8":["Happy International Women's Day!","Celebrating the women who lead, invent, teach and make the future stronger."],
+  "4-14":["Happy Vishu!","May this new beginning bring happiness, fresh opportunities and bright ideas. Wishing you and your family a beautiful Vishu."],
   "4-22":["Happy Earth Day!","Build technology that respects our planet. Better ideas can create a cleaner tomorrow."],
   "5-1":["Happy Labour Day!","Every meaningful achievement begins with effort. Today we celebrate the people who make things happen."],
   "6-5":["Happy World Environment Day!","Innovation matters most when it helps protect the world we share."],
@@ -287,6 +288,7 @@ document.querySelectorAll("[data-open-project]").forEach(link=>link.addEventList
   "9-5":["Happy Teachers' Day!","To every teacher who turns curiosity into confidence: thank you for shaping tomorrow."],
   "10-2":["Remembering Gandhi Jayanti","A reminder that real progress begins with purpose, courage and care for others."],
   "10-31":["Happy National Unity Day!","Different ideas, one stronger future. Let's build together."],
+  "11-1":["Happy Kerala Piravi!","Celebrating Kerala’s spirit of learning, creativity and community. Let’s keep building a brighter tomorrow together."],
   "11-14":["Happy Children's Day!","Every big invention starts with a curious question. Never stop asking yours."],
   "12-25":["Merry Christmas!","Wishing you peace, kindness and bright new ideas to carry into the days ahead."]
  };
