@@ -35,7 +35,16 @@ module.exports=async function(req,res){
    for(let i=0;i<files.length;i++){const f=files[i],ext=f.type==="image/jpeg"?"jpg":f.type==="image/png"?"png":"webp",pathname="uploads/"+id+"/"+(i+1)+"-"+ext;const b=await put(pathname,f.buffer,{access:"private",contentType:f.type,addRandomSuffix:false});attachments.push({name:f.name,type:f.type,size:f.size,pathname:b.pathname})}
    const data={};for(const [k,v] of Object.entries(fields))if(k!=="type"&&k!=="website")data[k]=String(v).slice(0,12000);
    const record={id,type,createdAt,status:"new",data,attachments};await saveRecord(record);
-   return json(res,201,{ok:true,id,message:"Your submission has reached NIRVO. Our team will review it and contact you."});
+   let emailSent=false;
+   if(process.env.RESEND_API_KEY&&process.env.RESEND_FROM_EMAIL){
+    try{
+     const subject="NIRVO "+type.toUpperCase()+" submission · "+id.slice(0,8).toUpperCase();
+     const summary=Object.entries(data).map(([k,v])=>k+": "+v).join("\\n");
+     const mail=await fetch("https://api.resend.com/emails",{method:"POST",headers:{"Authorization":"Bearer "+process.env.RESEND_API_KEY,"Content-Type":"application/json"},body:JSON.stringify({from:process.env.RESEND_FROM_EMAIL,to:["usrcalanabi@gmail.com"],subject,text:"A new NIRVO website submission was received.\\n\\nReference: "+id+"\\nType: "+type+"\\n\\n"+summary+"\\n\\nOpen the private admin dashboard to review attachments and update its status."})});
+     emailSent=mail.ok;
+    }catch(e){emailSent=false}
+   }
+   return json(res,201,{ok:true,id,emailSent,message:"Your submission has reached NIRVO. Our team will review it and contact you."});
   }catch(e){return json(res,500,{error:"We could not save your submission. Please retry or contact NIRVO."})}
  });
  req.pipe(bb);
