@@ -24,3 +24,16 @@ body{background:radial-gradient(ellipse at 50% -20%,#172d52 0,transparent 42%),#
 .qty button{cursor:pointer;min-width:30px}
 @media(max-width:650px){.hero{min-height:unset}.product-grid.auto-shelf .product-card{flex-basis:78vw}.product-image{height:175px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.domain,.product-card,.feature-copy,.about-grid,.contact-grid{opacity:1;transform:none}}
+
+
+/* NIRVO product runway — faster continuous carousel */
+.product-runway{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:18px 0 10px}
+.runway-label{font-size:9px;letter-spacing:2px;color:#8ca8c5}
+.runway-controls{display:flex;gap:8px}
+.runway-controls button{width:36px;height:36px;border:1px solid #35516f;border-radius:50%;background:#10213a;color:var(--cyan);font-size:18px;cursor:pointer;transition:.2s}
+.runway-controls button:hover{background:#1a4560;border-color:var(--cyan);transform:scale(1.06)}
+.product-grid.auto-shelf{scrollbar-width:none;cursor:grab;overscroll-behavior-x:contain}
+.product-grid.auto-shelf::-webkit-scrollbar{display:none}
+.product-grid.auto-shelf:active{cursor:grabbing}
+.product-grid.auto-shelf .product-card{transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease}
+@media(max-width:650px){.runway-controls button{width:33px;height:33px}.runway-label{font-size:8px}}
