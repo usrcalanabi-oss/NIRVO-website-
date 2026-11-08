@@ -2,7 +2,7 @@ const products=[
 ["Nirvo AI Station","AI & Computing","Local AI workstation for private inference and development. 8-core CPU, 32GB RAM, 1TB NVMe, optional accelerator.","₹85,000 onwards","₹85,000", "01","photo-1593640408182-31c70c8268f5"],
 ["Nirvo PrivateVault","AI & Computing","Private 4-bay NAS with RAID options, encrypted storage, 2.5GbE and automated backups.","₹35,000 onwards","₹35,000","02","photo-1558494949-ef010cbdcc31"],
 ["Nirvo EdgeCore X","AI & Computing","Fanless edge computer with industrial I/O, dual Ethernet, RS485, CAN and DIN-rail mounting.","₹30,000 onwards","₹30,000","03","photo-1518770660439-4636190af475"],
-["Nirvo ServerCube","AI & Computing","Compact business server with 6–8 core CPU, 32–64GB RAM and flexible storage.","₹95,000 onwards","₹95,000","04","photo- rack"],
+["Nirvo ServerCube","AI & Computing","Compact business server with 6–8 core CPU, 32–64GB RAM and flexible storage.","₹95,000 onwards","₹95,000","04","photo-1558494949-ef010cbdcc31"],
 ["Nirvo Rover X1","Robotics","Modular inspection rover concept with four-wheel drive, camera, LiDAR-ready platform and sensor suite.","₹75,000 onwards","₹75,000","05","photo-1485827404703-89b55fcc595e"],
 ["Nirvo RoboArm 6","Robotics","Six-axis desktop robotic arm concept with encoder feedback, gripper and emergency stop.","₹45,000 onwards","₹45,000","06","photo-1581092160562-40aa08e78837"],
 ["Nirvo StockBot","Robotics","Indoor autonomous material transport platform with obstacle sensing and docking concept.","₹1,40,000 onwards","₹1,40,000","07","photo-1581092580497-e0d23cbdf1dc"],
@@ -12,14 +12,14 @@ const products=[
 ["Nirvo AquaGuard","Industrial IoT","Water monitoring platform with pH, turbidity, conductivity and temperature sensor options.","₹22,000 onwards","₹22,000","11","photo-1530053969600-caed2596d242"],
 ["Nirvo EnergyIQ","Industrial IoT","Three-phase energy monitoring with voltage, current, power factor and reporting.","₹12,000 onwards","₹12,000","12","photo-1473341304170-971dccb5ac1e"],
 ["Nirvo SecureBox","Networking","Business firewall appliance concept with multi-port Ethernet, secure boot, VPN and threat monitoring.","₹25,000 onwards","₹25,000","13","photo-1558494949-ef010cbdcc31"],
-["Nirvo NetCore 24","Networking","Managed 24-port Gigabit switch concept with VLAN, QoS and optional PoE+ configuration.","₹22,000 onwards","₹22,000","14","photo- routers"],
+["Nirvo NetCore 24","Networking","Managed 24-port Gigabit switch concept with VLAN, QoS and optional PoE+ configuration.","₹22,000 onwards","₹22,000","14","photo-1544197150-b99a580bb7a8"],
 ["Nirvo WiFiMesh Pro","Networking","Business Wi-Fi 6-class access point concept with PoE and central management.","₹10,000 onwards","₹10,000","15","photo-2020310498247-7c2e1f2b8a6b"],
 ["Nirvo PowerShield","Smart Systems","UPS and battery monitoring controller with temperature, load and runtime insights.","₹20,000 onwards","₹20,000","16","photo-1473341304170-971dccb5ac1e"],
 ["Nirvo VisionAI","Smart Systems","Edge AI camera concept with local analytics, night vision and privacy-first storage.","₹15,000 onwards","₹15,000","17","photo-1526738549149-8e07eca6c147"],
 ["Nirvo SmartPanel","Smart Systems","15–21 inch interactive information display with embedded computer and signage software.","₹30,000 onwards","₹30,000","18","photo-1558008258-3256797b43f3"],
 ["Nirvo RoomSense","Smart Systems","Indoor air-quality monitor for CO₂, PM2.5, temperature, humidity and occupancy insights.","₹8,000 onwards","₹8,000","19","photo-1497366754035-f200968a6e72"],
 ["Nirvo SolarPilot","Smart Systems","Solar generation monitoring interface with energy logging, inverter integration and alerts.","₹15,000 onwards","₹15,000","20","photo-1509391366360-2e959784a276"],
-["Nirvo NeuralBox Mini","AI & Computing","Compact local AI development system for small teams, with configurable memory, NVMe storage and accelerator options.","₹42,000 onwards","₹42,000","21","photo-1518770660439-4636190af475"],
+["Nirvo NeuralBox Mini","AI & Computing","Compact local AI development system for small teams, with configurable memory, NVMe storage and accelerator options.","₹42,000 onwards","₹42,000","21","photo-1593640408182-31c70c8268f5"],
 ["Nirvo VisionEdge","AI & Computing","Edge inference module for camera analytics, object detection and local automation workflows.","₹28,000 onwards","₹28,000","22","photo-1526738549149-8e07eca6c147"],
 ["Nirvo LabNode","AI & Computing","Developer mini server for coding labs, container workloads and private test environments.","₹24,000 onwards","₹24,000","23","photo-1558494949-ef010cbdcc31"],
 ["Nirvo Scout Mini","Robotics","Small indoor rover platform for education, mapping experiments and sensor integration.","₹18,000 onwards","₹18,000","24","photo-1485827404703-89b55fcc595e"],
@@ -113,3 +113,37 @@ if(shelf){
  tools.querySelector("[data-runway-right]").onclick=()=>{pause();shelf.scrollBy({left:Math.max(280,shelf.clientWidth*.72),behavior:"smooth"});setTimeout(resume,900)};
  window.addEventListener("beforeunload",()=>cancelAnimationFrame(raf));
 }
+
+
+// NIRVO storefront patch: search action, live sorting and catalogue accuracy.
+(function(){
+ const searchBtn=document.getElementById("searchBtn");
+ const searchInput=document.getElementById("productSearch");
+ const sort=document.getElementById("productSort");
+ if(searchBtn&&searchInput){
+   searchBtn.setAttribute("aria-label","Find a NIRVO product");
+   searchBtn.title="Search products";
+   searchBtn.addEventListener("click",()=>{
+     document.getElementById("products")?.scrollIntoView({behavior:"smooth",block:"start"});
+     window.setTimeout(()=>{searchInput.focus();searchInput.select()},420);
+   });
+ }
+ const originalOrder=products.slice();
+ const priceOf=p=>Number(String(p[4]).replace(/[^0-9]/g,""));
+ if(sort){
+   sort.addEventListener("change",()=>{
+     const mode=sort.value;
+     products.splice(0,products.length,...originalOrder.slice().sort((a,b)=>{
+       if(mode==="price-low")return priceOf(a)-priceOf(b);
+       if(mode==="price-high")return priceOf(b)-priceOf(a);
+       if(mode==="name")return a[0].localeCompare(b[0]);
+       return Number(a[5])-Number(b[5]);
+     }));
+     renderProducts();
+   });
+ }
+ const cartButton=document.getElementById("cartOpen");
+ if(cartButton)cartButton.setAttribute("aria-label","Open shopping cart");
+ const grid=document.getElementById("productGrid");
+ if(grid)grid.setAttribute("aria-live","polite");
+})();
