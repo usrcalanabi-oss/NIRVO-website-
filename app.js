@@ -107,7 +107,7 @@ const checkout=document.getElementById("checkoutBtn");
 checkout.onclick=()=>{
  if(!cart.length)return;
  const m=document.getElementById("productModal");
- document.getElementById("modalContent").innerHTML=`<div class="product-meta">ORDER ENQUIRY · NIRVO</div><h2>Complete your enquiry</h2><p>This submits an order request. It does not collect payment or confirm stock.</p><form id="orderForm" class="order-form"><label>Full name<input name="customer-name" required autocomplete="name"></label><label>Email<input name="customer-email" type="email" required autocomplete="email"></label><label>Phone / WhatsApp<input name="customer-phone" required autocomplete="tel"></label><label>Delivery location<textarea name="delivery-location" required rows="2"></textarea></label><label>Note (optional)<textarea name="customer-note" rows="2"></textarea></label><input type="hidden" name="order-items"><input type="hidden" name="order-total"><button class="primary submit" type="submit">Submit order enquiry ↗</button></form>`;
+ document.getElementById("modalContent").innerHTML=`<div class="product-meta">ORDER ENQUIRY · NIRVO</div><h2>Complete your enquiry</h2><p>This submits an order request. It does not collect payment or confirm stock.</p><form id="orderForm" class="order-form"><label class="hp-field" aria-hidden="true">Leave this field empty<input name="website" tabindex="-1" autocomplete="off"></label><label>Full name<input name="customer-name" required autocomplete="name"></label><label>Email<input name="customer-email" type="email" required autocomplete="email"></label><label>Phone / WhatsApp<input name="customer-phone" required autocomplete="tel"></label><label>Delivery location<textarea name="delivery-location" required rows="2"></textarea></label><label>Note (optional)<textarea name="customer-note" rows="2"></textarea></label><input type="hidden" name="order-items"><input type="hidden" name="order-total"><button class="primary submit" type="submit">Submit order enquiry ↗</button></form>`;
  m.classList.add("open");
  const form=document.getElementById("orderForm");
  form.elements["order-items"].value=cart.map(x=>x.name+" × "+x.qty+" — "+x.price).join("\n");
@@ -125,7 +125,7 @@ if(contactForm)contactForm.addEventListener("submit",async e=>{
  e.preventDefault();const form=e.currentTarget,data=new FormData(form);data.set("type","enquiry");
  const button=form.querySelector('button[type="submit"]'),original=button.textContent;button.disabled=true;button.textContent="Sending securely…";
  try{const response=await fetch("/api/submit",{method:"POST",body:data});const result=await response.json();if(!response.ok)throw new Error(result.error||"Could not submit");
- form.innerHTML='<div class="submission-success"><span>✓</span><h3>Enquiry received.</h3><p>'+result.message+'</p><p>Reference: <b>'+result.id.slice(0,8).toUpperCase()+'</b></p><a href="https://wa.me/919447682486" target="_blank" rel="noopener">Chat with NIRVO on WhatsApp ↗</a></div>';
+ form.innerHTML='<div class="submission-success"><span>✓</span><h3>Enquiry received.</h3><p>'+result.message+'</p><p>Reference: <b>'+result.id.slice(0,8).toUpperCase()+'</b></p><p>'+(result.notificationNote||"") +'</p><a href="https://wa.me/919447682486" target="_blank" rel="noopener">Chat with NIRVO on WhatsApp ↗</a></div>';
  }catch(error){button.disabled=false;button.textContent=original;alert(error.message||"Please try again.");}
 });
 // Reveal elements gently as visitors scroll; respect reduced-motion settings.
