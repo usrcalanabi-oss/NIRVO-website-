@@ -91,7 +91,7 @@ if(shelf){
  tools.innerHTML='<span class="runway-label">DISCOVER THE COLLECTION · AUTO-GLIDE</span><div class="runway-controls"><button type="button" aria-label="Scroll products left" data-runway-left>‹</button><button type="button" aria-label="Scroll products right" data-runway-right>›</button></div>';
  shelf.parentNode.insertBefore(tools,shelf);
  let paused=false,last=0,raf=0;
- const speed=2.65; // pixels per frame at 60fps (~159px/second)
+ const speed=0.48; // gentle continuous motion at roughly 29px/second
  const tick=(now)=>{
    if(!last)last=now;
    const delta=Math.min(now-last,40);last=now;
@@ -171,4 +171,40 @@ if(shelf){
  }
  form.addEventListener("submit",e=>{e.preventDefault();ask(input.value)});
  document.querySelectorAll("[data-question]").forEach(b=>b.addEventListener("click",()=>ask(b.dataset.question)));
+})();
+
+ 
+// NIRVO marketplace submissions: review listings and projects before publication.
+(function(){
+ const tabs=document.querySelectorAll("[data-market-tab]"),listing=document.getElementById("listingForm"),project=document.getElementById("projectForm");
+ if(!listing||!project)return;
+ tabs.forEach(tab=>tab.addEventListener("click",()=>{
+  const showProduct=tab.dataset.marketTab==="product";
+  tabs.forEach(t=>t.classList.toggle("active",t===tab));
+  listing.hidden=!showProduct;project.hidden=showProduct;
+ }));
+ document.querySelectorAll(".photo-slot input[type=file]").forEach(input=>{
+  input.addEventListener("change",()=>{
+   const file=input.files?.[0],slot=input.closest(".photo-slot");
+   slot.classList.toggle("has-file",!!file);
+   const label=slot.querySelector("small");
+   if(label)label.textContent=file?file.name:"Choose image";
+   if(file&&file.size>5*1024*1024){alert("Each photo must be 5 MB or smaller.");input.value="";slot.classList.remove("has-file");if(label)label.textContent="Choose image";}
+  });
+ });
+ async function submitForm(form,buttonText,successTitle,successCopy){
+  const files=[...form.querySelectorAll('input[type="file"]')];
+  if(files.some(x=>!x.files||!x.files.length)){alert("Please upload all 3 required photos.");return}
+  if(files.some(x=>x.files[0].size>5*1024*1024)){alert("Each photo must be 5 MB or smaller.");return}
+  const button=form.querySelector('button[type="submit"]');const original=button.innerHTML;
+  button.disabled=true;button.textContent="Submitting…";
+  const data=new FormData(form);data.set("form-name",form.getAttribute("name"));
+  try{
+   const response=await fetch("/",{method:"POST",body:data});
+   if(!response.ok)throw new Error("Submission failed");
+   form.innerHTML='<div class="submission-success"><span>✓</span><h3>'+successTitle+'</h3><p>'+successCopy+'</p><p>For urgent questions, contact <a href="https://wa.me/919447682486">NIRVO on WhatsApp</a>.</p></div>';
+  }catch(error){button.disabled=false;button.innerHTML=original;alert("Your submission could not be sent. Please try again or contact us on WhatsApp +91 94476 82486.");}
+ }
+ listing.addEventListener("submit",e=>{e.preventDefault();submitForm(listing,"Submit product for review","Product submitted","Thank you. Your listing and three photos have been sent to NIRVO for review. We will contact you using the details provided.")});
+ project.addEventListener("submit",e=>{e.preventDefault();submitForm(project,"Submit project for review","Project received","Thank you for sharing your project. NIRVO will review the description and photos and contact you if a follow-up is needed.")});
 })();
