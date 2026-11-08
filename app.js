@@ -113,17 +113,20 @@ checkout.onclick=()=>{
  form.elements["order-items"].value=cart.map(x=>x.name+" × "+x.qty+" — "+x.price).join("\n");
  form.elements["order-total"].value=document.getElementById("subtotal").textContent;
  form.onsubmit=async ev=>{
-  ev.preventDefault();const data=new URLSearchParams(new FormData(form));data.set("form-name","nirvo-orders");
+  ev.preventDefault();const data=new FormData(form);data.set("type","order");
   const btn=form.querySelector("button");btn.disabled=true;btn.textContent="Sending…";
-  try{const res=await fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:data.toString()});if(!res.ok)throw new Error("Failed");
-   document.getElementById("modalContent").innerHTML="<h2>Enquiry submitted</h2><p>Your request has been recorded. NIRVO will contact you to confirm availability, final pricing and payment.</p>";cart=[];saveCart();
-  }catch(err){btn.disabled=false;btn.textContent="Try again";alert("Could not submit. Please check your connection and retry.");}
+  try{const res=await fetch("/api/submit",{method:"POST",body:data});const result=await res.json();if(!res.ok)throw new Error(result.error||"Failed");
+   document.getElementById("modalContent").innerHTML="<h2>Order enquiry received</h2><p>"+result.message+"</p><p>Reference: <b>"+result.id.slice(0,8).toUpperCase()+"</b></p><p>We will confirm availability, final pricing, delivery and payment before accepting an order.</p>";cart=[];saveCart();
+  }catch(err){btn.disabled=false;btn.textContent="Try again";alert(err.message||"Could not submit. Please retry.");}
  };
 };
-document.getElementById("enquiryForm").addEventListener("submit",e=>{
- e.preventDefault();const d=new FormData(e.target);
- const msg=[...d.entries()].map(([k,v])=>k+": "+v).join("\n");
- window.open("https://wa.me/919447682486?text="+encodeURIComponent("NIRVO website enquiry\n"+msg),"_blank");
+const contactForm=document.getElementById("enquiryForm");
+if(contactForm)contactForm.addEventListener("submit",async e=>{
+ e.preventDefault();const form=e.currentTarget,data=new FormData(form);data.set("type","enquiry");
+ const button=form.querySelector('button[type="submit"]'),original=button.textContent;button.disabled=true;button.textContent="Sending securely…";
+ try{const response=await fetch("/api/submit",{method:"POST",body:data});const result=await response.json();if(!response.ok)throw new Error(result.error||"Could not submit");
+ form.innerHTML='<div class="submission-success"><span>✓</span><h3>Enquiry received.</h3><p>'+result.message+'</p><p>Reference: <b>'+result.id.slice(0,8).toUpperCase()+'</b></p><a href="https://wa.me/919447682486" target="_blank" rel="noopener">Chat with NIRVO on WhatsApp ↗</a></div>';
+ }catch(error){button.disabled=false;button.textContent=original;alert(error.message||"Please try again.");}
 });
 // Reveal elements gently as visitors scroll; respect reduced-motion settings.
 if("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches){
@@ -205,14 +208,15 @@ if(shelf){
  async function submitForm(form,buttonText,successTitle,successCopy){
   const files=[...form.querySelectorAll('input[type="file"]')];
   if(files.some(x=>!x.files||!x.files.length)){alert("Please upload all 3 required photos.");return}
-  if(files.some(x=>x.files[0].size>2*1024*1024)){alert("Each photo must be 2 MB or smaller.");return}
+  if(files.some(x=>x.files[0].size>1200*1024)){alert("Each photo must be 1.2 MB or smaller for secure upload.");return}
   const button=form.querySelector('button[type="submit"]');const original=button.innerHTML;
   button.disabled=true;button.textContent="Submitting…";
-  const data=new FormData(form);data.set("form-name",form.getAttribute("name"));
+  const data=new FormData(form);data.set("type",form===listing?"listing":"project");
   try{
-   const response=await fetch("/",{method:"POST",body:data});
+   const response=await fetch("/api/submit",{method:"POST",body:data});
+   const result=await response.json();if(!response.ok)throw new Error(result.error||"Submission failed");
    if(!response.ok)throw new Error("Submission failed");
-   form.innerHTML='<div class="submission-success"><span>✓</span><h3>'+successTitle+'</h3><p>'+successCopy+'</p><p>For urgent questions, contact <a href="https://wa.me/919447682486">NIRVO on WhatsApp</a>.</p></div>';
+   form.innerHTML='<div class="submission-success"><span>✓</span><h3>'+successTitle+'</h3><p>'+(result.message||successCopy)+'</p><p>Reference: <b>'+result.id.slice(0,8).toUpperCase()+'</b></p><p>For urgent questions, contact <a href="https://wa.me/919447682486">NIRVO on WhatsApp</a>.</p></div>';
   }catch(error){button.disabled=false;button.innerHTML=original;alert("Your submission could not be sent. Please try again or contact us on WhatsApp +91 94476 82486.");}
  }
  listing.addEventListener("submit",e=>{e.preventDefault();submitForm(listing,"Submit product for review","Product submitted","Thank you. Your listing and three photos have been sent to NIRVO for review. We will contact you using the details provided.")});
