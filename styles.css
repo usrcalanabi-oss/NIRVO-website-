@@ -328,3 +328,117 @@ body{background:#080f1b;color:#f3f6fc}
 /* Single-column customer support header after removing decorative orb */
 #assistant .studio-head{grid-template-columns:1fr;max-width:1120px}
 #assistant .studio-intro{max-width:760px}
+
+
+/* NIRVO brand refinement — original blue identity */
+:root{
+ --bg:#071225;--panel:#0d1b31;--panel2:#122642;--line:#294568;
+ --text:#f4f8ff;--muted:#a9bad1;--cyan:#65b8ff;--blue:#3979e8;
+}
+body{background:#071225;color:#f4f8ff}
+.announcement{background:#0b1930;color:#b6c9e3;border-color:#1e3656}
+.announcement span,.section-label,.eyebrow,.marketplace-kicker{color:#80bdff}
+.header{background:rgba(7,18,37,.96);border-color:#203957}
+.brand{gap:12px}
+.brand img{width:48px;height:48px;filter:none;object-fit:contain}
+.brand small{color:#78baff;letter-spacing:2.5px}
+.header nav{gap:clamp(12px,1.8vw,28px)}
+.header nav a{font-weight:600;color:#c4d2e5;white-space:nowrap}
+.header nav a:hover,.text-link:hover{color:#82c2ff}
+.hero{background:radial-gradient(ellipse at 82% 28%,#245da844,transparent 43%),radial-gradient(ellipse at 8% 88%,#164b8260,transparent 40%),linear-gradient(125deg,#071225,#0b1d39 58%,#101c3d)}
+.hero h1 em,h2 em{color:#82bdff}
+.eyebrow i,.live-dot{background:#6fbaff;box-shadow:0 0 14px #4b9eff}
+.primary{background:linear-gradient(110deg,#3979e8,#258fca);color:#fff;box-shadow:0 9px 28px #1457a044}
+.primary:hover{filter:brightness(1.12)}
+.secondary{border-color:#49658a;color:#e5f0ff}
+.hero-stats{border-top:1px solid #294568;padding-top:22px}
+.hero-stats small{color:#9eb3ce}
+.hero-showcase{border-color:#34557b;background:linear-gradient(145deg,#142b49,#09172b 68%);box-shadow:0 32px 90px #0006}
+.showcase-top,.showcase-bottom{color:#a9c5e5}
+.product-chip{color:#9acbff;border-color:#416d9e;background:#102743}
+.device{border-color:#6388b4;box-shadow:0 22px 45px #0009}
+.device-back{background:linear-gradient(145deg,#314a69,#111f34)}
+.device-mid{background:linear-gradient(145deg,#1c3a60,#0b192d);border-color:#5288c4}
+.device-front{background:linear-gradient(145deg,#172d4b,#081426);border-color:#4c7fb6}
+.device-front:before{background:#7fc4ff;box-shadow:0 0 16px #70baff}
+.device-front span{color:#e5f2ff}
+.device-front small{color:#91bce9}
+.ticker{background:#0d1c33;border-color:#294568;color:#c9dcf4}
+.ticker b{color:#7dbaff}
+.section-label{color:#80bdff}
+.domain{background:linear-gradient(145deg,#10213a,#0a172a);border-color:#294463}
+.domain:hover,.product-card:hover{border-color:#6aabed}
+.domain-icon{color:#80bdff}
+.products-section{background:#09172b}
+.product-tools{background:#09172bf0;border-color:#294568}
+.filter{background:#10213a;border-color:#345273;color:#c2d2e7}
+.filter.active{background:#1a3b66;border-color:#69aaf0;color:#e8f4ff}
+.product-tools input,.product-tools select{background:#10213a;border-color:#345273;color:#eff6ff}
+.product-card,.product-grid.auto-shelf .product-card{background:#0e1d33;border-color:#2a4566}
+.product-image{background:#10213a}
+.add-btn{background:#142e4d;border-color:#4677aa;color:#a9d4ff}
+.details-btn{color:#9ccaff}
+.product-runway button{border-color:#42658c;background:#122744;color:#e4f1ff}
+.marketplace-section{background:linear-gradient(145deg,#0c1d34,#081528 58%,#10213b);border-color:#294568}
+.marketplace-heading h2 em{color:#83bdff}
+.marketplace-stat{background:#10223b;border-color:#345273}
+.marketplace-stat b{color:#86c0ff}
+.market-tab.active{border-color:#75baff;color:#f5f9ff}
+.market-form{background:#0b1a30;border-color:#2c496c}
+.market-form input:not([type=file]):not([type=checkbox]),.market-form select,.market-form textarea{background:#10213a;border-color:#355577}
+.market-form input:focus,.market-form select:focus,.market-form textarea:focus{border-color:#83bfff;box-shadow:0 0 0 3px #65aaff20}
+.photo-slot{background:#10213a;border-color:#4d75a2}
+.photo-slot>span{color:#84c1ff}
+.feature-band{background:linear-gradient(110deg,#102443,#101d3b)}
+.feature-visual{background:radial-gradient(circle,#1c4f83,#0b1a31 67%)}
+.feature-orbit{border-color:#6baeff66;box-shadow:0 0 70px #398fe533,inset 0 0 50px #398fe522}
+.feature-mark span{color:#80bdff}
+.contact-section{background:linear-gradient(120deg,#10223e,#0a172c);border-color:#294568}
+.contact-details a:first-child,.contact-details a:nth-child(2),.contact-details a:nth-child(3){color:#a9d2ff}
+footer{background:#061022;border-color:#203957;gap:20px;flex-wrap:wrap}
+.footer-social{color:#9ccaff;font-size:11px;font-weight:700}
+.footer-brand img{width:42px;height:42px}
+#home,#technology,#products,#sell,#about,#contact{scroll-margin-top:100px}
+#sell{border-top:1px solid #294568}
+#about{border-top:1px solid #203957}
+#contact{border-top:1px solid #294568}
+@media(max-width:1050px){
+ .header{padding-inline:22px}
+ .header nav{gap:12px;font-size:11px}
+ .brand{font-size:21px}
+ .brand img{width:42px;height:42px}
+}
+@media(max-width:760px){
+ .header{height:72px}
+ .header nav{display:none;position:absolute;top:72px;left:0;right:0;padding:18px 22px;background:#09172b;border-bottom:1px solid #294568;flex-direction:column;gap:0}
+ .header nav a{padding:13px 0;border-bottom:1px solid #1e3552}
+ .menu-btn{display:block}
+ .hero{grid-template-columns:1fr;padding:65px 22px 75px;gap:35px}
+ .hero h1{font-size:clamp(52px,14vw,76px);letter-spacing:-3px}
+ .hero-art{height:auto;min-height:350px}
+ .hero-showcase{min-height:380px;padding:16px}
+ .showcase-main{min-height:285px}
+ .device-stack{transform:scale(.82);margin:0 auto;height:190px}
+ .showcase-caption{margin-top:0}
+ .hero-stats{gap:22px;margin-top:38px}
+ .hero-stats b{font-size:23px}
+ .section{padding:76px 22px}
+ .intro-grid,.products-heading,.about-grid,.contact-grid{grid-template-columns:1fr;gap:22px}
+ .domain-grid{grid-template-columns:1fr 1fr}
+ .product-tools{position:relative;top:auto}
+ .marketplace-section{padding:76px 18px}
+ .marketplace-heading{grid-template-columns:1fr;gap:25px;margin-bottom:32px}
+ .market-form{padding:22px 16px}
+ .form-grid{grid-template-columns:1fr}
+ .photo-grid{grid-template-columns:1fr}
+ .contact-section{padding:76px 22px}
+ footer{padding:28px 22px;align-items:flex-start;flex-direction:column}
+}
+@media(max-width:430px){
+ .domain-grid{grid-template-columns:1fr}
+ .hero-actions{flex-wrap:wrap}
+ .hero-stats{gap:16px}
+ .hero-stats small{font-size:9px}
+ .hero-showcase{min-height:350px}
+ .showcase-bottom{font-size:7px;letter-spacing:.1em}
+}
