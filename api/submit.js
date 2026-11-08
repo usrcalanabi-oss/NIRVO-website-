@@ -49,3 +49,4 @@ module.exports=async function(req,res){
  });
  req.pipe(bb);
 };
+module.exports.config={api:{bodyParser:false}};
