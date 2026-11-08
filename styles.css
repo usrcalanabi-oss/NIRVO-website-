@@ -730,3 +730,5 @@ footer{border-top:1px solid #28425f}
 .preview-plan>i{font-style:normal;color:#80d7f1;font-size:8px;letter-spacing:1px;white-space:nowrap}
 @media(max-width:760px){.software-feature{grid-template-columns:1fr;gap:32px}.software-preview{transform:none}.preview-metrics{gap:7px}.preview-metrics>span{padding:12px 8px}}
 @media(max-width:420px){.preview-plan{grid-template-columns:1fr}.preview-plan>span{grid-column:auto}.preview-plan>i{white-space:normal}}
+
+.page-products .daily-signal,.page-contact .daily-signal,.page-marketplace .daily-signal,.page-products .software-feature,.page-contact .software-feature,.page-marketplace .software-feature{display:none!important}
