@@ -40,11 +40,6 @@ document.getElementById("enquiryForm").addEventListener("submit",e=>{e.preventDe
 document.getElementById("year").textContent=new Date().getFullYear();renderProducts();saveCart();
 
 // NIRVO storefront reliability + motion layer
-document.addEventListener("click",e=>{
- const add=e.target.closest("[data-add]"); if(add){e.preventDefault();e.stopImmediatePropagation();addCart(add.dataset.add);return;}
- const dec=e.target.closest("[data-dec]");if(dec){e.preventDefault();changeQty(dec.dataset.dec,-1);return;}
- const inc=e.target.closest("[data-inc]");if(inc){e.preventDefault();changeQty(inc.dataset.inc,1);return;}
-});
 document.getElementById("cartOpen").addEventListener("click",e=>{e.preventDefault();openCart()});
 document.getElementById("cartClose").addEventListener("click",e=>{e.preventDefault();closeCart()});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeCart();document.getElementById("productModal").classList.remove("open")}});
@@ -58,7 +53,7 @@ checkout.onclick=()=>{
 document.getElementById("enquiryForm").addEventListener("submit",e=>{
  e.preventDefault();const d=new FormData(e.target);
  const msg=[...d.entries()].map(([k,v])=>k+": "+v).join("\n");
- window.open("https://wa.me/919447682486?text="+encodeURIComponent("NIRVO website enquiry\n"+msg)," _blank");
+ window.open("https://wa.me/919447682486?text="+encodeURIComponent("NIRVO website enquiry\n"+msg),"_blank");
 });
 // Reveal elements gently as visitors scroll; respect reduced-motion settings.
 if("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches){
