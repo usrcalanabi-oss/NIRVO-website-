@@ -189,13 +189,13 @@ if(shelf){
    slot.classList.toggle("has-file",!!file);
    const label=slot.querySelector("small");
    if(label)label.textContent=file?file.name:"Choose image";
-   if(file&&file.size>5*1024*1024){alert("Each photo must be 5 MB or smaller.");input.value="";slot.classList.remove("has-file");if(label)label.textContent="Choose image";}
+   if(file&&file.size>2*1024*1024){alert("Each photo must be 2 MB or smaller.");input.value="";slot.classList.remove("has-file");if(label)label.textContent="Choose image";}
   });
  });
  async function submitForm(form,buttonText,successTitle,successCopy){
   const files=[...form.querySelectorAll('input[type="file"]')];
   if(files.some(x=>!x.files||!x.files.length)){alert("Please upload all 3 required photos.");return}
-  if(files.some(x=>x.files[0].size>5*1024*1024)){alert("Each photo must be 5 MB or smaller.");return}
+  if(files.some(x=>x.files[0].size>2*1024*1024)){alert("Each photo must be 2 MB or smaller.");return}
   const button=form.querySelector('button[type="submit"]');const original=button.innerHTML;
   button.disabled=true;button.textContent="Submitting…";
   const data=new FormData(form);data.set("form-name",form.getAttribute("name"));
