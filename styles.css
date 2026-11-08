@@ -674,3 +674,24 @@ footer{border-top:1px solid #28425f}
  .page-marketplace .marketplace-heading{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+
+/* NIRVO Daily Signal — date-aware moments and premium brand storytelling */
+.daily-signal{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) 190px;align-items:center;gap:35px;margin:30px clamp(18px,7vw,100px);padding:clamp(28px,4.5vw,58px);border:1px solid #2c5279;border-radius:22px;background:radial-gradient(ellipse at 86% 20%,#2367a955,transparent 38%),linear-gradient(120deg,#0d1e37 0%,#102d50 55%,#0b1930 100%);box-shadow:0 25px 70px #0004}
+.daily-signal:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,transparent 49.9%,#b8dcff0c 50%,transparent 50.1%),linear-gradient(0deg,transparent 49.9%,#b8dcff0c 50%,transparent 50.1%);background-size:42px 42px;mask-image:linear-gradient(110deg,transparent 5%,#000 90%)}
+.daily-signal-orbit{position:absolute;right:75px;top:-145px;width:340px;height:340px;border:1px solid #8ac9ff26;border-radius:50%;box-shadow:0 0 0 36px #8ac9ff08,0 0 0 72px #8ac9ff06;pointer-events:none}
+.daily-kicker{display:flex;align-items:center;gap:10px;color:#7ed7f5;font-size:9px;letter-spacing:2.3px;font-weight:700}
+.daily-kicker i{width:7px;height:7px;border-radius:50%;background:#6be8c4;box-shadow:0 0 14px #6be8c4}
+.daily-kicker b{font-size:9px;letter-spacing:1px;color:#a5bad4;font-weight:500}
+.daily-signal h2{max-width:780px;margin:20px 0 10px;font:600 clamp(25px,3.2vw,43px)/1.13 var(--display);letter-spacing:-1.5px;color:#f1f7ff}
+.daily-signal p{max-width:650px;margin:0;color:#a9bfd9;font-size:13px;line-height:1.8}
+.daily-actions{display:flex;align-items:center;justify-content:space-between;gap:15px;max-width:630px;margin-top:27px}
+.daily-signature{font-size:9px;letter-spacing:2px;color:#86b8dc;font-weight:700}
+.daily-signature i{color:#63d7ef;font-style:normal;padding:0 4px}
+.daily-share{border:1px solid #4e86b5;border-radius:7px;background:#173b60;color:#e8f5ff;padding:11px 15px;font-size:11px;font-weight:600;cursor:pointer;transition:.2s}
+.daily-share:hover{background:#20517d;border-color:#7acaf0;transform:translateY(-2px)}
+.daily-signal-mark{justify-self:end;display:grid;justify-items:center;gap:13px;position:relative}
+.daily-signal-mark img{width:86px;height:86px;border-radius:22px;box-shadow:0 0 55px #2b9fe64a}
+.daily-signal-mark span{text-align:center;font:600 9px/1.7 var(--display);letter-spacing:2px;color:#8cb9dd}
+.daily-signal.is-special{border-color:#69b9ec;background:radial-gradient(ellipse at 85% 15%,#3b79bd66,transparent 42%),linear-gradient(120deg,#10223d,#143b63 58%,#0d203a)}
+@media(max-width:650px){.daily-signal{grid-template-columns:1fr;margin:20px 14px;padding:25px 21px;border-radius:17px}.daily-signal-mark{display:none}.daily-actions{align-items:flex-start;flex-direction:column}.daily-kicker{flex-wrap:wrap}.daily-signal h2{font-size:29px}}
