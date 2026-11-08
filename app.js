@@ -96,7 +96,7 @@ document.getElementById("productSearch").addEventListener("input",renderProducts
 (function(){const tools=document.querySelector(".product-tools"),input=document.getElementById("productSearch");if(!tools||!input)return;const wrap=document.createElement("div");wrap.className="search-wrap";input.parentNode.insertBefore(wrap,input);wrap.append(input);const clear=document.createElement("button");clear.type="button";clear.className="search-clear";clear.textContent="×";clear.setAttribute("aria-label","Clear product search");wrap.append(clear);clear.onclick=()=>{input.value="";renderProducts();input.focus()};const count=document.createElement("div");count.id="productResultCount";count.className="product-result-count";tools.after(count)})();
 document.getElementById("menuBtn").onclick=()=>document.querySelector(".header").classList.toggle("menu-open");
 document.querySelectorAll("#nav a").forEach(a=>a.onclick=()=>document.querySelector(".header").classList.remove("menu-open"));
-document.getElementById("enquiryForm").addEventListener("submit",e=>{e.preventDefault();const d=new FormData(e.target);const body=[...d.entries()].map(([k,v])=>k+": "+v).join("%0D%0A");location.href="mailto:usrcalanabi@gmail.com?subject=NIRVO%20Website%20Enquiry&body="+encodeURIComponent(body);});
+// Enquiry form is handled once by the WhatsApp submission handler below.
 document.getElementById("year").textContent=new Date().getFullYear();renderProducts();saveCart();
 
 // NIRVO storefront reliability + motion layer
