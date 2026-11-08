@@ -45,3 +45,24 @@ body{background:radial-gradient(ellipse at 50% -20%,#172d52 0,transparent 42%),#
 .order-form input,.order-form textarea{background:#081326}
 .order-form button:disabled{opacity:.65;cursor:wait}
 @media(max-width:650px){.product-grid.auto-shelf .product-card{flex-basis:82vw}}
+
+
+/* NIRVO 3.0 — sharper controls and responsive catalogue tools */
+.product-tools{align-items:center;gap:12px}
+.product-tools input{flex:1;min-width:220px}
+#productSort{background:#101c31;border:1px solid #263b5b;color:#dce9f8;border-radius:7px;padding:11px 13px;min-width:170px;outline:none}
+#productSort:focus,.product-tools input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #67e8f91c}
+.icon-btn{width:42px;height:42px;border:1px solid #2a4161;border-radius:50%;background:#101c32;font-size:21px;transition:.2s}
+.icon-btn:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-2px)}
+.product-image{background:#0c1930}
+.product-image img{object-position:center;filter:saturate(.92) contrast(1.04)}
+.product-image .number{z-index:1;background:#081426bb;padding:6px 8px;border:1px solid #6ce8f933;border-radius:5px}
+.product-card{border-color:#1b3552}
+.product-card:hover{border-color:#67e8f9;transform:translateY(-7px)}
+@media(max-width:650px){
+ .icon-btn{display:inline-grid;place-items:center;width:36px;height:36px;font-size:18px}
+ .product-tools{display:grid;grid-template-columns:1fr;gap:10px}
+ .product-tools input,#productSort{width:100%;min-width:0}
+ .head-actions{gap:7px}
+ .cart-btn{padding:9px 11px}
+}
