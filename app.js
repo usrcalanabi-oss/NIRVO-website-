@@ -18,7 +18,19 @@ const products=[
 ["Nirvo VisionAI","Smart Systems","Edge AI camera concept with local analytics, night vision and privacy-first storage.","₹15,000 onwards","₹15,000","17","photo-1526738549149-8e07eca6c147"],
 ["Nirvo SmartPanel","Smart Systems","15–21 inch interactive information display with embedded computer and signage software.","₹30,000 onwards","₹30,000","18","photo-1558008258-3256797b43f3"],
 ["Nirvo RoomSense","Smart Systems","Indoor air-quality monitor for CO₂, PM2.5, temperature, humidity and occupancy insights.","₹8,000 onwards","₹8,000","19","photo-1497366754035-f200968a6e72"],
-["Nirvo SolarPilot","Smart Systems","Solar generation monitoring interface with energy logging, inverter integration and alerts.","₹15,000 onwards","₹15,000","20","photo-1509391366360-2e959784a276"]
+["Nirvo SolarPilot","Smart Systems","Solar generation monitoring interface with energy logging, inverter integration and alerts.","₹15,000 onwards","₹15,000","20","photo-1509391366360-2e959784a276"],
+["Nirvo NeuralBox Mini","AI & Computing","Compact local AI development system for small teams, with configurable memory, NVMe storage and accelerator options.","₹42,000 onwards","₹42,000","21","photo-1518770660439-4636190af475"],
+["Nirvo VisionEdge","AI & Computing","Edge inference module for camera analytics, object detection and local automation workflows.","₹28,000 onwards","₹28,000","22","photo-1526738549149-8e07eca6c147"],
+["Nirvo LabNode","AI & Computing","Developer mini server for coding labs, container workloads and private test environments.","₹24,000 onwards","₹24,000","23","photo-1558494949-ef010cbdcc31"],
+["Nirvo Scout Mini","Robotics","Small indoor rover platform for education, mapping experiments and sensor integration.","₹18,000 onwards","₹18,000","24","photo-1485827404703-89b55fcc595e"],
+["Nirvo DockMate","Robotics","Smart docking and battery management station concept for compatible mobile robots.","₹16,000 onwards","₹16,000","25","photo-1581092160562-40aa08e78837"],
+["Nirvo ServoCore","Robotics","Modular motion controller with encoder inputs, protected motor outputs and programmable profiles.","₹12,000 onwards","₹12,000","26","photo-1581092580497-e0d23cbdf1dc"],
+["Nirvo SensorBridge","Industrial IoT","Multi-protocol sensor interface for Modbus, 4–20 mA, digital inputs and remote telemetry.","₹11,000 onwards","₹11,000","27","photo-1518770660439-4636190af475"],
+["Nirvo ColdWatch","Industrial IoT","Temperature and humidity monitoring for cold rooms, storage spaces and equipment enclosures.","₹7,500 onwards","₹7,500","28","photo-1530053969600-caed2596d242"],
+["Nirvo GridPulse","Industrial IoT","Power-quality monitor concept for voltage events, frequency, load trends and alerts.","₹19,000 onwards","₹19,000","29","photo-1473341304170-971dccb5ac1e"],
+["Nirvo GateSecure","Networking","Compact access-control gateway concept with network segmentation and secure remote administration.","₹18,000 onwards","₹18,000","30","photo-1558494949-ef010cbdcc31"],
+["Nirvo AirSense Pro","Smart Systems","Indoor environmental station with CO₂, particulate, VOC, noise and dashboard options.","₹13,000 onwards","₹13,000","31","photo-1497366754035-f200968a6e72"],
+["Nirvo WaterFlow","Smart Systems","Water usage monitor concept with flow sensing, leak alerts and consumption history.","₹6,500 onwards","₹6,500","32","photo-1530053969600-caed2596d242"]
 ];
 const photo=(id)=>id.startsWith("photo-")&&!["photo- rack","photo- routers"].includes(id)?'https://images.unsplash.com/'+id+'?auto=format&fit=crop&w=800&q=80':'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80';
 let cart=[]; try { cart=JSON.parse(localStorage.getItem("nirvo-cart")||"[]"); if(!Array.isArray(cart)) cart=[]; } catch(e){ cart=[]; } let activeFilter="All";
@@ -45,10 +57,20 @@ document.getElementById("cartClose").addEventListener("click",e=>{e.preventDefau
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeCart();document.getElementById("productModal").classList.remove("open")}});
 const checkout=document.getElementById("checkoutBtn");
 checkout.onclick=()=>{
- if(!cart.length){openCart();return;}
- const message="Hello NIRVO! I would like to place an order enquiry:\n\n"+cart.map(x=>x.name+" × "+x.qty+" — "+x.price).join("\n")+"\n\nPlease confirm stock, final price, delivery and payment options.\n\nName:\nDelivery location:";
- const url="https://wa.me/919447682486?text="+encodeURIComponent(message);
- window.open(url,"_blank","noopener");
+ if(!cart.length)return;
+ const m=document.getElementById("productModal");
+ document.getElementById("modalContent").innerHTML=`<div class="product-meta">ORDER ENQUIRY · NIRVO</div><h2>Complete your enquiry</h2><p>This submits an order request. It does not collect payment or confirm stock.</p><form id="orderForm" class="order-form"><label>Full name<input name="customer-name" required autocomplete="name"></label><label>Email<input name="customer-email" type="email" required autocomplete="email"></label><label>Phone / WhatsApp<input name="customer-phone" required autocomplete="tel"></label><label>Delivery location<textarea name="delivery-location" required rows="2"></textarea></label><label>Note (optional)<textarea name="customer-note" rows="2"></textarea></label><input type="hidden" name="order-items"><input type="hidden" name="order-total"><button class="primary submit" type="submit">Submit order enquiry ↗</button></form>`;
+ m.classList.add("open");
+ const form=document.getElementById("orderForm");
+ form.elements["order-items"].value=cart.map(x=>x.name+" × "+x.qty+" — "+x.price).join("\n");
+ form.elements["order-total"].value=document.getElementById("subtotal").textContent;
+ form.onsubmit=async ev=>{
+  ev.preventDefault();const data=new URLSearchParams(new FormData(form));data.set("form-name","nirvo-orders");
+  const btn=form.querySelector("button");btn.disabled=true;btn.textContent="Sending…";
+  try{const res=await fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:data.toString()});if(!res.ok)throw new Error("Failed");
+   document.getElementById("modalContent").innerHTML="<h2>Enquiry submitted</h2><p>Your request has been recorded. NIRVO will contact you to confirm availability, final pricing and payment.</p>";cart=[];saveCart();
+  }catch(err){btn.disabled=false;btn.textContent="Try again";alert("Could not submit. Please check your connection and retry.");}
+ };
 };
 document.getElementById("enquiryForm").addEventListener("submit",e=>{
  e.preventDefault();const d=new FormData(e.target);
