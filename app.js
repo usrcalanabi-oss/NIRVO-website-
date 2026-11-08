@@ -1,3 +1,15 @@
+// NIRVO branded startup: reveal the site after five seconds.
+(function(){
+ const loader=document.getElementById("nirvoLoader");
+ if(!loader)return;
+ const percent=document.getElementById("loaderPercent");
+ const started=Date.now();
+ const update=()=>{if(!percent)return;const value=Math.min(100,Math.floor((Date.now()-started)/50));percent.textContent=String(value);if(value<100)requestAnimationFrame(update)};
+ requestAnimationFrame(update);
+ document.body.style.overflow="hidden";
+ window.setTimeout(()=>{loader.classList.add("is-leaving");document.body.style.overflow="";window.setTimeout(()=>loader.remove(),500)},5000);
+})();
+
 const products=[
 ["Nirvo AI Station","AI & Computing","Local AI workstation for private inference and development. 8-core CPU, 32GB RAM, 1TB NVMe, optional accelerator.","₹85,000 onwards","₹85,000", "01","photo-1593640408182-31c70c8268f5"],
 ["Nirvo PrivateVault","AI & Computing","Private 4-bay NAS with RAID options, encrypted storage, 2.5GbE and automated backups.","₹35,000 onwards","₹35,000","02","photo-1558494949-ef010cbdcc31"],
