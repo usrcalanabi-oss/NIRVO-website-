@@ -695,3 +695,38 @@ footer{border-top:1px solid #28425f}
 .daily-signal-mark span{text-align:center;font:600 9px/1.7 var(--display);letter-spacing:2px;color:#8cb9dd}
 .daily-signal.is-special{border-color:#69b9ec;background:radial-gradient(ellipse at 85% 15%,#3b79bd66,transparent 42%),linear-gradient(120deg,#10223d,#143b63 58%,#0d203a)}
 @media(max-width:650px){.daily-signal{grid-template-columns:1fr;margin:20px 14px;padding:25px 21px;border-radius:17px}.daily-signal-mark{display:none}.daily-actions{align-items:flex-start;flex-direction:column}.daily-kicker{flex-wrap:wrap}.daily-signal h2{font-size:29px}}
+
+
+/* Flagship software feature — NIRVO Study AI */
+.software-feature{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(35px,7vw,100px);align-items:center;padding:clamp(65px,9vw,115px) clamp(24px,9vw,140px);background:linear-gradient(180deg,#080f1e,#0b1729)}
+.software-kicker{display:flex;align-items:center;gap:10px;color:#7bd6f1;font-size:9px;font-weight:700;letter-spacing:2px}
+.software-kicker i{width:7px;height:7px;border-radius:50%;background:#64e3bf;box-shadow:0 0 13px #64e3bf}
+.software-copy h2{font:600 clamp(38px,5vw,60px)/1.05 var(--display);letter-spacing:-2.5px;margin:22px 0}
+.software-copy h2 em{font-style:normal;background:linear-gradient(100deg,#8bbaff,#4bd5e7);-webkit-background-clip:text;background-clip:text;color:transparent}
+.software-copy>p{max-width:490px;color:#a8bad1;font-size:14px;line-height:1.9}
+.software-tags{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}
+.software-tags span{padding:8px 10px;border:1px solid #294766;border-radius:5px;color:#9ec8e7;font-size:8px;letter-spacing:1.2px}
+.software-cta{display:inline-flex;align-items:center;gap:28px;padding:14px 18px;border:1px solid #58a9dd;border-radius:7px;background:linear-gradient(110deg,#1b5596,#12658a);color:#f1f8ff;font-size:12px;font-weight:700;box-shadow:0 12px 35px #0c6a9a30}
+.software-cta:hover{filter:brightness(1.15);transform:translateY(-2px)}
+.software-copy>small{display:block;max-width:420px;margin-top:13px;color:#758ca8;font-size:10px;line-height:1.6}
+.software-preview{display:block;min-width:0;padding:22px;border:1px solid #355a7c;border-radius:17px;background:linear-gradient(145deg,#122641,#0a1628);box-shadow:0 25px 65px #0005;transform:perspective(1100px) rotateY(-4deg);transition:transform .3s,border-color .3s}
+.software-preview:hover{transform:perspective(1100px) rotateY(0) translateY(-4px);border-color:#63b9e7}
+.preview-top{display:flex;justify-content:space-between;align-items:center;padding-bottom:17px;border-bottom:1px solid #28425e;color:#d9e9f8;font:700 10px var(--display);letter-spacing:1.4px}
+.preview-top b{display:inline-grid;place-items:center;width:24px;height:24px;margin-right:7px;border-radius:7px;background:linear-gradient(135deg,#437ff1,#16a9c9);color:white}
+.preview-live{display:flex;align-items:center;gap:7px;color:#89b6d6;font-size:8px}
+.preview-live i{width:6px;height:6px;border-radius:50%;background:#64e3bf}
+.preview-welcome{display:flex;flex-direction:column;gap:9px;padding:27px 3px}
+.preview-welcome small,.preview-plan>span{color:#79c6e9;font-size:8px;letter-spacing:1.8px;font-weight:700}
+.preview-welcome strong{font:600 clamp(25px,3.2vw,39px) var(--display);letter-spacing:-1.4px;color:#f2f7ff}
+.preview-welcome strong em{font-style:normal;color:#71c9ed}
+.preview-welcome>span{font-size:11px;line-height:1.7;color:#91a9c3}
+.preview-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.preview-metrics>span{display:flex;flex-direction:column;gap:10px;padding:14px 12px;border:1px solid #2b4969;border-radius:8px;background:#0b1b30}
+.preview-metrics small{color:#809ab5;font-size:7px;letter-spacing:1.1px}
+.preview-metrics b{font:600 12px var(--display);color:#dceeff}
+.preview-plan{display:grid;grid-template-columns:1fr auto;gap:9px 12px;align-items:center;margin-top:12px;padding:15px;border:1px solid #2e5275;border-radius:8px;background:linear-gradient(100deg,#14365b,#102541)}
+.preview-plan>span{grid-column:1/-1}
+.preview-plan>b{font:500 13px var(--display);color:#e5f2ff}
+.preview-plan>i{font-style:normal;color:#80d7f1;font-size:8px;letter-spacing:1px;white-space:nowrap}
+@media(max-width:760px){.software-feature{grid-template-columns:1fr;gap:32px}.software-preview{transform:none}.preview-metrics{gap:7px}.preview-metrics>span{padding:12px 8px}}
+@media(max-width:420px){.preview-plan{grid-template-columns:1fr}.preview-plan>span{grid-column:auto}.preview-plan>i{white-space:normal}}
