@@ -148,32 +148,6 @@ if(shelf){
  if(grid)grid.setAttribute("aria-live","polite");
 })();
 
-// NIRVO customer enquiry assistant — answers only NIRVO customer-support questions.
-(function(){
- const form=document.getElementById("supportForm"),input=document.getElementById("supportPrompt"),chat=document.getElementById("supportChat"),send=document.getElementById("supportSend");
- if(!form||!input||!chat||!send)return;
- const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
- function addMessage(role,message){
-  const row=document.createElement("div");row.className="support-message "+role;
-  row.innerHTML=(role==="assistant"?'<span class="support-avatar">N</span>':'')+'<div><b>'+(role==="assistant"?"NIRVO Assistant":"You")+'</b><p>'+esc(message).replace(/\n/g,"<br>")+'</p></div>';
-  chat.appendChild(row);chat.scrollTop=chat.scrollHeight;return row;
- }
- async function ask(question){
-  const q=question.trim();if(!q)return;
-  addMessage("user",q);input.value="";send.disabled=true;send.textContent="Thinking…";
-  const loading=addMessage("assistant","Checking NIRVO information…");
-  try{
-   const response=await fetch("/.netlify/functions/idea-studio",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({question:q})});
-   const data=await response.json();if(!response.ok)throw new Error(data.error||"The assistant is temporarily unavailable.");
-   loading.querySelector("p").textContent=data.answer||"Please contact the NIRVO team for help.";
-  }catch(err){loading.querySelector("p").textContent=err.message+" You can contact NIRVO at usrcalanabi@gmail.com or WhatsApp +91 94476 82486."}
-  finally{send.disabled=false;send.innerHTML='Send <span>↗</span>';input.focus();chat.scrollTop=chat.scrollHeight;}
- }
- form.addEventListener("submit",e=>{e.preventDefault();ask(input.value)});
- document.querySelectorAll("[data-question]").forEach(b=>b.addEventListener("click",()=>ask(b.dataset.question)));
-})();
-
- 
 // NIRVO marketplace submissions: review listings and projects before publication.
 (function(){
  const tabs=document.querySelectorAll("[data-market-tab]"),listing=document.getElementById("listingForm"),project=document.getElementById("projectForm");
@@ -208,3 +182,10 @@ if(shelf){
  listing.addEventListener("submit",e=>{e.preventDefault();submitForm(listing,"Submit product for review","Product submitted","Thank you. Your listing and three photos have been sent to NIRVO for review. We will contact you using the details provided.")});
  project.addEventListener("submit",e=>{e.preventDefault();submitForm(project,"Submit project for review","Project received","Thank you for sharing your project. NIRVO will review the description and photos and contact you if a follow-up is needed.")});
 })();
+
+
+// Separate navigation shortcut for project submissions.
+document.querySelectorAll("[data-open-project]").forEach(link=>link.addEventListener("click",()=>{
+ const projectTab=document.querySelector('[data-market-tab="project"]');
+ if(projectTab)projectTab.click();
+}));
