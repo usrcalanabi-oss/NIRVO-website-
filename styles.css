@@ -566,3 +566,36 @@ button:disabled{opacity:.55;cursor:not-allowed}
 @keyframes loaderScan{to{transform:translateY(390%)}}
 @media(max-width:480px){.loader-build{font-size:7px;letter-spacing:1px}.loader-content{width:82vw}.loader-symbol-wrap{width:94px;height:94px}.loader-logo{width:57px;height:57px}.loader-wordmark{font-size:35px}.loader-steps{margin-top:28px}.loader-bottom{font-size:7px;letter-spacing:1px}}
 @media(prefers-reduced-motion:reduce){.loader-logo,.loader-scan{animation:none}}
+
+
+/* NIRVO responsive custom-engineering feature — true brand asset, fluid sizing */
+.feature-band{width:100%;max-width:100%;box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(28px,6vw,88px);padding:clamp(38px,7vw,100px) clamp(18px,6vw,88px);overflow:hidden}
+.feature-band>*{min-width:0}
+.feature-visual{width:100%;min-width:0;min-height:clamp(300px,38vw,510px);display:grid;place-items:center;padding:clamp(12px,2vw,28px);box-sizing:border-box}
+.feature-brand-panel{position:relative;width:min(100%,560px);min-height:clamp(280px,35vw,450px);aspect-ratio:1.18/1;display:flex;flex-direction:column;align-items:center;justify-content:center;box-sizing:border-box;overflow:hidden;padding:clamp(20px,4vw,46px);border:1px solid #4a83b955;border-radius:clamp(14px,2vw,24px);background:radial-gradient(ellipse at 50% 48%,#1b5c9566,transparent 48%),linear-gradient(145deg,#102b4b,#081426 72%);box-shadow:0 28px 70px #0005,inset 0 1px #b8e5ff18}
+.feature-brand-panel:before{content:"";position:absolute;inset:0;background-image:linear-gradient(#9acfff0b 1px,transparent 1px),linear-gradient(90deg,#9acfff0b 1px,transparent 1px);background-size:34px 34px;mask-image:linear-gradient(135deg,#000,transparent 82%);pointer-events:none}
+.feature-brand-top,.feature-brand-bottom{position:absolute;left:clamp(16px,3vw,30px);right:clamp(16px,3vw,30px);display:flex;justify-content:space-between;gap:12px;color:#80a4c9;font-size:clamp(7px,.72vw,9px);font-weight:700;letter-spacing:1.2px}
+.feature-brand-top{top:clamp(16px,2.5vw,28px)}
+.feature-brand-bottom{bottom:clamp(16px,2.5vw,28px);color:#6f8eaf;font-size:clamp(6px,.65vw,8px)}
+.feature-logo-frame{position:relative;z-index:1;display:grid;place-items:center;width:clamp(94px,13vw,156px);height:clamp(94px,13vw,156px);border:1px solid #8bd5ff42;border-radius:clamp(20px,3vw,32px);background:linear-gradient(145deg,#ffffff12,#ffffff03);box-shadow:0 0 55px #36a9f333,inset 0 1px #fff2}
+.feature-logo-frame img{display:block;width:76%;height:76%;object-fit:contain}
+.feature-brand-name{position:relative;z-index:1;margin-top:clamp(16px,2vw,24px);font:700 clamp(28px,4.4vw,48px)/1 var(--display);letter-spacing:clamp(4px,.8vw,8px);color:#f5f9ff}
+.feature-brand-name span{color:#64d3f3}
+.feature-brand-caption{position:relative;z-index:1;margin-top:10px;color:#91b5d8;font-size:clamp(7px,.8vw,9px);font-weight:700;letter-spacing:clamp(1.5px,.35vw,3px)}
+.feature-brand-caption i{color:#52c8ef;font-style:normal;padding:0 4px}
+.feature-copy{min-width:0;max-width:620px}
+.feature-copy h2{font-size:clamp(32px,4.5vw,58px);line-height:1.08;overflow-wrap:anywhere}
+.feature-copy p{max-width:58ch;font-size:clamp(13px,1.15vw,16px);line-height:1.85}
+.feature-copy .primary{display:inline-flex;align-items:center;gap:14px}
+@media(max-width:850px){.feature-band{grid-template-columns:minmax(0,1fr);gap:22px;padding:48px clamp(18px,5vw,38px)}.feature-visual{min-height:0;padding:0}.feature-brand-panel{width:min(100%,560px);min-height:320px}.feature-copy{max-width:720px;margin-inline:auto;width:100%}}
+@media(max-width:520px){.feature-band{padding:38px 16px;gap:26px}.feature-brand-panel{min-height:270px;aspect-ratio:1.05/1;padding:20px 14px;border-radius:16px}.feature-brand-top,.feature-brand-bottom{left:14px;right:14px;font-size:6px;letter-spacing:.7px}.feature-brand-bottom{gap:8px}.feature-logo-frame{width:92px;height:92px;border-radius:20px}.feature-brand-name{font-size:31px;letter-spacing:5px}.feature-copy h2{font-size:clamp(32px,9vw,43px)}.feature-copy p{font-size:13px;line-height:1.8}}
+@media(prefers-reduced-motion:reduce){.feature-brand-panel:before{animation:none}}
+/* Loader scales to the available viewport without clipping on short phones */
+.loader-content{width:min(420px,calc(100vw - 40px),calc(100vh - 190px));max-width:calc(100vw - 40px)}
+.loader-symbol-wrap{width:clamp(76px,12vw,106px);height:clamp(76px,12vw,106px);border-radius:clamp(18px,3vw,25px)}
+.loader-logo{width:clamp(48px,7vw,64px);height:clamp(48px,7vw,64px)}
+.loader-wordmark{font-size:clamp(29px,5vw,39px);letter-spacing:clamp(4px,1vw,7px)}
+.loader-steps{gap:clamp(4px,1vw,9px);margin-top:clamp(18px,4vh,34px)}
+.loader-top,.loader-bottom{left:clamp(14px,4vw,72px);right:clamp(14px,4vw,72px)}
+@media(max-height:620px){.loader-content{top:52%;width:min(360px,calc(100vw - 36px),calc(100vh - 145px))}.loader-symbol-wrap{width:64px;height:64px;margin-bottom:10px}.loader-logo{width:42px;height:42px}.loader-message{margin-top:12px}.loader-track{margin-top:8px}.loader-steps{margin-top:14px}.loader-bottom{bottom:12px}.loader-top{top:12px;padding-bottom:8px}}
+@media(max-width:360px){.loader-build{display:none}.loader-steps span{font-size:7px}.loader-steps span i{font-size:6px}}
