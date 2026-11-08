@@ -324,3 +324,7 @@ body{background:#080f1b;color:#f3f6fc}
  .market-tab{padding:13px 12px;font-size:11px}
  .product-grid.auto-shelf .product-card{flex-basis:84vw}
 }
+
+/* Single-column customer support header after removing decorative orb */
+#assistant .studio-head{grid-template-columns:1fr;max-width:1120px}
+#assistant .studio-intro{max-width:760px}
