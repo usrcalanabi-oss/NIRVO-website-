@@ -40,7 +40,7 @@ function renderProducts(){
  const list=products.filter(p=>(activeFilter==="All"||p[1]===activeFilter)&&p.join(" ").toLowerCase().includes(q));
  const count=document.getElementById("productResultCount");if(count)count.textContent="Showing "+list.length+" of "+products.length+" products";
  grid.innerHTML=list.length?list.map(p=>
-  '<article class="product-card in-view" data-product-card="'+p[5]+'" tabindex="0" role="button" aria-label="View '+p[0]+' details"><div class="product-image"><img loading="lazy" src="'+photo(p[6])+'" alt="'+p[0]+' product concept"><span class="number">NIRVO / '+p[5]+'</span><span class="image-view">VIEW PRODUCT ↗</span></div><div class="product-info"><div class="product-meta">'+p[1].toUpperCase()+'</div><h3>'+p[0]+'</h3><p>'+p[2]+'</p><div class="product-bottom"><span class="price">'+p[3]+'</span><button class="add-btn" data-add="'+p[5]+'" type="button">＋ Add to cart</button></div><button class="details-btn" data-details="'+p[5]+'" type="button">Explore product & specifications ↗</button></div></article>'
+  '<article class="product-card in-view" data-product-card="'+p[5]+'" tabindex="0" role="button" aria-label="View '+p[0]+' details"><div class="product-image"><img loading="lazy" src="'+photo(p[6])+'" alt="'+p[0]+' product concept"><span class="number">NIRVO / '+p[5]+'</span><img class="product-brand-mark" src="nirvo-logo.svg" alt="" aria-hidden="true"><span class="image-view">VIEW PRODUCT ↗</span></div><div class="product-info"><div class="product-meta">'+p[1].toUpperCase()+'</div><h3>'+p[0]+'</h3><p>'+p[2]+'</p><div class="product-bottom"><span class="price">'+p[3]+'</span><button class="add-btn" data-add="'+p[5]+'" type="button">＋ Add to cart</button></div><button class="details-btn" data-details="'+p[5]+'" type="button">Explore product & specifications ↗</button></div></article>'
  ).join(""):'<div class="no-results"><b>No matching products found.</b><p>Try another keyword or clear your filters.</p><button type="button" class="clear-search" data-clear-search>Clear search and filters</button></div>';
 }
 grid.addEventListener("click",e=>{const add=e.target.closest("[data-add]");if(add){e.stopPropagation();addCart(add.dataset.add);return}const card=e.target.closest("[data-product-card]");if(card)showDetails(card.dataset.productCard);if(e.target.closest("[data-clear-search]")){document.getElementById("productSearch").value="";activeFilter="All";document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x.dataset.filter==="All"));renderProducts()}});
@@ -53,7 +53,7 @@ document.getElementById("cartOpen").onclick=openCart;document.getElementById("ca
 document.getElementById("checkoutBtn").onclick=()=>{if(!cart.length)return;const lines=cart.map(x=>x.name+" x "+x.qty+" — "+x.price).join("%0D%0A");location.href="mailto:usrcalanabi@gmail.com?subject=NIRVO%20Product%20Order%20Enquiry&body=Hello%20NIRVO,%0D%0AI%20would%20like%20to%20request%20a%20confirmed%20quotation%20for:%0D%0A"+lines+"%0D%0A%0D%0APlease%20contact%20me%20to%20confirm%20availability,%20delivery%20and%20payment."};
 function showDetails(id){
  const p=products.find(x=>x[5]===id);if(!p)return;const m=document.getElementById("productModal");
- document.getElementById("modalContent").innerHTML='<div class="detail-layout"><div class="detail-image"><img src="'+photo(p[6])+'" alt="'+p[0]+' product concept"></div><div class="detail-copy"><div class="product-meta">'+p[1].toUpperCase()+' / NIRVO '+p[5]+'</div><h2>'+p[0]+'</h2><p>'+p[2]+'</p><div class="modal-specs"><span>Category: '+p[1]+'</span><span>Custom configuration</span><span>Quotation required</span></div><h3>'+p[3]+'</h3><p>Product concept and indicative starting price. Final specifications, availability, production status and quotation must be confirmed by NIRVO.</p><button class="primary" id="modalAdd">Add to cart ↗</button><a class="detail-contact" href="https://wa.me/919447682486?text='+encodeURIComponent("Hello NIRVO, I am interested in "+p[0]+". Please share details and a quotation.")+'" target="_blank" rel="noopener">Ask about this product on WhatsApp ↗</a></div></div>';
+ document.getElementById("modalContent").innerHTML='<div class="detail-layout"><div class="detail-image"><img src="'+photo(p[6])+'" alt="'+p[0]+' product concept"><img class="detail-brand-mark" src="nirvo-logo.svg" alt="NIRVO"></div><div class="detail-copy"><div class="product-meta">'+p[1].toUpperCase()+' / NIRVO '+p[5]+'</div><h2>'+p[0]+'</h2><p>'+p[2]+'</p><div class="modal-specs"><span>Category: '+p[1]+'</span><span>Custom configuration</span><span>Quotation required</span></div><h3>'+p[3]+'</h3><p>Product concept and indicative starting price. Final specifications, availability, production status and quotation must be confirmed by NIRVO.</p><button class="primary" id="modalAdd">Add to cart ↗</button><a class="detail-contact" href="https://wa.me/919447682486?text='+encodeURIComponent("Hello NIRVO, I am interested in "+p[0]+". Please share details and a quotation.")+'" target="_blank" rel="noopener">Ask about this product on WhatsApp ↗</a></div></div>';
  m.classList.add("open");document.getElementById("modalAdd").onclick=()=>{addCart(id);m.classList.remove("open")}
 }
 document.getElementById("modalClose").onclick=()=>document.getElementById("productModal").classList.remove("open");
@@ -96,39 +96,19 @@ if("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: red
  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("in-view");observer.unobserve(entry.target)}}),{threshold:.12});
  document.querySelectorAll(".domain,.product-card,.feature-copy,.about-grid,.contact-grid").forEach(el=>observer.observe(el));
 }
-// Faster NIRVO product runway: smooth continuous movement, with manual controls.
+// Stable product carousel: no automatic movement, no animation loop, no scroll jitter.
 const shelf=document.querySelector(".product-grid");
 if(shelf){
  shelf.classList.add("auto-shelf");
- const tools=document.createElement("div");
- tools.className="product-runway";
+ const tools=document.createElement("div");tools.className="product-runway";
  tools.innerHTML='<span class="runway-label">DISCOVER THE COLLECTION</span><div class="runway-controls"><button type="button" aria-label="Scroll products left" data-runway-left>‹</button><button type="button" aria-label="Scroll products right" data-runway-right>›</button><button type="button" class="view-all-btn" data-view-all>View all products</button></div>';
  shelf.parentNode.insertBefore(tools,shelf);
- let paused=false,last=0,raf=0;const viewAll=tools.querySelector("[data-view-all]");viewAll.addEventListener("click",()=>{const expanded=shelf.classList.toggle("show-all");viewAll.textContent=expanded?"Show featured carousel":"View all products";if(expanded)paused=true;else{paused=false;last=0;shelf.scrollTo({left:0,behavior:"smooth"})}});
- const speed=0.48; // gentle continuous motion at roughly 29px/second
- const tick=(now)=>{
-   if(!last)last=now;
-   const delta=Math.min(now-last,40);last=now;
-   if(!paused&&!document.hidden&&!matchMedia("(prefers-reduced-motion: reduce)").matches&&shelf.scrollWidth>shelf.clientWidth+4){
-     shelf.scrollLeft+=speed*(delta/16.67);
-     if(shelf.scrollLeft+shelf.clientWidth>=shelf.scrollWidth-2)shelf.scrollTo({left:0,behavior:"instant"});
-   }
-   raf=requestAnimationFrame(tick);
- };
- raf=requestAnimationFrame(tick);
- const pause=()=>{paused=true};
- const resume=()=>{paused=false;last=0};
- shelf.addEventListener("mouseenter",pause);shelf.addEventListener("mouseleave",resume);
- shelf.addEventListener("touchstart",pause,{passive:true});
- shelf.addEventListener("touchend",()=>setTimeout(resume,1400),{passive:true});
- shelf.addEventListener("focusin",pause);shelf.addEventListener("focusout",resume);
- shelf.addEventListener("wheel",pause,{passive:true});
- tools.querySelector("[data-runway-left]").onclick=()=>{pause();shelf.scrollBy({left:-Math.max(280,shelf.clientWidth*.72),behavior:"smooth"});setTimeout(resume,900)};
- tools.querySelector("[data-runway-right]").onclick=()=>{pause();shelf.scrollBy({left:Math.max(280,shelf.clientWidth*.72),behavior:"smooth"});setTimeout(resume,900)};
- window.addEventListener("beforeunload",()=>cancelAnimationFrame(raf));
+ let expanded=false;
+ const viewAll=tools.querySelector("[data-view-all]");
+ viewAll.addEventListener("click",()=>{expanded=!expanded;shelf.classList.toggle("show-all",expanded);viewAll.textContent=expanded?"Show product carousel":"View all products";});
+ tools.querySelector("[data-runway-left]").onclick=()=>shelf.scrollBy({left:-Math.max(280,shelf.clientWidth*.8),behavior:"smooth"});
+ tools.querySelector("[data-runway-right]").onclick=()=>shelf.scrollBy({left:Math.max(280,shelf.clientWidth*.8),behavior:"smooth"});
 }
-
-
 // NIRVO storefront patch: search action, live sorting and catalogue accuracy.
 (function(){
  const searchBtn=document.getElementById("searchBtn");
