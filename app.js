@@ -183,3 +183,45 @@ document.querySelectorAll("[data-open-project]").forEach(link=>link.addEventList
  const projectTab=document.querySelector('[data-market-tab="project"]');
  if(projectTab)projectTab.click();
 }));
+
+
+// NIRVO account interface: interactive UI only until a secure auth provider is connected.
+(function(){
+ const overlay=document.getElementById("accountOverlay");
+ if(!overlay)return;
+ const open=document.getElementById("accountOpen"),close=document.getElementById("accountClose");
+ const login=document.getElementById("loginTab"),signup=document.getElementById("signupTab");
+ const form=document.getElementById("accountForm"),nameWrap=document.getElementById("accountNameWrap");
+ const title=document.getElementById("accountTitle"),subtitle=document.getElementById("accountSubtitle");
+ const eyebrow=document.getElementById("accountEyebrow"),submit=document.getElementById("accountSubmit");
+ const feedback=document.getElementById("accountFeedback"),forgot=document.getElementById("forgotPassword");
+ const password=form.elements.password,toggle=document.getElementById("passwordToggle");
+ let mode="login";
+ function showAccount(){overlay.classList.add("open");overlay.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";setTimeout(()=>form.elements.email.focus(),120)}
+ function hideAccount(){overlay.classList.remove("open");overlay.setAttribute("aria-hidden","true");document.body.style.overflow="";open?.focus()}
+ function setMode(next){
+  mode=next;const creating=mode==="signup";
+  login.classList.toggle("active",!creating);signup.classList.toggle("active",creating);
+  login.setAttribute("aria-selected",String(!creating));signup.setAttribute("aria-selected",String(creating));
+  nameWrap.hidden=!creating;nameWrap.querySelector("input").required=creating;
+  form.elements.email.autocomplete=creating?"email":"username";
+  password.autocomplete=creating?"new-password":"current-password";
+  title.textContent=creating?"Create your NIRVO ID.":"Good to see you.";
+  subtitle.textContent=creating?"One account for your NIRVO journey.":"Log in to continue exploring NIRVO.";
+  eyebrow.textContent=creating?"JOIN THE NIRVO NETWORK":"WELCOME BACK";
+  submit.innerHTML=creating?'Create account <span>↗</span>':'Log in <span>↗</span>';
+  forgot.hidden=creating;feedback.textContent="Secure account sign-in will be enabled after authentication is connected.";
+  feedback.className="account-feedback";form.reset();password.type="password";toggle.textContent="Show";
+ }
+ open?.addEventListener("click",showAccount);close?.addEventListener("click",hideAccount);
+ overlay.addEventListener("click",e=>{if(e.target===overlay)hideAccount()});
+ login.addEventListener("click",()=>setMode("login"));signup.addEventListener("click",()=>setMode("signup"));
+ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&overlay.classList.contains("open"))hideAccount()});
+ toggle.addEventListener("click",()=>{const visible=password.type==="text";password.type=visible?"password":"text";toggle.textContent=visible?"Show":"Hide";toggle.setAttribute("aria-label",visible?"Show password":"Hide password")});
+ forgot.addEventListener("click",()=>{feedback.textContent="Password recovery will be available when secure account authentication is connected.";feedback.className="account-feedback"});
+ form.addEventListener("submit",e=>{
+  e.preventDefault();
+  feedback.textContent=mode==="signup"?"Your sign-up screen is ready. Secure account creation still needs to be connected.":"Your login screen is ready. Secure sign-in still needs to be connected.";
+  feedback.className="account-feedback";
+ });
+})();
