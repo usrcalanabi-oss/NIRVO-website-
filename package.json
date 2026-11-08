@@ -1,1 +1,1 @@
-{"name":"nirvo-company-site","private":true,"version":"1.0.0","engines":{"node":">=20"},"dependencies":{"@vercel/blob":"^2.3.0","busboy":"^1.6.0"}}
+{"name":"nirvo-company-site","private":true,"version":"1.0.0","engines":{"node":"20.x"},"dependencies":{"@vercel/blob":"^2.3.0","busboy":"^1.6.0"}}
