@@ -60,6 +60,34 @@ if("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: red
  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("in-view");observer.unobserve(entry.target)}}),{threshold:.12});
  document.querySelectorAll(".domain,.product-card,.feature-copy,.about-grid,.contact-grid").forEach(el=>observer.observe(el));
 }
-// Product shelf auto-scrolls gently, pauses on hover/touch/focus and remains manually scrollable.
+// Faster NIRVO product runway: smooth continuous movement, with manual controls.
 const shelf=document.querySelector(".product-grid");
-if(shelf){shelf.classList.add("auto-shelf");let shelfTimer=null;let paused=false;const runShelf=()=>{if(paused||window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;if(shelf.scrollWidth<=shelf.clientWidth+4)return;shelf.scrollBy({left:1,behavior:"auto"});if(shelf.scrollLeft+shelf.clientWidth>=shelf.scrollWidth-2)shelf.scrollTo({left:0,behavior:"smooth"})};shelf.addEventListener("mouseenter",()=>paused=true);shelf.addEventListener("mouseleave",()=>paused=false);shelf.addEventListener("touchstart",()=>paused=true,{passive:true});shelf.addEventListener("touchend",()=>setTimeout(()=>paused=false,2500),{passive:true});shelf.addEventListener("focusin",()=>paused=true);shelf.addEventListener("focusout",()=>paused=false);shelfTimer=setInterval(runShelf,32)}
+if(shelf){
+ shelf.classList.add("auto-shelf");
+ const tools=document.createElement("div");
+ tools.className="product-runway";
+ tools.innerHTML='<span class="runway-label">DISCOVER THE COLLECTION · AUTO-GLIDE</span><div class="runway-controls"><button type="button" aria-label="Scroll products left" data-runway-left>‹</button><button type="button" aria-label="Scroll products right" data-runway-right>›</button></div>';
+ shelf.parentNode.insertBefore(tools,shelf);
+ let paused=false,last=0,raf=0;
+ const speed=2.65; // pixels per frame at 60fps (~159px/second)
+ const tick=(now)=>{
+   if(!last)last=now;
+   const delta=Math.min(now-last,40);last=now;
+   if(!paused&&!document.hidden&&!matchMedia("(prefers-reduced-motion: reduce)").matches&&shelf.scrollWidth>shelf.clientWidth+4){
+     shelf.scrollLeft+=speed*(delta/16.67);
+     if(shelf.scrollLeft+shelf.clientWidth>=shelf.scrollWidth-2)shelf.scrollTo({left:0,behavior:"instant"});
+   }
+   raf=requestAnimationFrame(tick);
+ };
+ raf=requestAnimationFrame(tick);
+ const pause=()=>{paused=true};
+ const resume=()=>{paused=false;last=0};
+ shelf.addEventListener("mouseenter",pause);shelf.addEventListener("mouseleave",resume);
+ shelf.addEventListener("touchstart",pause,{passive:true});
+ shelf.addEventListener("touchend",()=>setTimeout(resume,1400),{passive:true});
+ shelf.addEventListener("focusin",pause);shelf.addEventListener("focusout",resume);
+ shelf.addEventListener("wheel",pause,{passive:true});
+ tools.querySelector("[data-runway-left]").onclick=()=>{pause();shelf.scrollBy({left:-Math.max(280,shelf.clientWidth*.72),behavior:"smooth"});setTimeout(resume,900)};
+ tools.querySelector("[data-runway-right]").onclick=()=>{pause();shelf.scrollBy({left:Math.max(280,shelf.clientWidth*.72),behavior:"smooth"});setTimeout(resume,900)};
+ window.addEventListener("beforeunload",()=>cancelAnimationFrame(raf));
+}
