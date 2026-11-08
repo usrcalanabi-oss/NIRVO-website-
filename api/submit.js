@@ -48,7 +48,7 @@ module.exports=async function(req,res){
    const ref=id.slice(0,8).toUpperCase();
    const adminSent=await sendMail("usrcalanabi@gmail.com","NIRVO "+type.toUpperCase()+" · "+ref,"A new NIRVO website submission was received.\n\nReference: "+id+"\nType: "+type+"\n\n"+summary+"\n\nReview it in the private NIRVO Control Room.");
    const customerSent=await sendMail(email,"We received your message · NIRVO","Hello "+personFor(type,data)+",\n\nThank you for contacting NIRVO. Your "+type+" submission has been received and is waiting for review.\n\nReference: "+ref+"\n\nOur team will contact you after reviewing the details. This is not an order confirmation or payment receipt.\n\nNIRVO · Create. Build. Solve.");
-   return json(res,201,{ok:true,id,stored:true,adminEmailSent:adminSent,customerEmailSent:customerSent,message:"Your submission has been securely saved. Reference: "+ref,notificationNote:adminSent?"NIRVO has also been emailed.":"Your submission is saved in NIRVO Control Room. Email alerts are not configured yet."});
+   return json(res,201,{ok:true,id,stored:true,adminEmailSent:adminSent,customerEmailSent:customerSent,message:"Your submission has been securely saved. Reference: "+ref,notificationNote:adminSent&&customerSent?"Email confirmation sent and NIRVO notified.":adminSent?"NIRVO has been notified by email. A customer confirmation email could not be sent.":customerSent?"A confirmation email was sent. NIRVO will review the submission in Control Room.":"Saved in NIRVO Control Room. Email alerts are not configured yet."});
   }catch(e){return json(res,500,{error:"We could not save your submission. Please retry or contact NIRVO."})}
  });
  req.pipe(bb);
