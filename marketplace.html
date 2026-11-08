@@ -44,7 +44,7 @@
  <div class="marketplace-heading"><div><div class="section-label">03 — OPEN MARKETPLACE</div><p class="marketplace-kicker">LIST · DISCOVER · CONNECT</p><h2>Have a product?<br><em>Bring it to NIRVO.</em></h2><p class="marketplace-lead">List electronics, robotics, components or a complete project for review. Buyers can discover your submission and contact you through NIRVO.</p></div><div class="marketplace-stat"><b>01</b><span>Submit your details</span><i></i><b>02</b><span>Our team reviews it</span><i></i><b>03</b><span>We connect interested buyers</span></div></div>
  <div class="marketplace-tabs" role="tablist" aria-label="Submission type"><button type="button" class="market-tab active" data-market-tab="product">List a product</button><button type="button" class="market-tab" data-market-tab="project">Submit a project</button></div>
  <div class="marketplace-panels">
-  <form class="market-form" id="listingForm" name="nirvo-listings" method="POST" enctype="multipart/form-data">
+  <form class="market-form" id="listingForm" name="nirvo-listings" method="POST" enctype="multipart/form-data"><label class="hp-field" aria-hidden="true">Leave this field empty<input name="website" tabindex="-1" autocomplete="off"></label>
    <div class="form-intro"><span>PRODUCT LISTING / 01</span><h3>Showcase your product</h3><p>Submit electronics, robotics, AI devices, components or connected systems. Listings are reviewed before being published.</p></div>
    <div class="form-grid">
     <label>Product name *<input name="product-name" required maxlength="100" placeholder="e.g. Autonomous inspection rover"></label>
@@ -63,7 +63,7 @@
    <label class="consent-line"><input type="checkbox" name="seller-consent" value="yes" required><span>I confirm that these details and photos are accurate and that I have permission to list this product.</span></label>
    <button class="primary submit market-submit" type="submit">Submit product for review <span>↗</span></button><p class="market-form-note">Submissions are sent to NIRVO for review. A listing is not published automatically and NIRVO does not process payments through this form.</p>
   </form>
-  <form class="market-form project-form" id="projectForm" name="nirvo-projects" method="POST" enctype="multipart/form-data" hidden>
+  <form class="market-form project-form" id="projectForm" name="nirvo-projects" method="POST" enctype="multipart/form-data" hidden><label class="hp-field" aria-hidden="true">Leave this field empty<input name="website" tabindex="-1" autocomplete="off"></label>
    <div class="form-intro"><span>PROJECT SUBMISSION / 02</span><h3>Tell us what you're building</h3><p>Share a prototype, invention, robotics build or electronics project. Include three photos so our team can understand it.</p></div>
    <div class="form-grid">
     <label>Project name *<input name="project-name" required maxlength="100" placeholder="Your project title"></label>
