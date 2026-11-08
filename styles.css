@@ -185,3 +185,142 @@ footer{background:#050910;border-top:1px solid #23334a}
 .support-composer button:disabled{opacity:.6;cursor:wait}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @media(max-width:650px){.support-workspace{padding:13px;margin-top:35px}.support-chat{height:360px}.support-message{max-width:95%}.support-composer{gap:5px}.support-composer button{padding:11px 12px}}
+
+/* NIRVO professional marketplace refresh */
+:root{--acid:#4d8dff;--cyan:#60c8f4;--blue:#716bff;--ice:#eef4fb;--muted:#aab8ca}
+[hidden]{display:none!important}
+body{background:#080f1b;color:#f3f6fc}
+.announcement{letter-spacing:.16em;font-size:9px;padding:10px 5vw;background:#0e1a2b;color:#a8bed9;border-bottom:1px solid #1e3048}
+.header{background:#091321ed;border-bottom:1px solid #22334a;backdrop-filter:blur(18px)}
+.header nav a{font-size:12px;color:#b8c7da;transition:color .2s}
+.header nav a:hover{color:#72baff}
+.brand img{filter:drop-shadow(0 0 12px #438cff28)}
+.hero{min-height:690px;padding-top:95px;padding-bottom:105px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:5vw;overflow:hidden}
+.hero-copy{max-width:650px;position:relative;z-index:2}
+.hero h1{font-size:clamp(64px,8vw,112px);line-height:.93;letter-spacing:-.085em}
+.hero-copy>p{max-width:540px;color:#a9b9ce;font-size:16px;line-height:1.85}
+.hero-stats{border-top:1px solid #273b55;padding-top:23px;margin-top:42px}
+.hero-stats b{font-size:27px}
+.hero-showcase{display:block;position:relative;min-height:490px;border:1px solid #293f5c;border-radius:18px;background:linear-gradient(145deg,#12223a,#0a1424 65%);padding:22px;overflow:hidden;box-shadow:0 32px 90px #0005}
+.showcase-top,.showcase-bottom{display:flex;justify-content:space-between;gap:10px;position:relative;z-index:2;color:#9eb6d3;font-size:9px;letter-spacing:.15em}
+.showcase-main{min-height:390px;display:grid;place-items:center;position:relative}
+.showcase-grid{position:absolute;inset:0;background-image:linear-gradient(#6aaeff0d 1px,transparent 1px),linear-gradient(90deg,#6aaeff0d 1px,transparent 1px);background-size:36px 36px;mask-image:radial-gradient(ellipse at center,black,transparent 76%)}
+.showcase-product{position:relative;z-index:1;text-align:center}
+.product-chip{font-size:9px;letter-spacing:.16em;color:#85c8ff;border:1px solid #41658e;padding:8px 13px;border-radius:4px;display:inline-block}
+.device-stack{height:215px;width:300px;position:relative;margin:20px auto}
+.device{position:absolute;left:50%;transform:translateX(-50%) skewY(-8deg);border:1px solid #6f9bc9;box-shadow:0 22px 45px #0008}
+.device-back{width:210px;height:115px;top:5px;background:linear-gradient(145deg,#324a68,#111e30);border-radius:12px}
+.device-mid{width:245px;height:115px;top:43px;background:linear-gradient(145deg,#1d3859,#0b182b);border-radius:10px;border-color:#4b91d0}
+.device-front{width:270px;height:115px;top:82px;background:linear-gradient(145deg,#172c47,#080f1c);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px}
+.device-front:before{content:"";width:5px;height:5px;border-radius:50%;background:#70d5ff;box-shadow:0 0 18px #70d5ff;position:absolute;right:20px;top:18px}
+.device-front span{font:700 52px "Space Grotesk";color:#dcecff;letter-spacing:-.1em}
+.device-front small{font-size:8px;letter-spacing:.22em;color:#8db8e4}
+.showcase-caption{display:grid;gap:6px;margin-top:5px}
+.showcase-caption b{font:600 20px "Space Grotesk"}
+.showcase-caption span{color:#9aacc4;font-size:11px}
+.showcase-bottom{border-top:1px solid #293e58;padding-top:16px}
+.scroll-note{bottom:28px}
+.ticker{background:#0d1a2b;border-block:1px solid #243953;color:#c5d9ef}
+.section{padding-top:110px;padding-bottom:110px}
+.section-label{color:#7ebcff}
+.intro-grid h2,.products-heading h2,.feature-copy h2,.about-grid h2,.contact-grid h2{font-size:clamp(40px,5vw,66px)}
+.domain-grid{gap:12px}
+.domain{background:linear-gradient(145deg,#101d30,#0b1524);border:1px solid #243750;border-radius:10px;padding:25px;transition:transform .25s,border-color .25s}
+.domain:hover{transform:translateY(-4px);border-color:#5b9ee7}
+.domain-icon{color:#77bfff}
+.products-section{padding-top:100px}
+.products-heading{align-items:end}
+.product-tools{position:sticky;top:76px;z-index:5;background:#091321ed;border:1px solid #233851;border-radius:10px;padding:12px;backdrop-filter:blur(18px);box-shadow:0 10px 30px #0003}
+.product-tools input,.product-tools select{background:#101d30;border:1px solid #304663;color:#eaf2fc;border-radius:7px;padding:12px}
+.filters{gap:7px}
+.filter{border:1px solid #2a405c;background:#101c2d;color:#aebfd4;border-radius:6px;padding:10px 13px}
+.filter.active{background:#1c3c65;border-color:#599ce8;color:#e5f3ff}
+.product-grid.auto-shelf{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:#426e9e #101a29;gap:17px;padding:10px 2px 24px}
+.product-grid.auto-shelf .product-card{flex:0 0 min(340px,82vw);scroll-snap-align:start;background:#0e1a2a;border:1px solid #263b55;border-radius:10px;overflow:hidden}
+.product-image{height:215px;background:#101c2e}
+.product-image img{width:100%;height:100%;object-fit:cover;filter:saturate(.78)}
+.product-info{padding:20px}
+.product-info h3{font-size:21px}
+.product-info p{color:#9aacc2;line-height:1.7;min-height:72px}
+.price{color:#dbeeff}
+.add-btn{border-radius:6px;padding:10px 13px}
+.details-btn{color:#8fc6ff}
+.product-runway{display:flex;justify-content:space-between;align-items:center;margin:17px 0 10px}
+.runway-label{font-size:9px;letter-spacing:.16em;color:#8aa7c7}
+.runway-controls button{width:38px;height:38px;border:1px solid #314b6b;background:#102039;color:#d7eaff;border-radius:6px;margin-left:7px}
+.marketplace-section{padding:110px max(5vw,22px);background:linear-gradient(145deg,#0d1a2b,#0a1422 55%,#101b30);border-block:1px solid #253b56}
+.marketplace-heading{max-width:1320px;margin:0 auto 55px;display:grid;grid-template-columns:1.3fr .7fr;gap:60px;align-items:center}
+.marketplace-kicker{font-size:10px;letter-spacing:.2em;color:#81c2ff;font-weight:700;margin:25px 0 12px}
+.marketplace-heading h2{font:600 clamp(42px,6vw,76px)/1 "Space Grotesk";letter-spacing:-.07em;margin:12px 0 20px}
+.marketplace-heading h2 em{color:#72baff;font-style:normal}
+.marketplace-lead{max-width:650px;color:#a6b8ce;line-height:1.8}
+.marketplace-stat{border:1px solid #2b4360;border-radius:10px;padding:26px;background:#101f33;display:grid;grid-template-columns:36px 1fr;gap:12px 14px;align-items:center}
+.marketplace-stat b{font:600 22px "Space Grotesk";color:#75bdff}
+.marketplace-stat span{font-size:12px;color:#c0d0e3}
+.marketplace-stat i{grid-column:1;width:1px;height:17px;background:#41658c;margin:auto}
+.marketplace-tabs{max-width:1320px;margin:0 auto;display:flex;gap:8px;border-bottom:1px solid #2b405b}
+.market-tab{padding:15px 22px;border:0;border-bottom:2px solid transparent;background:transparent;color:#8fa5c1;font:600 13px "DM Sans";cursor:pointer}
+.market-tab.active{color:#fff;border-color:#68b5ff}
+.marketplace-panels{max-width:1320px;margin:0 auto}
+.market-form{background:#0b1727;border:1px solid #263d59;border-top:0;padding:35px;border-radius:0 0 12px 12px}
+.form-intro{margin-bottom:30px}
+.form-intro>span{font-size:9px;letter-spacing:.18em;color:#79bcff}
+.form-intro h3{font:600 30px "Space Grotesk";margin:12px 0}
+.form-intro p{font-size:13px;color:#9db0c8;line-height:1.7}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.market-form label{display:grid;gap:8px;font-size:11px;color:#b7c8dc}
+.market-form input:not([type=file]):not([type=checkbox]),.market-form select,.market-form textarea{width:100%;background:#101f33;border:1px solid #2d4664;border-radius:6px;color:#eef5ff;padding:13px;font:13px "DM Sans";outline:none}
+.market-form input:focus,.market-form select:focus,.market-form textarea:focus{border-color:#6db9ff;box-shadow:0 0 0 3px #6db9ff18}
+.market-form select option{background:#101f33}
+.full-field{display:grid;margin-top:18px}
+.market-form textarea{resize:vertical;line-height:1.6}
+.photo-upload{margin:28px 0}
+.photo-upload>div:first-child{display:grid;gap:6px;margin-bottom:13px}
+.photo-upload b{font-size:13px;color:#e1edfb}
+.photo-upload span{font-size:10px;color:#8fa6c1}
+.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.photo-slot{min-height:145px;border:1px dashed #48688d;border-radius:8px;background:#101f33;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:7px!important;cursor:pointer;position:relative;text-align:center;padding:15px}
+.photo-slot input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.photo-slot>span{font-size:28px;color:#79bcff}
+.photo-slot b{font-size:11px}
+.photo-slot small{font-size:9px;color:#8da6c3;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.photo-slot.has-file{border-style:solid;border-color:#58a9ff;background:#142b45}
+.consent-line{display:flex!important;grid-template-columns:16px 1fr;align-items:start;gap:10px!important;max-width:780px;line-height:1.6;margin:20px 0}
+.consent-line input{margin-top:2px;accent-color:#559dff}
+.market-submit{border:0;border-radius:6px;padding:15px 22px}
+.market-form-note{font-size:10px;color:#7f94ae;line-height:1.7;margin-top:13px}
+.submission-success{padding:50px 10px;text-align:center}
+.submission-success>span{display:inline-grid;place-items:center;width:48px;height:48px;border:1px solid #5ca9ff;border-radius:50%;color:#8ccaff;font-size:23px}
+.submission-success h3{font:600 30px "Space Grotesk"}
+.submission-success p{color:#a8bad0;line-height:1.7}
+.submission-success a{color:#8dc8ff}
+.feature-band{border-block:1px solid #263b55}
+.feature-visual{background:linear-gradient(145deg,#142b47,#0b1626)}
+.feature-mark{color:#d9eaff}
+.about,.contact-section{background:#080f1b}
+.contact-section{border-top:1px solid #233852}
+#assistant[hidden]{display:none!important}
+.studio-orb[hidden]{display:none!important}
+@media(max-width:850px){
+ .hero{grid-template-columns:1fr;min-height:auto;padding-top:75px}
+ .hero-showcase{min-height:390px}
+ .marketplace-heading{grid-template-columns:1fr;gap:28px}
+ .marketplace-stat{grid-template-columns:30px 1fr}
+ .product-tools{position:relative;top:auto}
+}
+@media(max-width:600px){
+ .hero{padding-bottom:85px}
+ .hero h1{font-size:clamp(58px,16vw,78px)}
+ .hero-showcase{min-height:350px;padding:15px}
+ .showcase-main{min-height:270px}
+ .device-stack{transform:scale(.82);margin:-2px auto}
+ .showcase-bottom{font-size:7px;letter-spacing:.08em}
+ .section{padding-top:75px;padding-bottom:75px}
+ .marketplace-section{padding:75px 16px}
+ .market-form{padding:20px 15px}
+ .form-grid{grid-template-columns:1fr}
+ .photo-grid{grid-template-columns:1fr}
+ .photo-slot{min-height:115px}
+ .market-tab{padding:13px 12px;font-size:11px}
+ .product-grid.auto-shelf .product-card{flex-basis:84vw}
+}
