@@ -147,3 +147,26 @@ if(shelf){
  const grid=document.getElementById("productGrid");
  if(grid)grid.setAttribute("aria-live","polite");
 })();
+
+// NIRVO Intelligence Studio — secure server-side AI endpoint.
+(function(){
+ const prompt=document.getElementById("ideaPrompt"),button=document.getElementById("generateIdea"),out=document.getElementById("ideaOutput");
+ if(!prompt||!button||!out)return;
+ document.querySelectorAll("[data-prompt]").forEach(chip=>chip.addEventListener("click",()=>{prompt.value=chip.dataset.prompt;prompt.focus()}));
+ const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+ const blocks=(label,arr)=>'<h4>'+label+'</h4><ul>'+((arr||[]).map(x=>'<li>'+esc(x)+'</li>').join(""))+'</ul>';
+ button.addEventListener("click",async()=>{
+  const idea=prompt.value.trim();if(idea.length<12){prompt.focus();prompt.setCustomValidity("Describe your idea in at least 12 characters.");prompt.reportValidity();prompt.setCustomValidity("");return}
+  button.disabled=true;button.innerHTML="<span>✳</span> Designing your concept… <b>◌</b>";
+  out.innerHTML='<div class="output-empty"><div class="empty-symbol">✳</div><span>PROCESSING CONCEPT</span><h3>Exploring possibilities.</h3><p>Breaking the problem into product architecture, components and build stages…</p></div>';
+  try{
+   const response=await fetch("/.netlify/functions/idea-studio",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({idea,domain:document.getElementById("ideaDomain").value,level:document.getElementById("ideaLevel").value})});
+   const data=await response.json();if(!response.ok)throw new Error(data.error||"AI service is not configured yet.");
+   const x=data.idea||{};
+   out.innerHTML='<div class="idea-result"><span class="result-tag">NIRVO AI / ORIGINAL CONCEPT</span><h3>'+esc(x.name||"New product concept")+'</h3><p>'+esc(x.summary||"")+'</p>'+blocks("The problem",x.problem?[x.problem]:[])+blocks("Core features",x.features)+blocks("Suggested architecture",x.architecture)+blocks("Key components",x.components)+blocks("Prototype roadmap",x.roadmap)+blocks("Validation & risks",x.validation)+ '<h4>Next engineering move</h4><p>'+esc(x.next_step||"Review feasibility and build a proof of concept.")+'</p><div class="result-actions"><button id="copyIdea">Copy concept</button><button id="enquireIdea">Discuss with NIRVO ↗</button></div></div>';
+   document.getElementById("copyIdea").onclick=()=>navigator.clipboard?.writeText([x.name,x.summary,x.problem,(x.features||[]).join("\n"),(x.components||[]).join("\n"),(x.roadmap||[]).join("\n")].join("\n\n"));
+   document.getElementById("enquireIdea").onclick=()=>{const msg="I would like to discuss this AI-generated NIRVO concept:\n"+JSON.stringify(x,null,2);window.open("https://wa.me/919447682486?text="+encodeURIComponent(msg),"_blank")};
+  }catch(err){out.innerHTML='<div class="output-empty"><div class="empty-symbol">!</div><span>AI CONNECTION REQUIRED</span><h3>Almost ready.</h3><p>'+esc(err.message)+'</p><p>Connect an OpenAI API key to the Netlify site as the secret environment variable OPENAI_API_KEY, scoped to Functions, then redeploy.</p></div>'}
+  finally{button.disabled=false;button.innerHTML="<span>✳</span> Generate original concept <b>↗</b>"}
+ });
+})();
