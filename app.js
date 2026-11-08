@@ -148,25 +148,27 @@ if(shelf){
  if(grid)grid.setAttribute("aria-live","polite");
 })();
 
-// NIRVO Intelligence Studio — secure server-side AI endpoint.
+// NIRVO customer enquiry assistant — answers only NIRVO customer-support questions.
 (function(){
- const prompt=document.getElementById("ideaPrompt"),button=document.getElementById("generateIdea"),out=document.getElementById("ideaOutput");
- if(!prompt||!button||!out)return;
- document.querySelectorAll("[data-prompt]").forEach(chip=>chip.addEventListener("click",()=>{prompt.value=chip.dataset.prompt;prompt.focus()}));
+ const form=document.getElementById("supportForm"),input=document.getElementById("supportPrompt"),chat=document.getElementById("supportChat"),send=document.getElementById("supportSend");
+ if(!form||!input||!chat||!send)return;
  const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
- const blocks=(label,arr)=>'<h4>'+label+'</h4><ul>'+((arr||[]).map(x=>'<li>'+esc(x)+'</li>').join(""))+'</ul>';
- button.addEventListener("click",async()=>{
-  const idea=prompt.value.trim();if(idea.length<12){prompt.focus();prompt.setCustomValidity("Describe your idea in at least 12 characters.");prompt.reportValidity();prompt.setCustomValidity("");return}
-  button.disabled=true;button.innerHTML="<span>✳</span> Designing your concept… <b>◌</b>";
-  out.innerHTML='<div class="output-empty"><div class="empty-symbol">✳</div><span>PROCESSING CONCEPT</span><h3>Exploring possibilities.</h3><p>Breaking the problem into product architecture, components and build stages…</p></div>';
+ function addMessage(role,message){
+  const row=document.createElement("div");row.className="support-message "+role;
+  row.innerHTML=(role==="assistant"?'<span class="support-avatar">N</span>':'')+'<div><b>'+(role==="assistant"?"NIRVO Assistant":"You")+'</b><p>'+esc(message).replace(/\n/g,"<br>")+'</p></div>';
+  chat.appendChild(row);chat.scrollTop=chat.scrollHeight;return row;
+ }
+ async function ask(question){
+  const q=question.trim();if(!q)return;
+  addMessage("user",q);input.value="";send.disabled=true;send.textContent="Thinking…";
+  const loading=addMessage("assistant","Checking NIRVO information…");
   try{
-   const response=await fetch("/.netlify/functions/idea-studio",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({idea,domain:document.getElementById("ideaDomain").value,level:document.getElementById("ideaLevel").value})});
-   const data=await response.json();if(!response.ok)throw new Error(data.error||"AI service is not configured yet.");
-   const x=data.idea||{};
-   out.innerHTML='<div class="idea-result"><span class="result-tag">NIRVO AI / ORIGINAL CONCEPT</span><h3>'+esc(x.name||"New product concept")+'</h3><p>'+esc(x.summary||"")+'</p>'+blocks("The problem",x.problem?[x.problem]:[])+blocks("Core features",x.features)+blocks("Suggested architecture",x.architecture)+blocks("Key components",x.components)+blocks("Prototype roadmap",x.roadmap)+blocks("Validation & risks",x.validation)+ '<h4>Next engineering move</h4><p>'+esc(x.next_step||"Review feasibility and build a proof of concept.")+'</p><div class="result-actions"><button id="copyIdea">Copy concept</button><button id="enquireIdea">Discuss with NIRVO ↗</button></div></div>';
-   document.getElementById("copyIdea").onclick=()=>navigator.clipboard?.writeText([x.name,x.summary,x.problem,(x.features||[]).join("\n"),(x.components||[]).join("\n"),(x.roadmap||[]).join("\n")].join("\n\n"));
-   document.getElementById("enquireIdea").onclick=()=>{const msg="I would like to discuss this AI-generated NIRVO concept:\n"+JSON.stringify(x,null,2);window.open("https://wa.me/919447682486?text="+encodeURIComponent(msg),"_blank")};
-  }catch(err){out.innerHTML='<div class="output-empty"><div class="empty-symbol">!</div><span>AI CONNECTION REQUIRED</span><h3>Almost ready.</h3><p>'+esc(err.message)+'</p><p>Connect an OpenAI API key to the Netlify site as the secret environment variable OPENAI_API_KEY, scoped to Functions, then redeploy.</p></div>'}
-  finally{button.disabled=false;button.innerHTML="<span>✳</span> Generate original concept <b>↗</b>"}
- });
+   const response=await fetch("/.netlify/functions/idea-studio",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({question:q})});
+   const data=await response.json();if(!response.ok)throw new Error(data.error||"The assistant is temporarily unavailable.");
+   loading.querySelector("p").textContent=data.answer||"Please contact the NIRVO team for help.";
+  }catch(err){loading.querySelector("p").textContent=err.message+" You can contact NIRVO at usrcalanabi@gmail.com or WhatsApp +91 94476 82486."}
+  finally{send.disabled=false;send.innerHTML='Send <span>↗</span>';input.focus();chat.scrollTop=chat.scrollHeight;}
+ }
+ form.addEventListener("submit",e=>{e.preventDefault();ask(input.value)});
+ document.querySelectorAll("[data-question]").forEach(b=>b.addEventListener("click",()=>ask(b.dataset.question)));
 })();
