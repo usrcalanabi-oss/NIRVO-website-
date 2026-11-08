@@ -1,13 +1,35 @@
-// NIRVO branded startup: reveal the site after five seconds.
+// NIRVO premium startup experience: timed five-second reveal.
 (function(){
  const loader=document.getElementById("nirvoLoader");
  if(!loader)return;
  const percent=document.getElementById("loaderPercent");
+ const stage=document.getElementById("loaderStage");
+ const message=document.getElementById("loaderMessage");
+ const steps=[...loader.querySelectorAll("[data-loader-step]")];
+ const phases=[
+  {at:0,label:"INITIALIZING INTERFACE",message:"Preparing your experience"},
+  {at:25,label:"LOADING DESIGN SYSTEM",message:"Bringing ideas into focus"},
+  {at:50,label:"PREPARING CATALOGUE",message:"Connecting products and possibilities"},
+  {at:75,label:"FINALIZING EXPERIENCE",message:"Almost ready to explore"}
+ ];
  const started=Date.now();
- const update=()=>{if(!percent)return;const value=Math.min(100,Math.floor((Date.now()-started)/50));percent.textContent=String(value);if(value<100)requestAnimationFrame(update)};
- requestAnimationFrame(update);
  document.body.style.overflow="hidden";
- window.setTimeout(()=>{loader.classList.add("is-leaving");document.body.style.overflow="";window.setTimeout(()=>loader.remove(),500)},5000);
+ const update=()=>{
+  const value=Math.min(100,Math.floor((Date.now()-started)/50));
+  if(percent)percent.textContent=String(value);
+  const phase=[...phases].reverse().find(item=>value>=item.at)||phases[0];
+  if(stage)stage.textContent=phase.label;
+  if(message)message.textContent=phase.message;
+  steps.forEach((step,index)=>step.classList.toggle("active",value>=index*25));
+  if(value<100)requestAnimationFrame(update);
+ };
+ requestAnimationFrame(update);
+ window.setTimeout(()=>{
+  if(percent)percent.textContent="100";
+  loader.classList.add("is-leaving");
+  document.body.style.overflow="";
+  window.setTimeout(()=>loader.remove(),500);
+ },5000);
 })();
 
 const products=[
