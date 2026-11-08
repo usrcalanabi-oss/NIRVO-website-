@@ -1,0 +1,1 @@
+const {json}=require("./_lib");module.exports=async function(req,res){res.setHeader("Set-Cookie","nirvo_admin=; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=0");return json(res,200,{ok:true})};
