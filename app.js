@@ -116,7 +116,7 @@ checkout.onclick=()=>{
   ev.preventDefault();const data=new FormData(form);data.set("type","order");
   const btn=form.querySelector("button");btn.disabled=true;btn.textContent="Sending…";
   try{const res=await fetch("/api/submit",{method:"POST",body:data});const result=await res.json();if(!res.ok)throw new Error(result.error||"Failed");
-   document.getElementById("modalContent").innerHTML="<h2>Order enquiry received</h2><p>"+result.message+"</p><p>Reference: <b>"+result.id.slice(0,8).toUpperCase()+"</b></p><p>We will confirm availability, final pricing, delivery and payment before accepting an order.</p>";cart=[];saveCart();
+   document.getElementById("modalContent").innerHTML="<h2>Order enquiry received</h2><p>"+result.message+"</p><p>Reference: <b>"+result.id.slice(0,8).toUpperCase()+"</b></p><p>"+(result.notificationNote||"")+"</p><p>We will confirm availability, final pricing, delivery and payment before accepting an order.</p>";cart=[];saveCart();
   }catch(err){btn.disabled=false;btn.textContent="Try again";alert(err.message||"Could not submit. Please retry.");}
  };
 };
@@ -215,7 +215,7 @@ if(shelf){
   try{
    const response=await fetch("/api/submit",{method:"POST",body:data});
    const result=await response.json();if(!response.ok)throw new Error(result.error||"Submission failed");
-   form.innerHTML='<div class="submission-success"><span>✓</span><h3>'+successTitle+'</h3><p>'+(result.message||successCopy)+'</p><p>Reference: <b>'+result.id.slice(0,8).toUpperCase()+'</b></p><p>For urgent questions, contact <a href="https://wa.me/919447682486">NIRVO on WhatsApp</a>.</p></div>';
+   form.innerHTML='<div class="submission-success"><span>✓</span><h3>'+successTitle+'</h3><p>'+(result.message||successCopy)+'</p><p>Reference: <b>'+result.id.slice(0,8).toUpperCase()+'</b></p><p>'+(result.notificationNote||"") +'</p><p>For urgent questions, contact <a href="https://wa.me/919447682486">NIRVO on WhatsApp</a>.</p></div>';
   }catch(error){button.disabled=false;button.innerHTML=original;alert("Your submission could not be sent. Please try again or contact us on WhatsApp +91 94476 82486.");}
  }
  listing.addEventListener("submit",e=>{e.preventDefault();submitForm(listing,"Submit product for review","Product submitted","Thank you. Your listing and three photos have been sent to NIRVO for review. We will contact you using the details provided.")});
