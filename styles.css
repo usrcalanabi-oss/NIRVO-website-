@@ -445,3 +445,37 @@ footer{background:#061022;border-color:#203957;gap:20px;flex-wrap:wrap}
 
 /* NIRVO catalogue upgrade — product-first browsing */
 .search-wrap{position:relative;display:flex;align-items:center;flex:1;min-width:220px}.search-wrap input{width:100%;padding-right:42px!important}.search-clear{position:absolute;right:9px;width:28px;height:28px;border:0;border-radius:50%;background:#1b3150;color:#c9e5fa;font-size:20px;line-height:1;cursor:pointer}.product-result-count{margin:-10px 0 18px;color:#8fa8c5;font-size:11px;letter-spacing:.3px}.product-card{cursor:pointer}.product-card:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}.product-image{position:relative}.product-image img{display:block}.image-view{position:absolute;right:12px;bottom:12px;padding:7px 9px;border:1px solid #b7e8ff66;border-radius:4px;background:#07152bd9;color:#e6f8ff;font-size:9px;letter-spacing:1px;opacity:0;transform:translateY(5px);transition:.2s}.product-card:hover .image-view,.product-card:focus-visible .image-view{opacity:1;transform:none}.details-btn{color:#9bd9f0;letter-spacing:.2px}.search-wrap:focus-within input{border-color:var(--cyan);box-shadow:0 0 0 3px #67e8f91c}.view-all-btn{border:1px solid #4b80b2;border-radius:6px;background:#142d4c;color:#e4f5ff;padding:9px 13px;font-size:10px;white-space:nowrap;cursor:pointer}.view-all-btn:hover{background:#1d426d;border-color:#7ddcf6}.product-grid.auto-shelf.show-all{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));overflow:visible;scroll-snap-type:none;cursor:default}.product-grid.auto-shelf.show-all .product-card{flex:initial;min-width:0}.product-grid.auto-shelf.show-all .product-card:nth-child(n){animation:catalogueIn .35s ease both}@keyframes catalogueIn{from{opacity:.3;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}.no-results{grid-column:1/-1;border:1px dashed #35516f;border-radius:12px;padding:35px;text-align:center}.no-results p{color:#91a6c1}.clear-search{border:1px solid #477aa7;border-radius:6px;background:#142d4c;color:#e7f6ff;padding:10px 14px;cursor:pointer}.detail-layout{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}.detail-image{overflow:hidden;border:1px solid #2c4b6d;border-radius:10px;background:#09162a}.detail-image img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}.detail-copy h2{margin:12px 0;font-size:clamp(24px,4vw,34px)}.detail-contact{display:inline-block;margin-top:16px;color:#91ddf4;font-size:11px}.modal{width:min(850px,calc(100% - 28px));padding:24px}@media(max-width:900px){.product-grid.auto-shelf.show-all{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:650px){.product-grid.auto-shelf.show-all{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.detail-layout{grid-template-columns:1fr}.detail-image img{aspect-ratio:16/9;max-height:220px}.product-runway{align-items:flex-start;flex-direction:column}.runway-controls{width:100%;flex-wrap:wrap}.view-all-btn{margin-left:auto}.product-result-count{margin-top:-2px}}
+
+/* NIRVO stable interaction pass: remove carousel jitter and unify controls */
+:root{--acid:#5c8cff;--ice:#eaf4ff;--cyan:#69cfff;--blue:#3978ed}
+.announcement{background:#0b1730;color:#b7c9e7;border-bottom:1px solid #233b62}
+.announcement span{color:#75d8ff}
+.hero h1 em,.intro h2 em,.products-heading h2 em,.feature-copy h2 em,.about-grid h2 em,.contact-grid h2 em{color:#75b9ff}
+.primary,.add-btn,.view-all-btn,.market-tab,.filter,.secondary,.cart-btn,.icon-btn,.close-btn,.qty button,.clear-search,.search-clear,.runway-controls button,.details-btn,.menu-btn,.submit{transition:background-color .18s ease,border-color .18s ease,color .18s ease,box-shadow .18s ease}
+.primary{background:linear-gradient(110deg,#3678ef,#28b6df);color:#fff;border:1px solid #5796ff;box-shadow:0 8px 24px #246cbd30}
+.primary:hover,.add-btn:hover,.view-all-btn:hover{background:#2564ce;color:#fff;border-color:#8bcaff;transform:none;box-shadow:0 7px 20px #1e75ca33}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #7bdcff;outline-offset:3px}
+button:disabled{opacity:.55;cursor:not-allowed}
+.product-grid.auto-shelf{display:flex;overflow-x:auto;overflow-y:hidden;gap:16px;padding:8px 4px 22px;scroll-snap-type:x proximity;scroll-behavior:smooth;overscroll-behavior-x:contain;touch-action:pan-x;cursor:grab;will-change:auto}
+.product-grid.auto-shelf:active{cursor:grabbing}
+.product-grid.auto-shelf .product-card{flex:0 0 clamp(250px,24vw,315px);scroll-snap-align:start;transform:none!important;transition:border-color .18s ease,box-shadow .18s ease!important;animation:none!important}
+.product-grid.auto-shelf .product-card:hover{transform:none!important;box-shadow:0 14px 35px #0005;border-color:#6cbfff}
+.product-grid.auto-shelf .product-card .product-image img:not(.product-brand-mark){transform:none!important;transition:opacity .18s ease!important}
+.product-grid.auto-shelf .product-card:hover .product-image img:not(.product-brand-mark){transform:none!important}
+.product-grid.auto-shelf.show-all{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));overflow:visible;scroll-snap-type:none;touch-action:auto}
+.product-grid.auto-shelf.show-all .product-card{min-width:0;flex:initial}
+.product-image .product-brand-mark{position:absolute;right:12px;top:12px;width:30px;height:30px;object-fit:contain;opacity:.92;z-index:2;border:1px solid #b9ddff77;border-radius:8px;box-shadow:0 3px 12px #0007}
+.detail-image{position:relative}
+.detail-brand-mark{position:absolute;right:14px;top:14px;width:42px;height:42px;object-fit:contain;border:1px solid #b9ddff88;border-radius:10px;box-shadow:0 4px 16px #0008}
+.view-all-btn{border:1px solid #4b80b2;border-radius:7px;background:#142d4c;color:#e4f5ff;padding:10px 15px;font-size:11px;white-space:nowrap;cursor:pointer}
+.add-btn{background:#173b68;color:#eaf6ff;border:1px solid #397bc1;border-radius:7px;font-weight:700}
+.filter.active,.market-tab.active{background:#173e70;border-color:#65b9ff;color:#eaf6ff}
+.filter:hover,.market-tab:hover,.secondary:hover,.cart-btn:hover,.icon-btn:hover,.runway-controls button:hover{background:#183d68;border-color:#72c8ff;color:#fff;transform:none}
+.details-btn{padding:9px 0;border-bottom:1px solid #335b83;color:#8bd8ff;font-weight:700}
+.details-btn:hover{color:#fff;border-color:#83d7ff}
+.close-btn,.qty button{border:1px solid #34577d;border-radius:8px;background:#10213a;color:#eaf6ff;min-width:36px;min-height:36px;cursor:pointer}
+.search-clear{cursor:pointer}
+@media(max-width:900px){.product-grid.auto-shelf.show-all{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:650px){.product-grid.auto-shelf{gap:12px;scroll-snap-type:x proximity}.product-grid.auto-shelf .product-card{flex-basis:84vw}.product-grid.auto-shelf.show-all{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.runway-controls button{border-radius:8px}.view-all-btn{margin-left:4px}}
+
+.header-social{display:inline-flex;align-items:center;justify-content:center;padding:9px 12px;border:1px solid #31557f;border-radius:7px;color:#b9dcff;font-size:11px;font-weight:700;white-space:nowrap}.header-social:hover{background:#163a65;border-color:#75caff;color:white}@media(max-width:650px){.header-social{font-size:10px;padding:8px}}
