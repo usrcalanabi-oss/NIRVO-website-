@@ -290,7 +290,17 @@ document.querySelectorAll("[data-open-project]").forEach(link=>link.addEventList
   "11-14":["Happy Children's Day!","Every big invention starts with a curious question. Never stop asking yours."],
   "12-25":["Merry Christmas!","Wishing you peace, kindness and bright new ideas to carry into the days ahead."]
  };
- const item=wishes[month+"-"+day]||["Today is your day to build.","A fresh day. A new idea. One small step closer to what you imagine. Keep going — your next chapter starts with what you do today."];
+ const dailyLines=[
+ ["Make today count.","A small step taken today can become the beginning of something extraordinary."],
+ ["Your ideas deserve a chance.","Stay curious, keep learning and give your best idea room to grow."],
+ ["Build what you wish existed.","The future is shaped by people who turn questions into experiments."],
+ ["Progress over perfection.","You do not need a perfect start. You only need the courage to begin."],
+ ["Keep moving forward.","Every skill you practise and every problem you solve adds to your future."],
+ ["Think bigger. Start smaller.","Big achievements are built from focused work, one step at a time."],
+ ["Today is full of possibility.","Notice an opportunity, learn something new and make something useful."]
+];
+const dayIndex=Math.floor((Date.UTC(now.getFullYear(),now.getMonth(),now.getDate())-Date.UTC(now.getFullYear(),0,0))/86400000)%dailyLines.length;
+const item=wishes[month+"-"+day]||dailyLines[dayIndex];
  title.textContent=item[0];copy.textContent=item[1];
  date.textContent=now.toLocaleDateString("en-IN",{weekday:"long",day:"numeric",month:"long",year:"numeric"}).toUpperCase();
  if(wishes[month+"-"+day])section.classList.add("is-special");
