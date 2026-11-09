@@ -1,20 +1,62 @@
-// Short, honest branded intro: cinematic reveal without a fake long loading timer.
+// NIRVO cinematic boot sequence — lightweight, skippable and accessible.
 (function(){
  const loader=document.getElementById("nirvoLoader");
  if(!loader)return;
- let finished=false;
+ const content=loader.querySelector(".loader-content");
+ if(!content)return;
+ const track=loader.querySelector(".loader-track");
+ const fill=track?.querySelector("span");
+ const status=loader.querySelector(".loader-status span");
+ const steps=[...loader.querySelectorAll(".loader-steps span")];
+ const message=loader.querySelector(".loader-message");
+ const statusRow=loader.querySelector(".loader-status");
+ const percent=document.createElement("strong");
+ percent.className="loader-percent";
+ percent.textContent="00%";
+ statusRow?.append(percent);
+ const skip=document.createElement("button");
+ skip.type="button";skip.className="loader-skip";skip.textContent="SKIP INTRO ↗";
+ loader.querySelector(".loader-bottom")?.append(skip);
+ const phases=[
+  ["ESTABLISHING BRAND IDENTITY","A clearer vision. A stronger signal."],
+  ["PREPARING THE INTERFACE","Every detail has a purpose."],
+  ["BRINGING SYSTEMS ONLINE","Ideas move when engineering begins."],
+  ["NIRVO IS READY","Create. Build. Solve."]
+ ];
+ let finished=false,started=0,frame=0;
  const reveal=()=>{
   if(finished)return;
-  finished=true;
+  finished=true;cancelAnimationFrame(frame);
+  if(fill)fill.style.width="100%";
+  percent.textContent="100%";
+  if(status)status.textContent="EXPERIENCE READY";
+  steps.forEach(x=>x.classList.add("complete"));
   loader.classList.add("is-leaving");
   document.body.classList.add("site-ready");
-  window.setTimeout(()=>loader.remove(),450);
+  window.setTimeout(()=>loader.remove(),650);
  };
- const start=()=>window.setTimeout(reveal,1150);
- if(document.readyState==="complete"||document.readyState==="interactive")start();
- else document.addEventListener("DOMContentLoaded",start,{once:true});
- // Safety fallback in case a browser delays DOM readiness.
- window.setTimeout(reveal,2200);
+ const animate=now=>{
+  if(finished)return;
+  if(!started)started=now;
+  const progress=Math.min(100,((now-started)/1550)*100);
+  const phase=Math.min(3,Math.floor(progress/25));
+  if(fill)fill.style.width=progress+"%";
+  percent.textContent=String(Math.round(progress)).padStart(2,"0")+"%";
+  if(status)status.textContent=phases[phase][0];
+  if(message)message.textContent=phases[phase][1];
+  steps.forEach((step,i)=>{
+   step.classList.toggle("active",i===phase);
+   step.classList.toggle("complete",i<phase);
+  });
+  if(progress>=100){reveal();return}
+  frame=requestAnimationFrame(animate);
+ };
+ skip.addEventListener("click",reveal);
+ const begin=()=>{frame=requestAnimationFrame(animate)};
+ if(document.readyState==="complete"||document.readyState==="interactive")begin();
+ else document.addEventListener("DOMContentLoaded",begin,{once:true});
+ window.addEventListener("load",()=>{if(!finished)window.setTimeout(reveal,180)});
+ window.setTimeout(reveal,2600);
 })();
 const products=[
 ["Nirvo AI Station","AI & Computing","Local AI workstation for private inference and development. 8-core CPU, 32GB RAM, 1TB NVMe, optional accelerator.","₹85,000 onwards","₹85,000", "01","photo-1593640408182-31c70c8268f5"],
