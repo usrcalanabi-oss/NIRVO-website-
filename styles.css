@@ -1511,3 +1511,122 @@ input:focus,textarea:focus,select:focus{border-color:#55c8dc!important;box-shado
 @media(prefers-reduced-motion:reduce){
  .page-home .domain,.page-home .hero-actions a{transition:none}
 }
+
+
+/* NIRVO storefront refinement — aligned navigation, useful cart, restrained motion */
+.page-home .header{
+  min-height:78px;height:auto;
+  padding:12px clamp(18px,4.5vw,72px);
+  display:grid;grid-template-columns:minmax(150px,1fr) auto minmax(220px,1fr);
+  gap:clamp(12px,2vw,30px);
+  align-items:center;
+}
+.page-home .brand{min-width:0;gap:11px}
+.page-home .brand img{width:40px;height:40px;flex:0 0 auto}
+.page-home .header nav{
+  display:flex;align-items:center;justify-content:center;gap:clamp(12px,1.7vw,25px);
+  white-space:nowrap;
+}
+.page-home .header nav a{
+  color:#c5d0e2;font-size:10px;font-weight:600;letter-spacing:.075em;
+  text-transform:uppercase;transition:color .18s ease;
+}
+.page-home .header nav a:hover{color:#75dce8}
+.page-home .head-actions{
+  justify-self:end;display:flex;align-items:center;justify-content:flex-end;
+  gap:9px;min-width:0;
+}
+.page-home .header-social{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:38px;padding:0 13px;border:1px solid #344969;border-radius:7px;
+  color:#c6d6eb;background:#111d34;font-size:10px;font-weight:700;
+  white-space:nowrap;transition:border-color .2s ease,background .2s ease,color .2s ease;
+}
+.page-home .header-social:hover{border-color:#6387e9;background:#17284a;color:#fff}
+.page-home #searchBtn{
+  display:inline-grid;place-items:center;width:39px;height:39px;
+  border:1px solid #344969;border-radius:7px;background:#111d34;
+  color:#dce8fb;font-size:22px;line-height:1;
+}
+.page-home #searchBtn:hover{border-color:#6387e9;color:#77dce8}
+.page-home .cart-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:39px;padding:0 13px;border:1px solid #5575c4;border-radius:7px;
+  background:linear-gradient(110deg,#244dc3,#315ee8 65%,#247f9e);
+  color:#fff;font-size:11px;font-weight:700;letter-spacing:.02em;
+  box-shadow:0 5px 18px #315ee82b;white-space:nowrap;
+}
+.page-home .cart-btn b{
+  display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 5px;
+  margin:0;border-radius:5px;background:#f4f7ff;color:#17264b;font-size:10px;
+}
+.page-home .cart-btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.page-home .menu-btn{
+  display:none;width:39px;height:39px;border:1px solid #344969;border-radius:7px;
+  background:#111d34;color:#e8f1ff;font-size:18px;
+}
+.page-home .hero{isolation:isolate}
+.page-home .hero:after{z-index:0}
+.page-home .hero-copy,.page-home .hero-art{z-index:1}
+.page-home .hero-showcase{box-shadow:0 22px 58px #02061780,inset 0 1px #ffffff12}
+.page-home .core-card,.page-home .hero-showcase,.page-home .device-stack{
+  animation:none!important;
+}
+.page-home .domain,.page-home .product-card,.page-home .feature-copy,
+.page-home .about-grid,.page-home .contact-grid{
+  opacity:1!important;transform:none!important;
+  transition:border-color .2s ease,box-shadow .2s ease,background .2s ease!important;
+}
+.page-home .domain:hover,.page-home .product-card:hover{transform:translateY(-3px)!important}
+.page-home .ticker div{animation-duration:48s}
+.page-home .hero-actions a,.page-home .cart-btn,.page-home .header-social{
+  transition:background .2s ease,border-color .2s ease,color .2s ease,box-shadow .2s ease,transform .2s ease;
+}
+.page-home .daily-signal{box-shadow:0 14px 38px #02061742}
+.page-home .product-runway{align-items:center}
+.page-home .runway-controls{align-items:center}
+.page-home .runway-controls button{border-radius:7px;background:#142344;border-color:#354d7a}
+.page-home .runway-controls .view-all-btn{
+  width:auto;padding:0 13px;border-radius:7px;font-size:10px;white-space:nowrap;
+}
+@media(max-width:1100px){
+ .page-home .header{grid-template-columns:auto 1fr;gap:12px}
+ .page-home .header nav{grid-column:1/-1;grid-row:2;justify-content:center;flex-wrap:wrap;padding:4px 0 2px}
+ .page-home .head-actions{grid-column:2;grid-row:1}
+}
+@media(max-width:650px){
+ .page-home .header{
+   min-height:68px;height:68px;padding:8px 13px;
+   display:flex;justify-content:space-between;gap:8px;
+ }
+ .page-home .brand{gap:7px;font-size:19px;letter-spacing:1px}
+ .page-home .brand img{width:34px;height:34px}
+ .page-home .brand small{font-size:7px;letter-spacing:1.7px}
+ .page-home .header nav{
+   display:none;position:absolute;top:68px;left:10px;right:10px;
+   padding:14px;background:#0c1730;border:1px solid #30466b;border-radius:0 0 12px 12px;
+   box-shadow:0 18px 38px #0008;align-items:stretch;gap:0;
+ }
+ .page-home .header.menu-open nav{display:flex!important;flex-direction:column}
+ .page-home .header nav a{padding:12px 10px;border-bottom:1px solid #263a5c;font-size:11px}
+ .page-home .header nav a:last-child{border-bottom:0}
+ .page-home .head-actions{margin-left:auto;gap:6px}
+ .page-home .header-social{display:none}
+ .page-home #searchBtn{width:35px;height:35px;font-size:19px;border-radius:7px}
+ .page-home .cart-btn{min-height:35px;padding:0 9px;gap:6px;font-size:10px;border-radius:7px}
+ .page-home .cart-btn b{min-width:18px;height:18px;font-size:9px}
+ .page-home .menu-btn{display:inline-grid;place-items:center;width:35px;height:35px}
+ .page-home .hero{padding-top:52px}
+ .page-home .hero-art{animation:none!important}
+ .page-home .hero-showcase{min-height:365px}
+ .page-home .ticker div{animation-duration:58s}
+ .page-home .product-runway{gap:8px}
+ .page-home .runway-label{max-width:125px;line-height:1.5}
+ .page-home .runway-controls{gap:5px}
+ .page-home .runway-controls button{width:31px;height:31px}
+ .page-home .runway-controls .view-all-btn{padding:0 8px;font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){
+ .page-home .ticker div{animation:none!important}
+ .page-home .domain,.page-home .product-card{transition:none!important}
+}
