@@ -1916,3 +1916,30 @@ form input:focus,form textarea:focus,form select:focus{border-color:#c9ad76!impo
 .page-products .catalogue-help{background:radial-gradient(ellipse at 90% 0%,#416fca2b,transparent 45%),linear-gradient(110deg,#17243a,#101b2d)!important;border-color:#766445!important}
 .page-products .catalogue-help .primary{background:linear-gradient(115deg,#d9c18e,#b99a60)!important;border-color:#e7d6ad!important;color:#17140e!important}
 @media(prefers-reduced-motion:reduce){.primary:hover{transform:none}}
+
+/* Shared account entry points */
+.header nav .account-nav-link{color:#e1c995!important;border:1px solid #66583f;padding:8px 12px;border-radius:5px}
+.header nav .account-nav-link:hover{background:#d8bd8314;color:#f4e5c4!important}
+.account-quick-link{display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid #756444;border-radius:5px;background:linear-gradient(120deg,#d9c18e,#b99a60);color:#17140e!important;text-decoration:none;font-size:10px;font-weight:700;white-space:nowrap;transition:filter .2s,transform .2s}
+.account-quick-link:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.account-quick-link span{font-size:14px}
+@media(max-width:900px){.account-quick-link{padding:8px 9px;font-size:9px}.header nav .account-nav-link{margin-top:5px}}
+@media(max-width:650px){.account-quick-link{display:none!important}}
+/* Refined surface hierarchy across the NIRVO experience */
+.section-label{color:#d8bd83!important}
+.hero .eyebrow{color:#d7c394}
+.hero-copy>p,.intro-grid>p{color:#b6c2d3}
+.hero-stats>div{border-left:1px solid #8f7952}
+.hero-stats b{color:#f0dfb5}
+.section{position:relative}
+.domain{position:relative;overflow:hidden}
+.domain:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(130deg,#ffffff08,transparent 45%);opacity:.6}
+.domain-icon{background:#d8bd8312;border:1px solid #d8bd8338;border-radius:9px;width:48px;height:48px;display:grid;place-items:center}
+.product-card{overflow:hidden}
+.product-image{background:linear-gradient(145deg,#1a2c47,#0c1728)}
+.product-info h3{letter-spacing:-.025em}
+.product-info p{color:#aab7c8}
+.product-card .details-btn{color:#dfc995}
+.marketplace-section{background:radial-gradient(ellipse at 90% 10%,#416fca18,transparent 42%),linear-gradient(180deg,#0b1323,#0d1829)}
+.marketplace-tabs .market-tab.active{background:#263b5c;border-color:#c5a96f;color:#f0dfb5}
+footer{border-top:1px solid #33445c}
