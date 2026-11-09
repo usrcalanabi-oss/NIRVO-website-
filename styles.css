@@ -2630,3 +2630,96 @@ footer{gap:clamp(14px,3vw,36px)}
 .nirvo-loader.is-leaving{opacity:0;visibility:hidden;transform:scale(1.025);transition:opacity .55s ease,transform .65s ease,visibility .55s}
 @media(max-width:600px){.loader-percent{font-size:10px}.loader-skip{padding:8px 10px;font-size:8px}.loader-status{gap:6px}.loader-steps{gap:10px}}
 @media(prefers-reduced-motion:reduce){.loader-atmosphere span,.loader-orbit-one,.loader-orbit-two,.loader-logo,.loader-track:after{animation:none!important}.loader-track span{transition:none}}
+
+
+/* NIRVO — SIGNATURE BOOT EXPERIENCE / 2026 */
+.nirvo-loader{
+  isolation:isolate;display:block;overflow:hidden;color:#f3f7ff;
+  background:
+    radial-gradient(ellipse at 50% 43%,#173d68 0%,#0c1d35 32%,#070e1b 68%,#050912 100%);
+  opacity:1;visibility:visible;transition:opacity .35s ease,visibility .35s ease,transform .45s ease;
+}
+.nirvo-loader:before{
+  content:"";position:absolute;inset:0;z-index:-2;opacity:.24;
+  background-image:linear-gradient(#9acaff0b 1px,transparent 1px),linear-gradient(90deg,#9acaff0b 1px,transparent 1px);
+  background-size:48px 48px;mask-image:radial-gradient(ellipse at center,#000 8%,transparent 78%);
+}
+.nirvo-loader:after{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(115deg,transparent 15%,#6dcaff08 48%,transparent 75%);
+}
+.loader-atmosphere{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.loader-atmosphere span{position:absolute;display:block;width:42vw;height:42vw;min-width:280px;min-height:280px;border:1px solid #72caff12;border-radius:50%;left:50%;top:48%;transform:translate(-50%,-50%);animation:loaderAtmosphere 12s linear infinite}
+.loader-atmosphere span:nth-child(2){width:58vw;height:58vw;animation-duration:19s;border-style:dashed;border-color:#72caff0c}
+.loader-atmosphere span:nth-child(3){width:75vw;height:75vw;animation-duration:28s;border-color:#72caff08}
+@keyframes loaderAtmosphere{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.loader-top,.loader-bottom{left:clamp(20px,5.5vw,84px);right:clamp(20px,5.5vw,84px)}
+.loader-top{top:clamp(20px,4vh,42px);padding-bottom:17px;border-bottom:1px solid #d5eaff18}
+.loader-brand-mini{gap:11px;font-size:13px;letter-spacing:2.6px}
+.loader-brand-mini img{width:29px;height:29px;filter:drop-shadow(0 0 12px #61caff55)}
+.loader-brand-mini i{font-style:normal;color:#7996b8;font-size:8px;letter-spacing:2px}
+.loader-build{color:#9bb3ce;font-size:8px;letter-spacing:1.5px}
+.loader-build b{display:inline-block;width:6px;height:6px;border-radius:50%;background:#aaffd8;box-shadow:0 0 12px #aaffd8;margin-right:9px;animation:loaderLive 1.5s ease-in-out infinite}
+@keyframes loaderLive{50%{opacity:.35;box-shadow:0 0 2px #aaffd8}}
+.loader-content{
+  top:49%;width:min(460px,84vw);padding:0 4px;
+  transform:translate(-50%,-48%);text-align:center;
+}
+.loader-symbol-wrap{
+  width:clamp(112px,14vw,148px);height:clamp(112px,14vw,148px);
+  margin:0 auto 24px;border:1px solid #8bd7ff55;border-radius:34px;
+  background:linear-gradient(145deg,#244b70a8,#0a192ce8);
+  box-shadow:0 25px 85px #0008,0 0 75px #3eabff24,inset 0 1px #fff2,inset 0 -20px 45px #2f9be51a;
+}
+.loader-symbol-wrap:before{content:"";position:absolute;inset:8px;border:1px solid #9bdcff18;border-radius:27px}
+.loader-logo{width:clamp(72px,8vw,92px);height:clamp(72px,8vw,92px);filter:drop-shadow(0 0 24px #56c9ff80);animation:loaderPulse 2.4s ease-in-out infinite}
+.loader-orbit{position:absolute;border:1px solid #8adfff40;border-radius:50%;pointer-events:none}
+.loader-orbit-one{inset:-13px;transform:rotate(25deg) scaleY(.36);animation:loaderOrbit 7s linear infinite}
+.loader-orbit-two{inset:-22px;transform:rotate(-35deg) scaleY(.34);border-style:dashed;opacity:.7;animation:loaderOrbit 11s linear infinite reverse}
+@keyframes loaderOrbit{to{rotate:360deg}}
+.loader-scan{height:45%;background:linear-gradient(transparent,#73dfff22,transparent);animation:loaderScan 2.6s ease-in-out infinite}
+.loader-index{right:11px;bottom:10px;color:#9bbbd8;font-size:8px}
+.loader-wordmark{font-size:clamp(42px,6vw,54px);letter-spacing:.22em;margin-right:-.22em;text-shadow:0 8px 38px #5caeff24}
+.loader-wordmark span{color:#8ee7ff}
+.loader-tagline{margin-top:10px;color:#a4c5e3;font-size:9px;letter-spacing:4px}
+.loader-message{margin-top:29px;min-height:20px;color:#d4e5f6;font-size:12px;letter-spacing:.35px}
+.loader-track{height:5px;margin-top:17px;background:#243c58;border:1px solid #42608066;box-shadow:0 4px 20px #0005}
+.loader-track span{width:0;background:linear-gradient(90deg,#6385ff 0%,#47bdf0 55%,#a4f2ff 100%);box-shadow:0 0 18px #56cfff;transform:none!important;transition:width .12s linear;animation:none!important}
+.loader-status{margin-top:13px;color:#91abc8;font-size:8px;letter-spacing:1.4px}
+.loader-status b{font-size:15px;color:#effaff}
+.loader-steps{gap:10px;margin-top:34px}
+.loader-steps span{padding-top:11px;border-color:#3a506a;color:#7890aa;font-size:8px;letter-spacing:1px}
+.loader-steps span i{color:#829bb6;font-size:7px;letter-spacing:1.2px}
+.loader-steps span.active{border-color:#8be6ff;color:#c0f4ff}
+.loader-steps span.complete{border-color:#67d9c4;color:#8fe8d8}
+.loader-bottom{bottom:clamp(18px,3.5vh,32px);padding-top:15px;border-color:#d5eaff18;color:#7894b3;font-size:8px;letter-spacing:1.5px}
+.loader-skip{border:1px solid #7996b64d!important;background:#ffffff08!important;color:#dcecff!important;border-radius:30px!important;padding:9px 15px!important;font:700 8px var(--font)!important;letter-spacing:1.4px!important;transition:all .2s!important}
+.loader-skip:hover{background:#b7eaff18!important;border-color:#9be6ff!important;color:#fff!important}
+.nirvo-loader.is-leaving{opacity:0;visibility:hidden;pointer-events:none;transform:scale(1.012);transition:opacity .32s ease,transform .4s ease,visibility .32s}
+@media(max-width:600px){
+ .loader-top,.loader-bottom{left:19px;right:19px}
+ .loader-top{top:20px;padding-bottom:13px}
+ .loader-brand-mini{font-size:11px;gap:7px;letter-spacing:1.8px}
+ .loader-brand-mini img{width:25px;height:25px}
+ .loader-brand-mini i{font-size:7px;letter-spacing:1px}
+ .loader-build{font-size:6px;letter-spacing:.8px}
+ .loader-content{top:48%;width:86vw}
+ .loader-symbol-wrap{width:112px;height:112px;border-radius:27px;margin-bottom:21px}
+ .loader-logo{width:69px;height:69px}
+ .loader-wordmark{font-size:39px;letter-spacing:.17em;margin-right:-.17em}
+ .loader-tagline{font-size:8px;letter-spacing:2.7px}
+ .loader-message{margin-top:25px;font-size:11px}
+ .loader-steps{gap:7px;margin-top:27px}
+ .loader-steps span{font-size:7px}
+ .loader-steps span i{font-size:6px;letter-spacing:.7px}
+ .loader-bottom{bottom:17px;font-size:6px;letter-spacing:.8px;gap:8px}
+ .loader-skip{padding:8px 10px!important;font-size:7px!important}
+}
+@media(max-height:650px){
+ .loader-content{top:51%;transform:translate(-50%,-50%) scale(.82)}
+ .loader-top{top:13px}.loader-bottom{bottom:12px}
+}
+@media(prefers-reduced-motion:reduce){
+ .loader-atmosphere span,.loader-orbit-one,.loader-orbit-two,.loader-logo,.loader-scan,.loader-build b{animation:none!important}
+ .loader-track span{transition:none!important}
+}
