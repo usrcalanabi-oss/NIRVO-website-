@@ -66,7 +66,11 @@ let cart=[]; try { cart=JSON.parse(localStorage.getItem("nirvo-cart")||"[]"); if
 const grid=document.getElementById("productGrid");
 function renderProducts(){
  const q=(document.getElementById("productSearch")?.value||"").trim().toLowerCase();
- const list=products.filter(p=>(activeFilter==="All"||p[1]===activeFilter)&&p.join(" ").toLowerCase().includes(q));
+ let list=products.filter(p=>(activeFilter==="All"||p[1]===activeFilter)&&p.join(" ").toLowerCase().includes(q));
+ const sort=document.getElementById("productSort")?.value||"featured";
+ if(sort==="price-low")list.sort((a,b)=>Number(a[4].replace(/[^0-9]/g,""))-Number(b[4].replace(/[^0-9]/g,"")));
+ else if(sort==="price-high")list.sort((a,b)=>Number(b[4].replace(/[^0-9]/g,""))-Number(a[4].replace(/[^0-9]/g,"")));
+ else if(sort==="name")list.sort((a,b)=>a[0].localeCompare(b[0]));
  const count=document.getElementById("productResultCount");if(count)count.textContent="Showing "+list.length+" of "+products.length+" products";
  grid.innerHTML=list.length?list.map(p=>
   '<article class="product-card in-view" data-product-card="'+p[5]+'"><div class="product-image"><img loading="lazy" src="'+photo(p[6])+'" data-fallback="https://images.unsplash.com/'+p[6]+'?auto=format&fit=crop&w=1000&q=85" onerror="if(!this.dataset.fallbackUsed){this.dataset.fallbackUsed=1;this.src=this.dataset.fallback}else{this.style.display=\'none\'}" alt="'+p[0]+' product concept"><span class="number">NIRVO / '+p[5]+'</span><img class="product-brand-mark" src="nirvo-logo.svg" alt="" aria-hidden="true"><span class="image-view">VISUAL REFERENCE · VIEW ↗</span></div><div class="product-info"><div class="product-meta">'+p[1].toUpperCase()+'</div><h3>'+p[0]+'</h3><p>'+p[2]+'</p><div class="product-bottom"><span class="price">'+p[3]+'</span><button class="add-btn" data-add="'+p[5]+'" type="button">＋ Add to cart</button></div><button class="details-btn" data-details="'+p[5]+'" type="button">Explore product & specifications ↗</button></div></article>'
@@ -101,6 +105,7 @@ function showDetails(id){
 document.getElementById("modalClose").onclick=()=>document.getElementById("productModal").classList.remove("open");
 document.getElementById("filters").addEventListener("click",e=>{const b=e.target.closest("[data-filter]");if(!b)return;activeFilter=b.dataset.filter;document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x===b));renderProducts()});
 document.getElementById("productSearch").addEventListener("input",renderProducts);
+document.getElementById("productSort")?.addEventListener("change",renderProducts);
 (function(){const tools=document.querySelector(".product-tools"),input=document.getElementById("productSearch");if(!tools||!input)return;const wrap=document.createElement("div");wrap.className="search-wrap";input.parentNode.insertBefore(wrap,input);wrap.append(input);const clear=document.createElement("button");clear.type="button";clear.className="search-clear";clear.textContent="×";clear.setAttribute("aria-label","Clear product search");wrap.append(clear);clear.onclick=()=>{input.value="";renderProducts();input.focus()};const count=document.createElement("div");count.id="productResultCount";count.className="product-result-count";tools.after(count)})();
 document.getElementById("menuBtn").onclick=()=>document.querySelector(".header").classList.toggle("menu-open");
 document.querySelectorAll("#nav a").forEach(a=>a.onclick=()=>document.querySelector(".header").classList.remove("menu-open"));
