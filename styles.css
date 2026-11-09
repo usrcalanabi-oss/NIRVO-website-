@@ -970,3 +970,91 @@ footer{background:#050d19;border-color:#213b56}
 @media(prefers-reduced-motion:reduce){
   *,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
+
+
+/* NIRVO STANDARD — calm, consistent enterprise colour grading */
+:root{
+  --bg:#0b1220;
+  --panel:#111c2d;
+  --panel2:#17263b;
+  --line:#2b3b52;
+  --text:#edf2f8;
+  --muted:#a5b1c1;
+  --cyan:#78b9dc;
+  --blue:#477fbd;
+}
+html,body{background:#0b1220;color:#edf2f8}
+.announcement{background:#101d30;color:#c6d4e4;border-color:#293d56}
+.announcement span{color:#8dc7e8}
+.header{background:rgba(11,18,32,.96);border-color:#26384e;box-shadow:0 5px 20px #0002}
+.brand small,.eyebrow,.section-label,.domain-icon,.product-meta,.text-link{color:#8dc7e8}
+.hero{
+  background:linear-gradient(115deg,#0b1423 0%,#10223a 62%,#14243b 100%);
+}
+.hero:after{opacity:.45}
+.hero h1 em,.section h2 em,.feature-copy h2 em,.contact-grid h2 em{
+  color:#8dc7e8;background:none;-webkit-text-fill-color:currentColor;
+}
+.hero-stats b{color:#dceaf7}
+.primary,.software-cta{
+  background:#3979b9;color:#fff;border:1px solid #5e9bd0;
+  box-shadow:0 5px 16px #0002;
+}
+.primary:hover,.software-cta:hover{background:#4689c8;box-shadow:0 7px 20px #0003}
+.secondary{background:#15243a;border-color:#52667f;color:#edf2f8}
+.ticker{background:#14243a;color:#d4e0ec;border-color:#2b405a}
+.ticker b{color:#8dc7e8}
+.section{background-color:#0b1220}
+.domain,.product-card,.market-form,.contact-grid>form{
+  background:#111c2d;border:1px solid #2b3b52;box-shadow:0 8px 22px #0002;
+}
+.domain:hover,.product-card:hover{border-color:#5b91bd;box-shadow:0 12px 26px #0003}
+.products-section{background:#0e1929}
+.product-tools{background:#101c2e;border-color:#2b3d55;box-shadow:none}
+.product-tools input,.product-tools select,.search-wrap input{
+  background:#0c1727;border-color:#344a64;color:#edf2f8;
+}
+.filter{background:#111f32;border-color:#354b65;color:#c0ccda}
+.filter.active{background:#1b3b5b;border-color:#6399c4;color:#eaf5ff;box-shadow:none}
+.filter:hover,.add-btn:hover{background:#1c3c5a;border-color:#79b9df;color:#fff}
+.add-btn{background:#17324e;border:1px solid #4d789e;color:#d8efff}
+.product-image{background:#15263a}
+.product-image:after{background:linear-gradient(180deg,transparent,#0b1420b8)}
+.product-image>img:first-child{filter:saturate(.78) contrast(1.02)}
+.product-info h3,.price{color:#edf2f8}
+.product-info p{color:#aeb9c8}
+.product-bottom{border-color:#2a3b50}
+.feature-band{background:#111e30}
+.feature-visual{background:#10243a}
+.feature-orbit{border-color:#6ba5ca66;box-shadow:0 0 35px #2a719022,inset 0 0 25px #2a719018}
+.feature-mark span{color:#8dc7e8}
+.contact-section{background:#0e1a2b;border-color:#293d55}
+.contact-details a:first-child{color:#9acdea}
+form input,form select,form textarea,.market-form input,.market-form select,.market-form textarea,.contact-grid form input,.contact-grid form select,.contact-grid form textarea{
+  background:#0b1626;border-color:#354960;color:#edf2f8;
+}
+form input:focus,form textarea:focus,form select:focus{
+  border-color:#78b9dc;box-shadow:0 0 0 2px #78b9dc20;
+}
+.cart-btn{background:#14243a;border-color:#3b526c}
+.cart-btn b{background:#477fbd;color:#fff}
+.cart-drawer,.modal{background:#101c2e;border-color:#344a64;box-shadow:0 20px 60px #0006}
+.daily-signal,.daily-signal.is-special{background:#142941;border-color:#3b5e7b}
+.daily-kicker,.daily-signature,.daily-signal-mark span{color:#a2cbe3}
+.daily-share{background:#1b3b5b;border-color:#527fa4;color:#eef7ff}
+.software-feature{background:#0e1a2b}
+.software-preview{background:#14243a;border-color:#344c67;box-shadow:0 12px 30px #0003;transform:none}
+.software-preview:hover{transform:translateY(-2px)}
+.software-copy h2 em{color:#8dc7e8;background:none;-webkit-text-fill-color:currentColor}
+.software-kicker,.software-tags span,.preview-welcome small,.preview-plan>span{color:#9ac9e6}
+.preview-welcome strong em{color:#9ac9e6}
+.submission-success{background:#102a2d;border-color:#35635f}
+.submission-success>span{background:#1b4845;color:#a8e6d8}
+.nirvo-loader{background:linear-gradient(135deg,#0b1423,#10243b)}
+.loader-symbol{background:#172b43;border-color:#456783;box-shadow:0 8px 24px #0004}
+.loader-wordmark span{color:#8dc7e8}
+.loader-track span{background:#6ca8d0;box-shadow:none}
+footer{background:#080f1b;border-color:#26384e}
+@media(hover:hover){
+  .primary:hover,.secondary:hover,.add-btn:hover{transform:translateY(-1px)}
+}
