@@ -1058,3 +1058,76 @@ footer{background:#080f1b;border-color:#26384e}
 @media(hover:hover){
   .primary:hover,.secondary:hover,.add-btn:hover{transform:translateY(-1px)}
 }
+
+
+/* NIRVO CINEMATIC INTRO — quick, Netflix-inspired brand reveal */
+.nirvo-loader{
+  display:block;overflow:hidden;
+  background:radial-gradient(ellipse at 50% 48%,#152b45 0%,#0b1423 43%,#070c15 100%);
+  color:#edf2f8;
+}
+.nirvo-loader:before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.14;
+  background-image:linear-gradient(#b8d8f00a 1px,transparent 1px),linear-gradient(90deg,#b8d8f00a 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse at center,#000,transparent 72%);
+}
+.loader-content{
+  position:absolute;top:50%;left:50%;width:min(370px,82vw);
+  transform:translate(-50%,-48%);text-align:center;
+}
+.loader-symbol{
+  display:grid;place-items:center;width:104px;height:104px;margin:0 auto 25px;
+  border:1px solid #7da7c744;border-radius:25px;
+  background:linear-gradient(145deg,#1b3551,#101e31);
+  color:#dceaf7;font:700 68px/.9 var(--display);letter-spacing:-9px;
+  padding-right:8px;box-shadow:0 18px 55px #0006;
+  animation:nirvoMarkReveal .72s cubic-bezier(.2,.8,.2,1) both;
+}
+.loader-wordmark{
+  margin:0;font:700 36px var(--display);letter-spacing:7px;color:#f3f7fb;
+  opacity:0;animation:nirvoWordReveal .48s ease .28s forwards;
+}
+.loader-wordmark span{color:#8dc7e8}
+.loader-tagline{
+  margin-top:9px;color:#a5bfd5;font-size:8px;font-weight:700;letter-spacing:3px;
+  opacity:0;animation:nirvoWordReveal .45s ease .42s forwards;
+}
+.loader-message{
+  min-height:18px;margin-top:30px;color:#a5b5c7;font-size:10px;letter-spacing:.4px;
+  opacity:0;animation:nirvoWordReveal .4s ease .5s forwards;
+}
+.loader-track{
+  height:3px;margin-top:15px;overflow:hidden;border-radius:8px;
+  background:#26384d;box-shadow:none;
+}
+.loader-track span{
+  display:block;width:100%;height:100%;transform:scaleX(0);transform-origin:left;
+  background:linear-gradient(90deg,#477fbd,#8dc7e8);
+  box-shadow:none;animation:nirvoLoadSweep .88s cubic-bezier(.4,0,.2,1) forwards;
+}
+.loader-status{
+  margin-top:12px;color:#8194a9;font-size:8px;letter-spacing:1.4px;
+}
+.loader-build b{
+  display:inline-block;width:6px;height:6px;margin-right:7px;border-radius:50%;
+  background:#8dc7e8;box-shadow:0 0 10px #8dc7e866;
+}
+.nirvo-loader.is-leaving{opacity:0;transform:scale(1.015);transition:opacity .42s ease,transform .42s ease,visibility .42s ease}
+@keyframes nirvoMarkReveal{
+  0%{opacity:0;transform:scale(.72) translateY(15px);filter:blur(9px)}
+  65%{opacity:1;transform:scale(1.04) translateY(-2px);filter:blur(0)}
+  100%{opacity:1;transform:scale(1) translateY(0);filter:blur(0)}
+}
+@keyframes nirvoWordReveal{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@keyframes nirvoLoadSweep{to{transform:scaleX(1)}}
+@media(max-width:600px){
+ .loader-symbol{width:88px;height:88px;font-size:58px}
+ .loader-wordmark{font-size:32px}
+ .loader-top,.loader-bottom{left:18px;right:18px}
+}
+@media(prefers-reduced-motion:reduce){
+ .loader-symbol,.loader-wordmark,.loader-tagline,.loader-message{animation:none;opacity:1;transform:none;filter:none}
+ .loader-track span{animation:none;transform:scaleX(1)}
+ .nirvo-loader.is-leaving{transition:none}
+}
