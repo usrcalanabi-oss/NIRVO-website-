@@ -2076,3 +2076,15 @@ footer{gap:clamp(14px,3vw,36px)}
  .ticker div{animation:none}
  html{scroll-behavior:auto}
 }
+
+
+/* NIRVO editorial statement — brand quote, not a fabricated customer testimonial */
+.nirvo-quote{position:relative;isolation:isolate;overflow:hidden;padding:clamp(52px,8vw,108px) clamp(22px,10vw,150px);background:radial-gradient(ellipse at 88% 50%,#416fca24,transparent 42%),linear-gradient(110deg,#0c1729,#101d30 55%,#0a1424);border-block:1px solid #34455d;text-align:center}
+.nirvo-quote:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.16;background-image:linear-gradient(#9bbce80b 1px,transparent 1px),linear-gradient(90deg,#9bbce80b 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(90deg,transparent,#000,transparent)}
+.nirvo-quote .quote-index,.nirvo-quote .quote-foot{font-size:9px;font-weight:700;letter-spacing:.2em;color:#d8bd83}
+.nirvo-quote .quote-mark{height:55px;margin-top:18px;color:#d8bd83;font:700 86px/.9 Georgia,serif;opacity:.8}
+.nirvo-quote blockquote{max-width:900px;margin:8px auto 30px;font:500 clamp(25px,4.2vw,49px)/1.22 var(--display);letter-spacing:-.04em;color:#f1f4fa}
+.nirvo-quote blockquote em{font-style:normal;color:#f0dfb5}
+.nirvo-quote .quote-foot{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;color:#9baec4}
+.nirvo-quote .quote-foot span+span{color:#d8bd83}
+@media(max-width:600px){.nirvo-quote{padding:54px 22px}.nirvo-quote blockquote{font-size:clamp(25px,7vw,34px)}.nirvo-quote .quote-foot{gap:10px}}
