@@ -2088,3 +2088,97 @@ footer{gap:clamp(14px,3vw,36px)}
 .nirvo-quote .quote-foot{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;color:#9baec4}
 .nirvo-quote .quote-foot span+span{color:#d8bd83}
 @media(max-width:600px){.nirvo-quote{padding:54px 22px}.nirvo-quote blockquote{font-size:clamp(25px,7vw,34px)}.nirvo-quote .quote-foot{gap:10px}}
+
+
+/* NIRVO 2026 — refined flagship interface */
+.page-home{--home-ink:#070d19;--home-panel:#0d192b;--home-line:rgba(160,190,225,.16);--home-ice:#eaf3ff;--home-cyan:#79d9e8}
+.page-home .announcement{height:auto;min-height:30px;display:flex;align-items:center;justify-content:center;gap:12px;padding:8px 14px;font-size:9px;letter-spacing:2.1px;background:linear-gradient(90deg,#091326,#101d35 48%,#091326);color:#b8c8dc}
+.page-home .header{height:76px;padding-inline:clamp(18px,5vw,76px);display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(14px,2.2vw,34px);background:rgba(7,13,25,.94);border-bottom:1px solid rgba(139,174,218,.15);box-shadow:0 12px 40px #02071222}
+.page-home .brand{white-space:nowrap;gap:9px;font-size:23px}
+.page-home .brand img{width:38px;height:38px}
+.page-home .header nav{justify-content:center;gap:clamp(12px,1.7vw,25px);font-size:12px;white-space:nowrap}
+.page-home .header nav a{transition:color .2s ease,opacity .2s ease}
+.page-home .header nav a:hover{color:#8ce3ef}
+.page-home .head-actions{gap:9px;white-space:nowrap}
+.page-home .account-quick-link,.page-home .header-social{font-size:11px;color:#b9c9dc}
+.page-home .cart-btn{padding:9px 14px;border-color:#42628a;background:linear-gradient(135deg,#162945,#102038);box-shadow:inset 0 1px #ffffff12;transition:transform .2s ease,border-color .2s ease}
+.page-home .cart-btn:hover{transform:translateY(-1px);border-color:#75cddd}
+.page-home .hero{min-height:min(760px,calc(100svh - 105px));padding:clamp(64px,8vw,112px) clamp(24px,8vw,120px) 76px;grid-template-columns:minmax(0,1.04fr) minmax(330px,.96fr);gap:clamp(30px,5vw,76px);background:radial-gradient(ellipse at 82% 34%,#304caa55,transparent 42%),radial-gradient(ellipse at 4% 90%,#087f8b38,transparent 38%),linear-gradient(120deg,#070d19 0%,#0b1730 56%,#111832 100%)}
+.page-home .hero-copy{max-width:660px;position:relative;z-index:2}
+.page-home .eyebrow{letter-spacing:2.4px;font-size:10px;color:#b8c9df}
+.page-home .hero h1{font-size:clamp(52px,6.8vw,92px);line-height:.99;letter-spacing:-.075em;margin:24px 0 23px}
+.page-home .hero h1 em{background:linear-gradient(100deg,#f1f6ff 5%,#8edeea 50%,#8da8ff 95%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.page-home .hero-copy>p{max-width:540px;color:#b0bfd2;font-size:clamp(14px,1.25vw,17px);line-height:1.85}
+.page-home .hero-actions{gap:12px;margin-top:32px}
+.page-home .hero-actions .primary,.page-home .hero-actions .secondary{min-height:48px;padding:0 20px;display:inline-flex;align-items:center;justify-content:center;border-radius:9px;font-size:12px;letter-spacing:.2px}
+.page-home .hero-actions .primary{background:linear-gradient(110deg,#477de9,#3974b9);box-shadow:0 10px 28px #2765c633}
+.page-home .hero-actions .secondary{border:1px solid #60789766;background:#ffffff06}
+.page-home .hero-stats{display:flex;gap:clamp(22px,4vw,54px);margin-top:48px;padding-top:23px;border-top:1px solid #ffffff19}
+.page-home .hero-stats>div{display:grid;gap:5px}
+.page-home .hero-stats b{font:600 25px var(--display);letter-spacing:-1px;color:#f1f6ff}
+.page-home .hero-stats small{font-size:10px;color:#9fb0c7}
+.page-home .hero-art{min-width:0;max-width:650px;width:100%;justify-self:end;border:1px solid #8ba9d42b;border-radius:20px;background:linear-gradient(145deg,#152746dd,#0a1427ee);box-shadow:0 28px 90px #02071388,inset 0 1px #ffffff12;overflow:hidden}
+.page-home .showcase-top,.page-home .showcase-bottom{padding-inline:20px;letter-spacing:1.5px;color:#9fb7d4}
+.page-home .showcase-main{min-height:390px}
+.page-home .showcase-product{padding:28px}
+.page-home .device{border-radius:18px;box-shadow:0 22px 55px #0008,inset 0 1px #ffffff25}
+.page-home .device-front{background:linear-gradient(145deg,#243d62,#0c1728 72%);border:1px solid #7aa6d766}
+.page-home .showcase-caption{padding-top:22px}
+.page-home .scroll-note{bottom:22px;letter-spacing:2px;color:#91a6c2}
+.page-home .daily-signal{margin:clamp(26px,4vw,54px) auto;max-width:1320px;width:calc(100% - clamp(32px,8vw,120px));border:1px solid #7eabd32a;border-radius:18px;background:radial-gradient(ellipse at 78% 40%,#234c7650,transparent 42%),linear-gradient(110deg,#0d1a2d,#101c32);box-shadow:0 22px 70px #0003}
+.page-home .nirvo-quote{max-width:1320px;width:calc(100% - clamp(32px,8vw,120px));margin:clamp(48px,7vw,90px) auto;padding:clamp(36px,6vw,78px);border:1px solid #8aa8d222;border-radius:18px;background:linear-gradient(130deg,#101b30,#0a1425 70%);box-shadow:0 25px 70px #0003}
+.page-home .nirvo-quote blockquote{max-width:950px;font-size:clamp(28px,4.3vw,55px);line-height:1.18;letter-spacing:-.045em}
+.page-home .section{padding-block:clamp(62px,8vw,105px)}
+.page-home .domain-grid{gap:14px}
+.page-home .domain{border:1px solid var(--home-line);border-radius:14px;background:linear-gradient(145deg,#111f34,#0b1526);padding:24px;transition:transform .22s ease,border-color .22s ease,background .22s ease}
+.page-home .domain:hover{transform:translateY(-4px);border-color:#70cbd777;background:linear-gradient(145deg,#172b46,#0c192b)}
+.page-home .problem-to-product{padding:clamp(62px,8vw,100px) clamp(22px,7vw,100px);background:linear-gradient(180deg,#0b1425,#080e1b)}
+.page-home .problem-step{border:1px solid var(--home-line);border-radius:13px;background:#ffffff05;padding:24px;min-width:0}
+.page-home .problem-step h3{letter-spacing:-.03em}
+.page-home .product-card{border-radius:14px;overflow:hidden}
+.page-home footer{border-top:1px solid #ffffff18;background:#070c17;padding:34px clamp(22px,6vw,84px)}
+.page-home :focus-visible{outline:2px solid #8bdde9;outline-offset:4px;border-radius:5px}
+@media(max-width:1180px){
+ .page-home .header{grid-template-columns:auto 1fr auto;gap:12px}
+ .page-home .header nav{gap:12px;font-size:11px}
+ .page-home .header nav a:nth-child(4),.page-home .header nav a:nth-child(6){display:none}
+ .page-home .header-social{display:none}
+ .page-home .hero{padding-inline:clamp(24px,5vw,64px);gap:28px}
+}
+@media(max-width:820px){
+ .page-home .header{height:68px;display:flex;gap:10px;padding-inline:18px}
+ .page-home .header nav{display:none}
+ .page-home .header nav.open{display:flex;position:absolute;top:68px;left:12px;right:12px;padding:18px;background:#0c1729;border:1px solid #304765;border-radius:12px;box-shadow:0 20px 45px #0009;flex-direction:column;align-items:stretch;gap:0}
+ .page-home .header nav.open a{display:block;padding:12px 8px;border-bottom:1px solid #ffffff12}
+ .page-home .account-quick-link{display:none}
+ .page-home .hero{min-height:0;grid-template-columns:1fr;padding:72px 24px 65px}
+ .page-home .hero-art{justify-self:stretch;max-width:none}
+ .page-home .showcase-main{min-height:320px}
+ .page-home .hero-stats{margin-top:34px}
+}
+@media(max-width:480px){
+ .page-home .announcement{font-size:8px;letter-spacing:1.2px}
+ .page-home .brand{font-size:20px}
+ .page-home .brand img{width:34px;height:34px}
+ .page-home .brand small{font-size:7px;letter-spacing:2px}
+ .page-home .head-actions{gap:5px}
+ .page-home .icon-btn{font-size:21px}
+ .page-home .cart-btn{padding:8px 10px;font-size:11px}
+ .page-home .menu-btn{display:block;font-size:22px;padding:4px}
+ .page-home .hero h1{font-size:clamp(47px,14vw,66px)}
+ .page-home .hero-actions{flex-wrap:wrap}
+ .page-home .hero-actions>a{flex:1 1 145px}
+ .page-home .hero-stats{gap:17px;justify-content:space-between}
+ .page-home .hero-stats b{font-size:22px}
+ .page-home .hero-stats small{font-size:9px}
+ .page-home .showcase-top,.page-home .showcase-bottom{padding-inline:12px;font-size:8px;letter-spacing:1px}
+ .page-home .showcase-product{padding:18px}
+ .page-home .showcase-main{min-height:280px}
+ .page-home .daily-signal,.page-home .nirvo-quote{width:calc(100% - 28px);border-radius:13px}
+ .page-home .nirvo-quote{padding:28px 22px}
+ .page-home .quote-foot{gap:10px;flex-wrap:wrap}
+}
+@media(prefers-reduced-motion:reduce){
+ .page-home .domain,.page-home .cart-btn{transition:none}
+ .page-home .domain:hover,.page-home .cart-btn:hover{transform:none}
+}
