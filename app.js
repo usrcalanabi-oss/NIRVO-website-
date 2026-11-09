@@ -69,11 +69,24 @@ function renderProducts(){
  const list=products.filter(p=>(activeFilter==="All"||p[1]===activeFilter)&&p.join(" ").toLowerCase().includes(q));
  const count=document.getElementById("productResultCount");if(count)count.textContent="Showing "+list.length+" of "+products.length+" products";
  grid.innerHTML=list.length?list.map(p=>
-  '<article class="product-card in-view" data-product-card="'+p[5]+'" tabindex="0" role="button" aria-label="View '+p[0]+' details"><div class="product-image"><img loading="lazy" src="'+photo(p[6])+'" alt="'+p[0]+' product concept"><span class="number">NIRVO / '+p[5]+'</span><img class="product-brand-mark" src="nirvo-logo.svg" alt="" aria-hidden="true"><span class="image-view">VISUAL REFERENCE · VIEW ↗</span></div><div class="product-info"><div class="product-meta">'+p[1].toUpperCase()+'</div><h3>'+p[0]+'</h3><p>'+p[2]+'</p><div class="product-bottom"><span class="price">'+p[3]+'</span><button class="add-btn" data-add="'+p[5]+'" type="button">＋ Add to cart</button></div><button class="details-btn" data-details="'+p[5]+'" type="button">Explore product & specifications ↗</button></div></article>'
+  '<article class="product-card in-view" data-product-card="'+p[5]+'"><div class="product-image"><img loading="lazy" src="'+photo(p[6])+'" data-fallback="https://images.unsplash.com/'+p[6]+'?auto=format&fit=crop&w=1000&q=85" onerror="if(!this.dataset.fallbackUsed){this.dataset.fallbackUsed=1;this.src=this.dataset.fallback}else{this.style.display=\'none\'}" alt="'+p[0]+' product concept"><span class="number">NIRVO / '+p[5]+'</span><img class="product-brand-mark" src="nirvo-logo.svg" alt="" aria-hidden="true"><span class="image-view">VISUAL REFERENCE · VIEW ↗</span></div><div class="product-info"><div class="product-meta">'+p[1].toUpperCase()+'</div><h3>'+p[0]+'</h3><p>'+p[2]+'</p><div class="product-bottom"><span class="price">'+p[3]+'</span><button class="add-btn" data-add="'+p[5]+'" type="button">＋ Add to cart</button></div><button class="details-btn" data-details="'+p[5]+'" type="button">Explore product & specifications ↗</button></div></article>'
  ).join(""):'<div class="no-results"><b>No matching products found.</b><p>Try another keyword or clear your filters.</p><button type="button" class="clear-search" data-clear-search>Clear search and filters</button></div>';
 }
-grid.addEventListener("click",e=>{const add=e.target.closest("[data-add]");if(add){e.stopPropagation();addCart(add.dataset.add);return}const card=e.target.closest("[data-product-card]");if(card)showDetails(card.dataset.productCard);if(e.target.closest("[data-clear-search]")){document.getElementById("productSearch").value="";activeFilter="All";document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x.dataset.filter==="All"));renderProducts()}});
-grid.addEventListener("keydown",e=>{const card=e.target.closest("[data-product-card]");if(card&&(e.key==="Enter"||e.key===" ")){e.preventDefault();showDetails(card.dataset.productCard)}});
+grid.addEventListener("click",e=>{
+  const add=e.target.closest("[data-add]");
+  if(add){e.stopPropagation();addCart(add.dataset.add);return}
+  const details=e.target.closest("[data-details]");
+  if(details){e.stopPropagation();showDetails(details.dataset.details);return}
+  if(e.target.closest("[data-clear-search]")){
+   document.getElementById("productSearch").value="";
+   activeFilter="All";
+   document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x.dataset.filter==="All"));
+   renderProducts();return;
+  }
+  const card=e.target.closest("[data-product-card]");
+  if(card&&!e.target.closest("button,a,input,select"))showDetails(card.dataset.productCard);
+ });
+// Product details are opened by the dedicated, keyboard-accessible details button.
 function addCart(id){const p=products.find(x=>x[5]===id);const item=cart.find(x=>x.id===id);if(item)item.qty++;else cart.push({id,name:p[0],price:p[4],qty:1});saveCart();openCart()}
 function saveCart(){try{localStorage.setItem("nirvo-cart",JSON.stringify(cart));}catch(e){}document.getElementById("cartCount").textContent=cart.reduce((n,x)=>n+x.qty,0);document.getElementById("drawerCount").textContent="("+cart.reduce((n,x)=>n+x.qty,0)+")";document.getElementById("cartItems").innerHTML=cart.length?cart.map(x=>`<div class="cart-line"><div><b>${x.name}</b><small>${x.price} · indicative starting price</small></div><div class="qty"><button data-dec="${x.id}">−</button>${x.qty}<button data-inc="${x.id}">+</button></div></div>`).join(""):'<p class="empty-cart">Your next build starts here.<br>Your cart is empty.</p>';document.querySelectorAll("[data-dec]").forEach(b=>b.onclick=()=>changeQty(b.dataset.dec,-1));document.querySelectorAll("[data-inc]").forEach(b=>b.onclick=()=>changeQty(b.dataset.inc,1));const total=cart.reduce((n,x)=>n+Number(x.price.replace(/[^0-9]/g,""))*x.qty,0);document.getElementById("subtotal").textContent="₹"+total.toLocaleString("en-IN")}
 function changeQty(id,n){const x=cart.find(x=>x.id===id);if(x)x.qty+=n;cart=cart.filter(x=>x.qty>0);saveCart()}
@@ -82,7 +95,7 @@ document.getElementById("cartOpen").onclick=openCart;document.getElementById("ca
 document.getElementById("checkoutBtn").onclick=()=>{if(!cart.length)return;const lines=cart.map(x=>x.name+" x "+x.qty+" — "+x.price).join("%0D%0A");location.href="mailto:usrcalanabi@gmail.com?subject=NIRVO%20Product%20Order%20Enquiry&body=Hello%20NIRVO,%0D%0AI%20would%20like%20to%20request%20a%20confirmed%20quotation%20for:%0D%0A"+lines+"%0D%0A%0D%0APlease%20contact%20me%20to%20confirm%20availability,%20delivery%20and%20payment."};
 function showDetails(id){
  const p=products.find(x=>x[5]===id);if(!p)return;const m=document.getElementById("productModal");
- document.getElementById("modalContent").innerHTML='<div class="detail-layout"><div class="detail-image"><img src="'+photo(p[6])+'" alt="'+p[0]+' product concept"><img class="detail-brand-mark" src="nirvo-logo.svg" alt="NIRVO"></div><div class="detail-copy"><div class="product-meta">'+p[1].toUpperCase()+' / NIRVO '+p[5]+'</div><h2>'+p[0]+'</h2><p>'+p[2]+'</p><div class="modal-specs"><span>Category: '+p[1]+'</span><span>Custom configuration</span><span>Quotation required</span></div><h3>'+p[3]+'</h3><p>Product concept and indicative starting price. The image is a visual reference, not a confirmed NIRVO-manufactured unit. Final design, specifications, availability and quotation must be confirmed by NIRVO.</p><button class="primary" id="modalAdd">Add to cart ↗</button><a class="detail-contact" href="https://wa.me/919447682486?text='+encodeURIComponent("Hello NIRVO, I am interested in "+p[0]+". Please share details and a quotation.")+'" target="_blank" rel="noopener">Ask about this product on WhatsApp ↗</a></div></div>';
+ document.getElementById("modalContent").innerHTML='<div class="detail-layout"><div class="detail-image"><img src="'+photo(p[6])+'" data-fallback="https://images.unsplash.com/'+p[6]+'?auto=format&fit=crop&w=1000&q=85" onerror="if(!this.dataset.fallbackUsed){this.dataset.fallbackUsed=1;this.src=this.dataset.fallback}else{this.style.display=\'none\'}" alt="'+p[0]+' product concept"><img class="detail-brand-mark" src="nirvo-logo.svg" alt="NIRVO"></div><div class="detail-copy"><div class="product-meta">'+p[1].toUpperCase()+' / NIRVO '+p[5]+'</div><h2>'+p[0]+'</h2><p>'+p[2]+'</p><div class="modal-specs"><span>Category: '+p[1]+'</span><span>Custom configuration</span><span>Quotation required</span></div><h3>'+p[3]+'</h3><p>Product concept and indicative starting price. The image is a visual reference, not a confirmed NIRVO-manufactured unit. Final design, specifications, availability and quotation must be confirmed by NIRVO.</p><button class="primary" id="modalAdd">Add to cart ↗</button><a class="detail-contact" href="https://wa.me/919447682486?text='+encodeURIComponent("Hello NIRVO, I am interested in "+p[0]+". Please share details and a quotation.")+'" target="_blank" rel="noopener">Ask about this product on WhatsApp ↗</a></div></div>';
  m.classList.add("open");document.getElementById("modalAdd").onclick=()=>{addCart(id);m.classList.remove("open")}
 }
 document.getElementById("modalClose").onclick=()=>document.getElementById("productModal").classList.remove("open");
@@ -130,7 +143,7 @@ if("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: red
 }
 // Stable product carousel: no automatic movement, no animation loop, no scroll jitter.
 const shelf=document.querySelector(".product-grid");
-if(shelf){
+if(shelf&&!document.body.classList.contains("page-products")){
  shelf.classList.add("auto-shelf");
  const tools=document.createElement("div");tools.className="product-runway";
  tools.innerHTML='<span class="runway-label">DISCOVER THE COLLECTION</span><div class="runway-controls"><button type="button" aria-label="Scroll products left" data-runway-left>‹</button><button type="button" aria-label="Scroll products right" data-runway-right>›</button><button type="button" class="view-all-btn" data-view-all>View all products</button></div>';
