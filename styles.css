@@ -2470,3 +2470,51 @@ footer{gap:clamp(14px,3vw,36px)}
  .page-products .icon-btn,.page-products .menu-btn{width:33px;height:35px}
  .page-products .cart-btn{min-height:35px;padding:0 9px;font-size:11px}
 }
+
+
+/* NIRVO identity consistency: use the real brand asset in every loader */
+.nirvo-loader .loader-symbol-wrap{
+ width:112px;height:112px;margin:0 auto 23px;
+ border:1px solid #5d9fc75c;border-radius:27px;
+ background:linear-gradient(145deg,#142c49,#0a1729);
+ box-shadow:0 22px 65px #0006,0 0 45px #3287bb22,inset 0 1px #ffffff18;
+}
+.nirvo-loader .loader-logo{
+ display:block;width:78px;height:78px;object-fit:contain;
+ filter:drop-shadow(0 8px 22px #1c8ab455);
+}
+.nirvo-loader .loader-brand-mini img{display:block;width:25px;height:25px;object-fit:contain;border-radius:6px}
+.nirvo-loader .loader-wordmark{margin-top:0;letter-spacing:.16em}
+.nirvo-loader .loader-tagline{letter-spacing:.19em;color:#9ab9d4}
+.nirvo-loader .loader-tagline i{color:#69d5e7;font-style:normal;padding:0 3px}
+@media(max-width:480px){
+ .nirvo-loader .loader-symbol-wrap{width:96px;height:96px}
+ .nirvo-loader .loader-logo{width:66px;height:66px}
+}
+
+/* Product concept summary — designed as editorial metrics, not plain labels */
+.page-products .catalogue-highlights{
+ display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:12px;max-width:790px;margin-top:34px;
+}
+.page-products .catalogue-highlights span{
+ display:flex;align-items:center;gap:12px;min-height:58px;
+ padding:14px 17px;border:1px solid #45617e77;border-radius:12px;
+ background:linear-gradient(135deg,#142b43d9,#0b192bd9);
+ color:#d8e8f6;font-size:9px;font-weight:700;letter-spacing:1.15px;
+ box-shadow:inset 0 1px #ffffff0a,0 9px 24px #02091430;
+}
+.page-products .catalogue-highlights span:first-child:before{
+ content:"32";display:grid;place-items:center;flex:0 0 34px;height:34px;
+ border-radius:9px;background:linear-gradient(145deg,#4b81dc,#5bc8d2);
+ color:#071729;font:700 16px var(--display);letter-spacing:-.5px;
+}
+.page-products .catalogue-highlights span:nth-child(2):before,
+.page-products .catalogue-highlights span:nth-child(3):before{
+ content:"";display:block;flex:0 0 6px;height:6px;border-radius:50%;
+ background:#78d6df;box-shadow:0 0 12px #78d6df77;
+}
+@media(max-width:620px){
+ .page-products .catalogue-highlights{grid-template-columns:1fr;gap:8px;max-width:420px}
+ .page-products .catalogue-highlights span{min-height:50px}
+}
