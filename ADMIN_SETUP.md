@@ -27,3 +27,9 @@ The admin dashboard provides a WhatsApp click-to-chat action for each submission
 - Orders and contact enquiries are saved as private records.
 - Order requests are enquiries only. No payment is collected and no order is confirmed until NIRVO verifies stock, price, delivery and payment terms.
 - Admin statuses: New, Reviewing, Approved, Closed.
+
+## Customer accounts
+
+The customer sign-in page is available at `/account.html`. Account records are stored as private Vercel Blob objects under `accounts/`; passwords are hashed with Node.js scrypt and sessions use a signed, HttpOnly, Secure cookie. The same `NIRVO_SESSION_SECRET` signs customer and admin sessions.
+
+Customer email verification and self-service password reset are not enabled. Do not advertise either feature until a verified email provider and recovery flow have been configured. Account sign-up and sign-in require the existing `BLOB_READ_WRITE_TOKEN` and `NIRVO_SESSION_SECRET` production variables.
