@@ -64,7 +64,7 @@ function renderProducts(){
  else if(sort==="name")list.sort((a,b)=>a[0].localeCompare(b[0]));
  const count=document.getElementById("productResultCount");if(count)count.textContent="Showing "+list.length+" of "+products.length+" products";
  grid.innerHTML=list.length?list.map(p=>
-  '<article class="product-card in-view" data-product-card="'+p[5]+'"><div class="product-image"><img loading="lazy" src="'+photo(p[6])+'" data-fallback="https://images.unsplash.com/'+p[6]+'?auto=format&fit=crop&w=1000&q=85" onerror="if(!this.dataset.fallbackUsed){this.dataset.fallbackUsed=1;this.src=this.dataset.fallback}else{this.style.display=\'none\'}" alt="'+p[0]+' product concept"><span class="number">NIRVO / '+p[5]+'</span><img class="product-brand-mark" src="nirvo-logo.svg" alt="" aria-hidden="true"><span class="image-view">VISUAL REFERENCE · VIEW ↗</span></div><div class="product-info"><div class="product-meta">'+p[1].toUpperCase()+'</div><h3>'+p[0]+'</h3><p>'+p[2]+'</p><div class="product-bottom"><span class="price">'+p[3]+'</span><button class="add-btn" data-add="'+p[5]+'" type="button">＋ Add to cart</button></div><button class="details-btn" data-details="'+p[5]+'" type="button">Explore product & specifications ↗</button></div></article>'
+  '<article class="product-card in-view" data-product-card="'+p[5]+'"><div class="product-image"><img loading="lazy" src="'+photo(p[6])+'" data-fallback="https://images.unsplash.com/'+p[6]+'?auto=format&fit=crop&w=1000&q=85" onerror="if(!this.dataset.fallbackUsed){this.dataset.fallbackUsed=1;this.src=this.dataset.fallback}else{this.style.display=\'none\'}" alt="'+p[0]+' product concept"><span class="number">NIRVO / '+p[5]+'</span><img class="product-brand-mark" src="nirvo-logo.svg" alt="" aria-hidden="true"><span class="image-view">VISUAL REFERENCE · VIEW ↗</span></div><div class="product-info"><div class="product-meta">'+p[1].toUpperCase()+'</div><h3>'+p[0]+'</h3><p>'+p[2]+'</p><div class="product-bottom"><span class="price">'+p[3]+'</span><button class="add-btn" data-add="'+p[5]+'" type="button">＋ Add to cart</button></div><a class="details-btn product-page-link" href="product.html?id='+p[5]+'">View product page & specifications ↗</a></div></article>'
  ).join(""):'<div class="no-results"><b>No matching products found.</b><p>Try another keyword or clear your filters.</p><button type="button" class="clear-search" data-clear-search>Clear search and filters</button></div>';
 }
 grid.addEventListener("click",e=>{
@@ -102,6 +102,7 @@ document.getElementById("menuBtn").onclick=()=>document.querySelector(".header")
 document.querySelectorAll("#nav a").forEach(a=>a.onclick=()=>document.querySelector(".header").classList.remove("menu-open"));
 // Enquiry form is handled once by the WhatsApp submission handler below.
 document.getElementById("year").textContent=new Date().getFullYear();renderProducts();saveCart();
+if(new URLSearchParams(location.search).get("cart")==="open"){openCart();history.replaceState({},"",location.pathname)}
 
 // NIRVO storefront reliability + motion layer
 document.getElementById("cartOpen").addEventListener("click",e=>{e.preventDefault();openCart()});
