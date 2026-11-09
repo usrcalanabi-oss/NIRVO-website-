@@ -2518,3 +2518,87 @@ footer{gap:clamp(14px,3vw,36px)}
  .page-products .catalogue-highlights{grid-template-columns:1fr;gap:8px;max-width:420px}
  .page-products .catalogue-highlights span{min-height:50px}
 }
+
+/* NIRVO cinematic startup experience — motion-rich, fast and responsive */
+.nirvo-loader{
+ isolation:isolate;
+ background:
+  radial-gradient(ellipse at 50% 48%,#163d68 0%,#0b1b34 34%,#060b17 76%),
+  #060b17;
+}
+.nirvo-loader:after{
+ content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+ background:linear-gradient(115deg,transparent 25%,#5ddcff09 48%,transparent 68%);
+ animation:loaderLightSweep 2.8s ease-in-out infinite;
+}
+.loader-atmosphere{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.loader-atmosphere:before,.loader-atmosphere:after{
+ content:"";position:absolute;width:min(70vw,720px);aspect-ratio:1;border:1px solid #75cfff12;border-radius:50%;
+ left:50%;top:50%;transform:translate(-50%,-50%);
+ box-shadow:0 0 0 45px #70cfff05,0 0 0 100px #70cfff04,0 0 0 165px #70cfff03;
+ animation:loaderRadar 8s linear infinite;
+}
+.loader-atmosphere:after{width:min(48vw,500px);border-style:dashed;border-color:#70d9f51c;animation-duration:24s;animation-direction:reverse}
+.loader-atmosphere span{position:absolute;width:3px;height:3px;border-radius:50%;background:#9cecff;box-shadow:0 0 15px 3px #47caff88;opacity:0;animation:loaderParticle 3s ease-in-out infinite}
+.loader-atmosphere span:nth-child(1){left:19%;top:32%;animation-delay:.2s}
+.loader-atmosphere span:nth-child(2){right:21%;top:62%;animation-delay:1.1s}
+.loader-atmosphere span:nth-child(3){left:70%;top:23%;animation-delay:1.8s}
+.loader-symbol-wrap{
+ width:124px;height:124px;border-radius:34px;
+ border:1px solid #80d9ff66;
+ background:linear-gradient(145deg,#1a4268cc,#09172bd9);
+ box-shadow:0 25px 85px #0008,0 0 65px #36baff35,inset 0 1px #ffffff26,inset 0 0 35px #53cfff15;
+ animation:loaderFrameIn .75s cubic-bezier(.2,.8,.2,1) both,loaderFrameFloat 3.2s ease-in-out .75s infinite;
+}
+.loader-symbol-wrap:before{content:"";position:absolute;inset:7px;border:1px solid #9ce8ff20;border-radius:26px}
+.loader-logo{width:76px;height:76px;filter:drop-shadow(0 0 24px #5bd9ff77);animation:loaderLogoReveal .9s cubic-bezier(.2,.8,.2,1) both,loaderPulse 2s ease-in-out 1s infinite}
+.loader-orbit{position:absolute;inset:-15px;border:1px solid #6adfff66;border-radius:39px;pointer-events:none}
+.loader-orbit-one{animation:loaderOrbit 7s linear infinite}
+.loader-orbit-two{inset:-25px;border-color:#6adfff30;border-style:dashed;border-radius:45px;animation:loaderOrbit 13s linear infinite reverse}
+.loader-scan{position:absolute;z-index:3;top:-40%;left:0;width:100%;height:38%;background:linear-gradient(transparent,#8ceaff36,transparent);filter:blur(3px);animation:loaderScan 2.1s ease-in-out infinite}
+.loader-index{position:absolute;right:9px;bottom:8px;color:#a7d8f1;font:700 7px var(--display);letter-spacing:1px}
+.loader-wordmark{margin-top:3px;font-size:clamp(37px,6vw,47px);letter-spacing:.22em;text-shadow:0 0 35px #5bcfff25;animation:loaderTextIn .7s .12s both}
+.loader-tagline{margin-top:10px;letter-spacing:.25em}
+.loader-message{margin-top:29px;color:#c1d8ed;font-size:12px;letter-spacing:.4px;animation:loaderTextIn .7s .22s both}
+.loader-track{height:4px;margin-top:18px;background:#203c5a;box-shadow:0 0 22px #39bfff17}
+.loader-track span{animation:loaderProgress 1.15s cubic-bezier(.4,0,.2,1) forwards}
+.loader-status{font-size:8px;letter-spacing:1.4px}
+.loader-steps{gap:10px;margin-top:30px}
+.loader-steps span{position:relative;padding-top:11px;border-color:#34516f;color:#718aa8;animation:loaderStepIn .45s both}
+.loader-steps span:nth-child(2){animation-delay:.12s}
+.loader-steps span:nth-child(3){animation-delay:.24s}
+.loader-steps span:nth-child(4){animation-delay:.36s}
+.loader-steps span.active,.loader-steps span:nth-child(2){color:#9deaff;border-color:#5bcff0}
+.loader-steps span i{font-size:7px}
+.loader-build{display:flex;align-items:center}
+.loader-build b{display:inline-block;width:6px;height:6px;margin-right:9px;border-radius:50%;background:#66edc5;box-shadow:0 0 14px #66edc5;animation:loaderLive 1.2s ease-in-out infinite}
+.loader-bottom{color:#7696b6}
+.nirvo-loader.is-leaving .loader-content{animation:loaderExit .38s ease forwards}
+.nirvo-loader.is-leaving .loader-top,.nirvo-loader.is-leaving .loader-bottom{opacity:0;transition:opacity .2s}
+@keyframes loaderRadar{to{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes loaderOrbit{to{transform:rotate(360deg)}}
+@keyframes loaderParticle{0%,100%{transform:translateY(15px) scale(.5);opacity:0}45%{opacity:.9}70%{transform:translateY(-22px) scale(1.2);opacity:.65}}
+@keyframes loaderLightSweep{0%,100%{transform:translateX(-22%);opacity:.35}50%{transform:translateX(22%);opacity:1}}
+@keyframes loaderFrameIn{from{opacity:0;transform:translateY(18px) scale(.82) rotateX(16deg)}to{opacity:1;transform:translateY(0) scale(1) rotateX(0)}}
+@keyframes loaderFrameFloat{0%,100%{translate:0 0}50%{translate:0 -7px}}
+@keyframes loaderLogoReveal{from{opacity:0;transform:scale(.7) rotate(-12deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+@keyframes loaderTextIn{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@keyframes loaderStepIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+@keyframes loaderLive{50%{opacity:.35;box-shadow:0 0 3px #66edc5}}
+@keyframes loaderExit{to{opacity:0;transform:translateY(-12px) scale(.98)}}
+@media(max-width:480px){
+ .loader-symbol-wrap{width:104px;height:104px;border-radius:29px}
+ .loader-logo{width:66px;height:66px}
+ .loader-orbit{inset:-11px;border-radius:34px}
+ .loader-orbit-two{inset:-19px;border-radius:39px}
+ .loader-content{width:86vw}
+ .loader-wordmark{font-size:35px}
+ .loader-steps{gap:6px;margin-top:26px}
+ .loader-steps span{font-size:7px;letter-spacing:.4px}
+ .loader-steps span i{font-size:6px}
+ .loader-bottom{font-size:6px;letter-spacing:.7px}
+}
+@media(prefers-reduced-motion:reduce){
+ .loader-atmosphere:before,.loader-atmosphere:after,.loader-atmosphere span,.loader-orbit,.loader-scan,.loader-logo,.loader-symbol-wrap,.loader-wordmark,.loader-message,.loader-steps span,.loader-build b{animation:none!important}
+ .loader-track span{animation-duration:1.15s}
+}
