@@ -1,19 +1,20 @@
-// Fast, honest branded loading: reveal once the document is ready, never fake a five-second progress bar.
+// Short, honest branded intro: cinematic reveal without a fake long loading timer.
 (function(){
  const loader=document.getElementById("nirvoLoader");
  if(!loader)return;
+ let finished=false;
  const reveal=()=>{
-  if(loader.classList.contains("is-leaving"))return;
+  if(finished)return;
+  finished=true;
   loader.classList.add("is-leaving");
   document.body.classList.add("site-ready");
-  window.setTimeout(()=>loader.remove(),380);
+  window.setTimeout(()=>loader.remove(),450);
  };
- if(document.readyState==="complete"||document.readyState==="interactive"){
-  window.setTimeout(reveal,260);
- }else{
-  document.addEventListener("DOMContentLoaded",()=>window.setTimeout(reveal,260),{once:true});
- }
- window.setTimeout(reveal,1400);
+ const start=()=>window.setTimeout(reveal,950);
+ if(document.readyState==="complete"||document.readyState==="interactive")start();
+ else document.addEventListener("DOMContentLoaded",start,{once:true});
+ // Safety fallback in case a browser delays DOM readiness.
+ window.setTimeout(reveal,1800);
 })();
 const products=[
 ["Nirvo AI Station","AI & Computing","Local AI workstation for private inference and development. 8-core CPU, 32GB RAM, 1TB NVMe, optional accelerator.","₹85,000 onwards","₹85,000", "01","photo-1593640408182-31c70c8268f5"],
