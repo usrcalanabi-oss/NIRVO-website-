@@ -2295,3 +2295,20 @@ footer{gap:clamp(14px,3vw,36px)}
 @media(max-width:760px){.page-products .header{height:68px;padding-inline:18px}.page-products .header nav{display:none}.page-products .header.menu-open nav{display:flex;position:absolute;top:68px;left:12px;right:12px;padding:12px;background:#0c1729;border:1px solid #304765;border-radius:12px;box-shadow:0 20px 45px #0009;flex-direction:column;gap:0}.page-products .header.menu-open nav a{padding:12px;border-bottom:1px solid #ffffff12}.page-products .account-quick-link{display:none}.page-products .catalogue-hero{min-height:370px}.page-products .products-heading{display:block}.page-products .product-tools{grid-template-columns:1fr}.page-products .filters{flex-wrap:nowrap;overflow-x:auto;grid-column:auto;padding-bottom:5px}.page-products .product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.page-products .standalone-product{grid-template-columns:1fr}.page-products .standalone-visual{aspect-ratio:1.35}.page-products .standalone-more{grid-template-columns:1fr}.page-products .standalone-more aside{border-left:0;border-top:1px solid #44617e;padding:20px 0 0}.page-products .catalogue-help{align-items:flex-start;flex-direction:column}}
 @media(max-width:480px){.page-products .catalogue-hero{padding:60px 20px}.page-products .catalogue-hero h1{font-size:clamp(43px,13vw,60px)}.page-products .capabilities-grid{grid-template-columns:1fr}.page-products .product-grid{grid-template-columns:1fr}.page-products .product-info p{min-height:0}.page-products .catalogue-toolbar-label{align-items:flex-start;flex-direction:column}.page-products .standalone-page{width:calc(100% - 28px);padding-top:22px}.page-products .standalone-visual{aspect-ratio:1.15}.page-products .standalone-trust{gap:7px}.page-products .standalone-trust span{font-size:9px}.page-products .head-actions{gap:6px}}
 @media(prefers-reduced-motion:reduce){.page-products .product-card,.page-products .capabilities-grid article{transition:none}.page-products .product-card:hover,.page-products .capabilities-grid article:hover{transform:none}}
+
+
+/* NIRVO catalogue FAQ — clear expectations before an enquiry */
+.page-products .catalogue-faq{width:min(1180px,calc(100% - 48px));margin:20px auto 100px;display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,7vw,100px);align-items:start;padding:clamp(28px,5vw,64px);border:1px solid #2b4058;border-radius:26px;background:linear-gradient(145deg,#101d30,#0b1423 72%);box-shadow:0 24px 70px #0003}
+.page-products .faq-heading>span{font-size:10px;letter-spacing:.18em;font-weight:700;color:#78b9dc}
+.page-products .faq-heading h2{font:600 clamp(30px,4vw,48px)/1.08 "Space Grotesk",sans-serif;letter-spacing:-.045em;margin:18px 0}
+.page-products .faq-heading h2 em{font-style:normal;color:#79c9d1}
+.page-products .faq-heading p{color:#a5b1c1;line-height:1.75;max-width:340px}
+.page-products .faq-list{border-top:1px solid #2b4058}
+.page-products .faq-list details{border-bottom:1px solid #2b4058;padding:0}
+.page-products .faq-list summary{list-style:none;cursor:pointer;position:relative;padding:20px 38px 20px 0;color:#edf2f8;font-weight:600;font-size:15px}
+.page-products .faq-list summary::-webkit-details-marker{display:none}
+.page-products .faq-list summary:after{content:"+";position:absolute;right:4px;top:15px;color:#79c9d1;font-size:24px;font-weight:400}
+.page-products .faq-list details[open] summary:after{content:"−"}
+.page-products .faq-list details p{margin:0;padding:0 34px 20px 0;color:#a5b1c1;font-size:13px;line-height:1.8}
+.page-products .faq-list summary:focus-visible{outline:2px solid #79c9d1;outline-offset:4px;border-radius:4px}
+@media(max-width:760px){.page-products .catalogue-faq{grid-template-columns:1fr;margin:10px auto 65px;padding:26px 22px;gap:24px}}
