@@ -2312,3 +2312,161 @@ footer{gap:clamp(14px,3vw,36px)}
 .page-products .faq-list details p{margin:0;padding:0 34px 20px 0;color:#a5b1c1;font-size:13px;line-height:1.8}
 .page-products .faq-list summary:focus-visible{outline:2px solid #79c9d1;outline-offset:4px;border-radius:4px}
 @media(max-width:760px){.page-products .catalogue-faq{grid-template-columns:1fr;margin:10px auto 65px;padding:26px 22px;gap:24px}}
+
+
+/* NIRVO catalogue header — aligned navigation and matching cart control */
+.page-products .header{
+ display:grid;
+ grid-template-columns:minmax(170px,auto) minmax(0,1fr) auto;
+ align-items:center;
+ column-gap:clamp(18px,2.5vw,38px);
+ padding-inline:clamp(22px,5vw,76px);
+}
+.page-products .header>.brand{min-width:0;white-space:nowrap}
+.page-products .header nav{
+ min-width:0;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ gap:clamp(12px,1.65vw,25px);
+ white-space:nowrap;
+ font-size:12px;
+}
+.page-products .head-actions{
+ min-width:0;
+ display:flex;
+ align-items:center;
+ justify-content:flex-end;
+ gap:clamp(7px,1vw,13px);
+}
+.page-products .header-social,
+.page-products .account-quick-link{
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ min-height:36px;
+ padding:0 10px;
+ border:1px solid transparent;
+ border-radius:8px;
+ color:#aebfd2;
+ font-size:11px;
+ white-space:nowrap;
+ transition:background .2s,border-color .2s,color .2s;
+}
+.page-products .header-social:hover,
+.page-products .account-quick-link:hover{
+ color:#eafaff;
+ border-color:#42647d;
+ background:#14283a;
+}
+.page-products .icon-btn{
+ width:38px;
+ height:38px;
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ border:1px solid #314963;
+ border-radius:10px;
+ background:#101e31;
+ color:#d8e9f6;
+ font-size:22px;
+}
+.page-products .cart-btn{
+ min-height:40px;
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ gap:9px;
+ padding:0 15px;
+ border:1px solid #477d91;
+ border-radius:10px;
+ background:linear-gradient(135deg,#17364a,#10283a);
+ color:#eafaff;
+ font-size:12px;
+ font-weight:700;
+ letter-spacing:.02em;
+ box-shadow:inset 0 1px 0 #ffffff0b,0 5px 18px #02091455;
+ transition:background .2s,border-color .2s,transform .2s,box-shadow .2s;
+}
+.page-products .cart-btn:hover{
+ transform:translateY(-1px);
+ border-color:#79c9d1;
+ background:linear-gradient(135deg,#1b4659,#15334a);
+ box-shadow:0 8px 22px #02091477;
+}
+.page-products .cart-btn b{
+ min-width:21px;
+ height:21px;
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ margin:0;
+ padding:0 6px;
+ border:1px solid #8de0e4;
+ border-radius:7px;
+ background:#79c9d1;
+ color:#071725;
+ font-size:10px;
+ line-height:1;
+ font-variant-numeric:tabular-nums;
+}
+.page-products .menu-btn{
+ display:none;
+ width:38px;
+ height:38px;
+ align-items:center;
+ justify-content:center;
+ border:1px solid #314963;
+ border-radius:10px;
+ background:#101e31;
+ color:#e4f1fb;
+ font-size:20px;
+}
+@media(max-width:1120px){
+ .page-products .header{column-gap:14px;padding-inline:22px}
+ .page-products .header nav{gap:11px;font-size:11px}
+ .page-products .header-social{display:none}
+ .page-products .head-actions{gap:7px}
+}
+@media(max-width:760px){
+ .page-products .header{
+  height:68px;
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding-inline:16px;
+ }
+ .page-products .header nav{display:none}
+ .page-products .header.menu-open nav{
+  display:flex;
+  position:absolute;
+  top:68px;
+  left:12px;
+  right:12px;
+  padding:10px;
+  background:#0c1729;
+  border:1px solid #304765;
+  border-radius:12px;
+  box-shadow:0 20px 45px #0009;
+  flex-direction:column;
+  align-items:stretch;
+  gap:0;
+  white-space:normal;
+ }
+ .page-products .header.menu-open nav a{padding:12px;border-bottom:1px solid #ffffff12}
+ .page-products .account-quick-link,
+ .page-products .header-social{display:none}
+ .page-products .head-actions{gap:8px;flex:0 0 auto}
+ .page-products .icon-btn{display:inline-flex;width:36px;height:36px}
+ .page-products .cart-btn{min-height:38px;padding:0 11px;gap:7px}
+ .page-products .menu-btn{display:inline-flex}
+}
+@media(max-width:390px){
+ .page-products .header{padding-inline:11px;gap:8px}
+ .page-products .brand{gap:7px;font-size:20px}
+ .page-products .brand img{width:34px;height:34px}
+ .page-products .brand small{font-size:7px;letter-spacing:2px}
+ .page-products .head-actions{gap:6px}
+ .page-products .icon-btn,.page-products .menu-btn{width:33px;height:35px}
+ .page-products .cart-btn{min-height:35px;padding:0 9px;font-size:11px}
+}
