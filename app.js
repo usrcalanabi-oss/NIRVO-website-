@@ -51,17 +51,8 @@ const products=[
 ["Nirvo WaterFlow","Smart Systems","Water usage monitor concept with flow sensing, leak alerts and consumption history.","₹6,500 onwards","₹6,500","32","photo-1530053969600-caed2596d242"]
 ];
 // Curated reference photography from public product-image searches.
-const referencePhotos = {
- "photo-1558494949-ef010cbdcc31": "https://www.owcasia.com.tw/media/com_hikashop/upload/owc-jupiter-mini-mid-left-hero.jpg",
- "photo-1485827404703-89b55fcc595e": "https://uplinkroboticsstore.com/cdn/shop/files/DI0A9929.jpg?v=1764616278&width=1600",
- "photo-1581092160562-40aa08e78837": "https://arkoudo.com/assets/images/products/pro1.png",
- "photo-1581092580497-e0d23cbdf1dc": "https://uplinkroboticsstore.com/cdn/shop/files/DI0A9929.jpg?v=1764616278&width=1600",
- "photo-1518770660439-4636190af475": "https://precisol-automation.com/wp-content/uploads/2025/01/RS485-serial-to-cloud-gateway-768x639.png",
- "photo-1581092921461-eab62e97a780": "https://res.cloudinary.com/allied-electronics-automation/image/upload/b_rgb%3AFFFFFF%2Cc_pad%2Cdpr_2.0%2Cf_auto%2Ch_800%2Cq_auto%2Cw_800/c_pad%2Ch_800%2Cw_800/75115027.jpg?_i=AB&pgw=1",
- "photo-1473341304170-971dccb5ac1e": "https://www.fronius.com/-/media/international/se/fronius-q-t/fronius-smart-solution-rsb-duo-87-us.webp",
- "photo-1544197150-b99a580bb7a8": "https://www.owcasia.com.tw/media/com_hikashop/upload/owc-jupiter-mini-mid-left-hero.jpg"
-};
-const photo = (id) => referencePhotos[id] || ("https://images.unsplash.com/" + id + "?auto=format&fit=crop&w=1000&q=85");
+// Use neutral Unsplash visual references for concept imagery; never display third-party manufacturer product shots as NIRVO products.
+const photo = (id) => "https://images.unsplash.com/" + id + "?auto=format&fit=crop&w=1000&q=85";
 let cart=[]; try { cart=JSON.parse(localStorage.getItem("nirvo-cart")||"[]"); if(!Array.isArray(cart)) cart=[]; } catch(e){ cart=[]; } let activeFilter="All";
 const grid=document.getElementById("productGrid");
 function renderProducts(){
@@ -96,7 +87,7 @@ function saveCart(){try{localStorage.setItem("nirvo-cart",JSON.stringify(cart));
 function changeQty(id,n){const x=cart.find(x=>x.id===id);if(x)x.qty+=n;cart=cart.filter(x=>x.qty>0);saveCart()}
 const drawer=document.getElementById("cartDrawer"),overlay=document.getElementById("overlay");function openCart(){drawer.classList.add("open");overlay.classList.add("show")}function closeCart(){drawer.classList.remove("open");overlay.classList.remove("show")}
 document.getElementById("cartOpen").onclick=openCart;document.getElementById("cartClose").onclick=closeCart;overlay.onclick=closeCart;
-document.getElementById("checkoutBtn").onclick=()=>{if(!cart.length)return;const lines=cart.map(x=>x.name+" x "+x.qty+" — "+x.price).join("%0D%0A");location.href="mailto:usrcalanabi@gmail.com?subject=NIRVO%20Product%20Order%20Enquiry&body=Hello%20NIRVO,%0D%0AI%20would%20like%20to%20request%20a%20confirmed%20quotation%20for:%0D%0A"+lines+"%0D%0A%0D%0APlease%20contact%20me%20to%20confirm%20availability,%20delivery%20and%20payment."};
+// Checkout is handled below by the validated order-enquiry form.
 function showDetails(id){
  const p=products.find(x=>x[5]===id);if(!p)return;const m=document.getElementById("productModal");
  document.getElementById("modalContent").innerHTML='<div class="detail-layout"><div class="detail-image"><img src="'+photo(p[6])+'" data-fallback="https://images.unsplash.com/'+p[6]+'?auto=format&fit=crop&w=1000&q=85" onerror="if(!this.dataset.fallbackUsed){this.dataset.fallbackUsed=1;this.src=this.dataset.fallback}else{this.style.display=\'none\'}" alt="'+p[0]+' product concept"><img class="detail-brand-mark" src="nirvo-logo.svg" alt="NIRVO"></div><div class="detail-copy"><div class="product-meta">'+p[1].toUpperCase()+' / NIRVO '+p[5]+'</div><h2>'+p[0]+'</h2><p>'+p[2]+'</p><div class="modal-specs"><span>Category: '+p[1]+'</span><span>Custom configuration</span><span>Quotation required</span></div><h3>'+p[3]+'</h3><p>Product concept and indicative starting price. The image is a visual reference, not a confirmed NIRVO-manufactured unit. Final design, specifications, availability and quotation must be confirmed by NIRVO.</p><button class="primary" id="modalAdd">Add to cart ↗</button><a class="detail-contact" href="https://wa.me/919447682486?text='+encodeURIComponent("Hello NIRVO, I am interested in "+p[0]+". Please share details and a quotation.")+'" target="_blank" rel="noopener">Ask about this product on WhatsApp ↗</a></div></div>';
@@ -180,20 +171,8 @@ if(shelf&&!document.body.classList.contains("page-products")){
      window.setTimeout(()=>{document.getElementById("products")?.scrollIntoView({block:"start"});searchInput.focus()},350);
    }
  }
- const originalOrder=products.slice();
- const priceOf=p=>Number(String(p[4]).replace(/[^0-9]/g,""));
- if(sort){
-   sort.addEventListener("change",()=>{
-     const mode=sort.value;
-     products.splice(0,products.length,...originalOrder.slice().sort((a,b)=>{
-       if(mode==="price-low")return priceOf(a)-priceOf(b);
-       if(mode==="price-high")return priceOf(b)-priceOf(a);
-       if(mode==="name")return a[0].localeCompare(b[0]);
-       return Number(a[5])-Number(b[5]);
-     }));
-     renderProducts();
-   });
- }
+ // Product sorting is handled once by renderProducts() above.
+
  const cartButton=document.getElementById("cartOpen");
  if(cartButton)cartButton.setAttribute("aria-label","Open shopping cart");
  const grid=document.getElementById("productGrid");
