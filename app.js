@@ -130,7 +130,11 @@ if(contactForm)contactForm.addEventListener("submit",async e=>{
  e.preventDefault();const form=e.currentTarget,data=new FormData(form);data.set("type","enquiry");
  const button=form.querySelector('button[type="submit"]'),original=button.textContent;button.disabled=true;button.textContent="Sending securely…";
  try{const response=await fetch("/api/submit",{method:"POST",body:data});const result=await response.json();if(!response.ok)throw new Error(result.error||"Could not submit");
- form.innerHTML='<div class="submission-success"><span>✓</span><h3>Enquiry received.</h3><p>'+result.message+'</p><p>Reference: <b>'+result.id.slice(0,8).toUpperCase()+'</b></p><p>'+(result.notificationNote||"") +'</p><a href="https://wa.me/919447682486" target="_blank" rel="noopener">Chat with NIRVO on WhatsApp ↗</a></div>';
+ const ref=result.id.slice(0,8).toUpperCase();
+ const details=[...data.entries()].filter(([key])=>!["type","website"].includes(key)).map(([key,value])=>key.replace(/[-_]/g," ")+": "+String(value)).join("\\n");
+ const whatsappText="Hello NIRVO, I have submitted an enquiry through your website.\\nReference: "+ref+"\\n\\n"+details+"\\n\\nPlease review my enquiry and contact me.";
+ const whatsappUrl="https://wa.me/919447682486?text="+encodeURIComponent(whatsappText);
+ form.innerHTML='<div class="submission-success"><span>✓</span><h3>Enquiry received.</h3><p>'+result.message+'</p><p>Reference: <b>'+ref+'</b></p><p>Your enquiry is saved. Send its details directly to NIRVO on WhatsApp to start the conversation.</p><a class="primary" href="'+whatsappUrl+'" target="_blank" rel="noopener">Send enquiry on WhatsApp ↗</a></div>';
  }catch(error){button.disabled=false;button.textContent=original;alert(error.message||"Please try again.");}
 });
 // Reveal elements gently as visitors scroll; respect reduced-motion settings.
