@@ -1293,3 +1293,78 @@ footer{background:#080f1b;border-color:#26384e}
 @media(prefers-reduced-motion:reduce){
  .page-home .hero-showcase,.page-home .device{animation:none!important}
 }
+
+
+/* NIRVO SIGNATURE COLOUR SYSTEM — richer cobalt, teal and indigo */
+:root{
+ --nirvo-ink:#080d1c;
+ --nirvo-navy:#101a35;
+ --nirvo-blue:#315ee8;
+ --nirvo-cyan:#42c7d9;
+ --nirvo-violet:#7965e8;
+ --nirvo-white:#f5f7ff;
+}
+body{background:#080d1c;color:#f5f7ff}
+.page-home .hero{
+ background:
+  radial-gradient(ellipse at 78% 24%,#315ee82b 0,transparent 42%),
+  radial-gradient(ellipse at 18% 88%,#27b9c51a 0,transparent 40%),
+  linear-gradient(118deg,#080d1c 0%,#101a35 52%,#17244a 100%);
+}
+.page-home .hero:after{
+ content:"";position:absolute;inset:0;pointer-events:none;opacity:.28;
+ background:linear-gradient(115deg,transparent 35%,#42c7d90a 65%,#7965e80d);
+}
+.page-home .hero h1 em,.page-home .section h2 em,.page-home .feature-copy h2 em,
+.page-home .contact-grid h2 em{background:linear-gradient(95deg,#61d8e4 0%,#6e91ff 55%,#a18aff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.page-home .eyebrow,.page-home .catalogue-hero .eyebrow{color:#75d7e2}
+.page-home .hero-actions .primary,.primary{
+ background:linear-gradient(105deg,#315ee8,#477fe9 58%,#26aebe);
+ border:1px solid #6c91ff;color:#fff;
+ box-shadow:0 8px 26px #315ee83d;
+}
+.page-home .hero-actions .primary:hover,.primary:hover{filter:brightness(1.12);box-shadow:0 10px 32px #315ee85c}
+.page-home .hero-actions .secondary,.secondary{
+ background:#172344;border-color:#5369a0;color:#eaf0ff;
+}
+.page-home .hero-showcase{
+ background:radial-gradient(ellipse at 50% 0%,#315ee82b,transparent 58%),linear-gradient(145deg,#18264b,#0c1429 76%);
+ border-color:#425a91;box-shadow:0 24px 70px #02061799;
+}
+.page-home .device-back{background:linear-gradient(145deg,#53668c,#202d50);border-color:#8296c7}
+.page-home .device-mid{background:linear-gradient(145deg,#315e9c,#152d50);border-color:#5b9acb}
+.page-home .device-front{background:linear-gradient(145deg,#203b68,#0c1a33);border-color:#4d9bb7}
+.page-home .device-front:before{background:#55d9e5;box-shadow:0 0 16px #55d9e5aa}
+.page-home .product-chip{background:#192b4d;border-color:#5279bd;color:#a9dff0}
+.page-home .ticker{background:linear-gradient(90deg,#111d3b,#102b3e);border-color:#314d7c}
+.page-home .domain,.page-home .feature-card,.page-home .daily-signal{
+ background:linear-gradient(145deg,#14213e,#101a30);border-color:#30466e;
+}
+.page-home .domain:hover{border-color:#4d9dbb;box-shadow:0 12px 32px #02061766}
+.page-home .nirvo-loader{
+ background:radial-gradient(ellipse at 50% 44%,#263a79 0%,#111b3b 38%,#070c19 82%);
+}
+.page-home .nirvo-loader:before{
+ opacity:.24;background-image:linear-gradient(#9cbaff12 1px,transparent 1px),linear-gradient(90deg,#9cbaff12 1px,transparent 1px)
+}
+.page-home .loader-symbol{
+ background:linear-gradient(145deg,#263d78,#14244b);
+ border-color:#6b8fe8;box-shadow:0 16px 52px #315ee84a,0 0 36px #42c7d91a;
+}
+.page-home .loader-wordmark span{color:#5dd2e1}
+.page-home .loader-track{background:#28375f}
+.page-home .loader-track span{background:linear-gradient(90deg,#315ee8,#42c7d9,#8d79ff)}
+.page-home .loader-build b{background:#54d5e1;box-shadow:0 0 12px #54d5e188}
+.catalogue-hero{
+ background:radial-gradient(ellipse at 85% 10%,#315ee82b,transparent 42%),linear-gradient(115deg,#0b1228,#17264b 68%,#123647);
+ border-color:#31466e;
+}
+.catalogue-hero h1 em,.catalogue-help h2 em{color:#65d2e0}
+.catalogue-page .products-section{background:#0b1429}
+.catalogue-page .product-card{background:linear-gradient(150deg,#172442,#101a30);border-color:#2e4168}
+.catalogue-page .product-card:hover{border-color:#4e8fc0;box-shadow:0 16px 38px #02061788}
+.catalogue-page .product-image{background:#101b35}
+.catalogue-help{background:linear-gradient(110deg,#14213e,#102d40);border-color:#31466e}
+input:focus,textarea:focus,select:focus{border-color:#55c8dc!important;box-shadow:0 0 0 3px #42c7d925!important}
+.cart-btn b{background:linear-gradient(135deg,#315ee8,#26aebe)}
+@media(prefers-reduced-motion:reduce){.page-home .domain{transition:none}}
