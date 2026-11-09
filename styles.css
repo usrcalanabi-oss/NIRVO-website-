@@ -1368,3 +1368,146 @@ body{background:#080d1c;color:#f5f7ff}
 input:focus,textarea:focus,select:focus{border-color:#55c8dc!important;box-shadow:0 0 0 3px #42c7d925!important}
 .cart-btn b{background:linear-gradient(135deg,#315ee8,#26aebe)}
 @media(prefers-reduced-motion:reduce){.page-home .domain{transition:none}}
+
+
+/* NIRVO HOMEPAGE — premium editorial / high-end technology direction */
+.page-home{
+ --lux-bg:#070b17;--lux-panel:#101a31;--lux-line:#293b60;
+ --lux-blue:#5278ff;--lux-cyan:#58d4df;--lux-lilac:#9c8cff;
+ background:var(--lux-bg);color:#f4f6ff;
+}
+.page-home .announcement{
+ background:linear-gradient(90deg,#111a35,#172a50 50%,#10283b);
+ color:#c4d2ee;border-bottom:1px solid #34466d;letter-spacing:2px;
+}
+.page-home .header{
+ background:#080e1cf0;border-bottom:1px solid #253656;
+ backdrop-filter:blur(22px) saturate(150%);
+ box-shadow:0 10px 35px #02061740;
+}
+.page-home .brand img{filter:drop-shadow(0 0 12px #547cff55)}
+.page-home .brand>span{letter-spacing:2px}
+.page-home #nav a{transition:color .2s ease}
+.page-home #nav a:hover{color:#65d6e3}
+.page-home .hero{
+ min-height:min(820px,calc(100svh - 110px));
+ padding:clamp(78px,10vw,142px) clamp(24px,8vw,124px) 105px;
+ gap:clamp(40px,6vw,100px);
+ background:
+  radial-gradient(ellipse at 78% 25%,#435eea38 0,transparent 34%),
+  radial-gradient(ellipse at 22% 88%,#27bac51c 0,transparent 34%),
+  linear-gradient(120deg,#070c1b 0%,#101a36 52%,#17234a 100%);
+}
+.page-home .hero-copy{position:relative;z-index:2}
+.page-home .eyebrow{font-size:10px;letter-spacing:2.6px;color:#7cdae5}
+.page-home .eyebrow i{background:#58d4df;box-shadow:0 0 15px #58d4df}
+.page-home .hero h1{
+ font-size:clamp(64px,7.6vw,112px);line-height:.98;
+ letter-spacing:-.085em;font-weight:600;margin:28px 0;
+}
+.page-home .hero h1 em{
+ background:linear-gradient(100deg,#70dce5 0%,#7295ff 48%,#b19aff 100%);
+ -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
+}
+.page-home .hero-copy>p{font-size:clamp(14px,1.2vw,17px);line-height:1.95;color:#b9c5dc;max-width:535px}
+.page-home .hero-actions{gap:13px;margin-top:32px}
+.page-home .hero-actions a{min-height:52px;padding:0 23px;border-radius:8px;font-size:12px;letter-spacing:.2px}
+.page-home .hero-actions .primary{
+ background:linear-gradient(105deg,#4268f0,#547fff 58%,#26aebe);
+ border:1px solid #7994ff;box-shadow:0 12px 34px #365df044;
+}
+.page-home .hero-actions .secondary{background:#131f3c;border:1px solid #42577e}
+.page-home .hero-stats{margin-top:54px;padding-top:25px;border-color:#344466}
+.page-home .hero-stats b{font-size:29px;font-weight:600}
+.page-home .hero-stats small{font-size:10px;letter-spacing:.3px;color:#a9b8d2}
+.page-home .hero-art{position:relative;z-index:1}
+.page-home .hero-showcase{
+ min-height:520px;border-radius:18px;padding:23px;
+ background:radial-gradient(ellipse at 50% 5%,#4664d92b,transparent 56%),linear-gradient(145deg,#19284c,#0b1429 72%);
+ border:1px solid #526797;box-shadow:0 36px 100px #020617a8,inset 0 1px #ffffff12;
+}
+.page-home .showcase-top,.page-home .showcase-bottom{color:#aebfe0;font-size:9px;letter-spacing:1.6px}
+.page-home .showcase-grid{
+ background-image:linear-gradient(#a6c9ff0d 1px,transparent 1px),linear-gradient(90deg,#a6c9ff0d 1px,transparent 1px);
+ background-size:38px 38px;
+ mask-image:radial-gradient(ellipse at center,#000 25%,transparent 80%);
+}
+.page-home .showcase-main{min-height:410px}
+.page-home .showcase-product{filter:drop-shadow(0 25px 35px #02061788)}
+.page-home .device-stack{transform:perspective(900px) rotateY(-9deg) rotateX(4deg)}
+.page-home .device-back{background:linear-gradient(145deg,#687ba9,#26375f);border-color:#9aadd9}
+.page-home .device-mid{background:linear-gradient(145deg,#4269a7,#172e55);border-color:#79a8df}
+.page-home .device-front{background:linear-gradient(145deg,#293f76,#0b1835);border-color:#7199de}
+.page-home .device-front:before{background:#69e0e8;box-shadow:0 0 20px #69e0e8}
+.page-home .showcase-caption{padding-top:24px}
+.page-home .showcase-caption b{font-size:20px;letter-spacing:-.5px}
+.page-home .showcase-caption span{font-size:10px;color:#aebfe0}
+.page-home .product-chip{background:#192b50d9;border-color:#5e7bc0;color:#b8e5ef}
+.page-home .scroll-note{bottom:28px;color:#8294b6;letter-spacing:2px;font-size:8px}
+.page-home .daily-signal{
+ margin:28px clamp(18px,5vw,76px);padding:35px clamp(22px,5vw,66px);
+ border:1px solid #354b75;border-radius:16px;
+ background:radial-gradient(ellipse at 90% 20%,#3e5ce52b,transparent 38%),linear-gradient(110deg,#142344,#10263a);
+ box-shadow:0 22px 60px #02061755;
+}
+.page-home .daily-kicker{color:#6bd6e2;letter-spacing:2px}
+.page-home .daily-signal-copy h2{font-size:clamp(24px,3vw,38px);letter-spacing:-1.3px}
+.page-home .daily-signal-mark img{filter:drop-shadow(0 0 20px #5e8bff55)}
+.page-home .ticker{border-block:1px solid #293b60;background:#0e1830;color:#b9c7e3}
+.page-home .section{padding-top:clamp(78px,9vw,124px);padding-bottom:clamp(78px,9vw,124px)}
+.page-home .section-label{color:#6dd5e2;letter-spacing:2.5px;font-size:9px}
+.page-home .intro-grid h2,.page-home .section h2,.page-home .feature-copy h2,.page-home .contact-grid h2{
+ font-size:clamp(40px,5vw,68px);line-height:1.04;letter-spacing:-.075em;
+}
+.page-home .intro-grid>p{color:#b4c1d8;line-height:1.9;font-size:15px}
+.page-home .domain-grid{gap:14px;margin-top:55px}
+.page-home .domain{
+ position:relative;overflow:hidden;padding:27px 25px;min-height:220px;
+ border:1px solid #2d416b;border-radius:13px;
+ background:linear-gradient(145deg,#172546,#101a32);
+ transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
+}
+.page-home .domain:after{
+ content:"";position:absolute;inset:auto -25% -65% 35%;height:150px;
+ background:radial-gradient(ellipse,#4168e52b,transparent 68%);pointer-events:none;
+}
+.page-home .domain:hover{transform:translateY(-5px);border-color:#6388d2;box-shadow:0 18px 45px #02061770}
+.page-home .domain>span{color:#86a3d5;font-size:9px;letter-spacing:1.5px}
+.page-home .domain-icon{color:#70dce5;font-size:28px;margin:24px 0 14px}
+.page-home .domain h3{font-size:18px;letter-spacing:-.4px}
+.page-home .domain p{font-size:12px;color:#aab9d3;line-height:1.75}
+.page-home .products-section{background:linear-gradient(180deg,#080e1e,#0d1730)}
+.page-home .products-heading p{color:#aebbd2;line-height:1.8}
+.page-home .product-card{border:1px solid #2b3f68;border-radius:13px;background:linear-gradient(150deg,#172546,#0e1830);overflow:hidden}
+.page-home .product-card:hover{border-color:#6689d1;box-shadow:0 18px 48px #02061780}
+.page-home .product-image{background:#0d1730}
+.page-home .marketplace-section{background:radial-gradient(ellipse at 90% 5%,#315ee82b,transparent 38%),#101a33;border-block:1px solid #2c416b}
+.page-home .marketplace-heading h2{letter-spacing:-.065em}
+.page-home .marketplace-stat{border-color:#344b75;background:#111f3d}
+.page-home .marketplace-tabs .market-tab.active{background:#315ee8;border-color:#6f8cff}
+.page-home .market-form{background:#0d1730;border:1px solid #31466d;border-radius:14px}
+.page-home .feature-band{background:linear-gradient(115deg,#0c1429,#15264a 60%,#102b3b);border-block:1px solid #30466d}
+.page-home .feature-brand-panel{border-color:#536b9a;background:radial-gradient(ellipse at center,#273c73,#0c1730)}
+.page-home .about{background:#080e1e}
+.page-home .principles span{border-color:#34486f;color:#b6c5df}
+.page-home .contact-section{background:radial-gradient(ellipse at 15% 90%,#315ee81a,transparent 40%),#101a31;border-top:1px solid #2c4167}
+.page-home .contact-grid form{background:#0b152a;border:1px solid #31466c;border-radius:14px;padding:28px}
+.page-home footer{background:#060b17;border-top:1px solid #293b60}
+@media(max-width:900px){
+ .page-home .hero{min-height:auto;padding-top:78px;padding-bottom:95px}
+ .page-home .hero-showcase{min-height:450px}
+ .page-home .showcase-main{min-height:340px}
+}
+@media(max-width:600px){
+ .page-home .hero{padding:60px 20px 80px}
+ .page-home .hero h1{font-size:clamp(54px,14vw,76px)}
+ .page-home .hero-showcase{min-height:390px;padding:15px;border-radius:13px}
+ .page-home .showcase-main{min-height:290px}
+ .page-home .daily-signal{margin:16px 12px;padding:25px 20px}
+ .page-home .domain-grid{gap:10px}
+ .page-home .domain{padding:19px 16px;min-height:195px}
+ .page-home .contact-grid form{padding:20px}
+}
+@media(prefers-reduced-motion:reduce){
+ .page-home .domain,.page-home .hero-actions a{transition:none}
+}
