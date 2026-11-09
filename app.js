@@ -33,12 +33,12 @@
   steps.forEach(x=>x.classList.add("complete"));
   loader.classList.add("is-leaving");
   document.body.classList.add("site-ready");
-  window.setTimeout(()=>loader.remove(),650);
+  window.setTimeout(()=>loader.remove(),350);
  };
  const animate=now=>{
   if(finished)return;
   if(!started)started=now;
-  const progress=Math.min(100,((now-started)/1550)*100);
+  const progress=Math.min(100,((now-started)/600)*100);
   const phase=Math.min(3,Math.floor(progress/25));
   if(fill)fill.style.width=progress+"%";
   percent.textContent=String(Math.round(progress)).padStart(2,"0")+"%";
@@ -55,8 +55,8 @@
  const begin=()=>{frame=requestAnimationFrame(animate)};
  if(document.readyState==="complete"||document.readyState==="interactive")begin();
  else document.addEventListener("DOMContentLoaded",begin,{once:true});
- window.addEventListener("load",()=>{if(!finished)window.setTimeout(reveal,180)});
- window.setTimeout(reveal,2600);
+ window.addEventListener("load",()=>{if(!finished)window.setTimeout(reveal,60)});
+ window.setTimeout(reveal,1100);
 })();
 const products=[
 ["Nirvo AI Station","AI & Computing","Local AI workstation for private inference and development. 8-core CPU, 32GB RAM, 1TB NVMe, optional accelerator.","₹85,000 onwards","₹85,000", "01","photo-1593640408182-31c70c8268f5"],
