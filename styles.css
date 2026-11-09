@@ -1131,3 +1131,72 @@ footer{background:#080f1b;border-color:#26384e}
  .loader-track span{animation:none;transform:scaleX(1)}
  .nirvo-loader.is-leaving{transition:none}
 }
+
+
+/* Dedicated NIRVO catalogue page — full product grid and dependable mobile layout */
+.catalogue-page{background:#0b1220;min-height:70vh}
+.catalogue-hero{
+ position:relative;overflow:hidden;padding:76px clamp(22px,8vw,120px) 58px;
+ background:linear-gradient(115deg,#0c1728 0%,#142840 65%,#172d43 100%);
+ border-bottom:1px solid #2b3b52;
+}
+.catalogue-hero:after{
+ content:"";position:absolute;inset:0;pointer-events:none;opacity:.18;
+ background-image:linear-gradient(#b8d8f00a 1px,transparent 1px),linear-gradient(90deg,#b8d8f00a 1px,transparent 1px);
+ background-size:54px 54px;mask-image:linear-gradient(90deg,#000,transparent 85%);
+}
+.catalogue-hero-inner{position:relative;z-index:1;max-width:900px}
+.catalogue-hero h1{margin:22px 0 15px;font:600 clamp(42px,6vw,76px)/1.03 var(--display);letter-spacing:-3px}
+.catalogue-hero h1 em{font-style:normal;color:#8dc7e8}
+.catalogue-hero p{max-width:650px;color:#b2c0d0;font-size:15px;line-height:1.8}
+.catalogue-highlights{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:28px;color:#9bb5ce;font-size:9px;font-weight:700;letter-spacing:1.3px}
+.catalogue-page .products-section{padding-top:58px;padding-bottom:84px;background:#0e1929}
+.catalogue-page .products-heading{margin-bottom:26px}
+.catalogue-page .product-grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;overflow:visible!important;scroll-snap-type:none!important;touch-action:auto!important}
+.catalogue-page .product-card{min-width:0;flex:initial!important;display:flex;flex-direction:column;opacity:1;transform:none;cursor:default}
+.catalogue-page .product-image{height:205px;flex:none}
+.catalogue-page .product-info{display:flex;flex:1;flex-direction:column}
+.catalogue-page .product-info p{min-height:78px}
+.catalogue-page .product-bottom{margin-top:auto;padding-top:16px}
+.catalogue-page .details-btn{padding:10px 0 0;text-align:left}
+.catalogue-page .product-tools{display:grid;grid-template-columns:1fr minmax(220px,300px) 180px;align-items:center}
+.catalogue-page .filters{min-width:0}
+.catalogue-page .product-result-count{margin:0 0 18px}
+.catalogue-page .product-runway{display:none!important}
+.catalogue-help{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:55px clamp(22px,8vw,120px);background:#111c2d;border-top:1px solid #2b3b52}
+.catalogue-help h2{margin:12px 0;font:600 clamp(28px,4vw,42px)/1.1 var(--display)}
+.catalogue-help h2 em{font-style:normal;color:#8dc7e8}
+.catalogue-help p{max-width:560px;color:#aab8c9;line-height:1.7}
+.catalogue-help .primary{white-space:nowrap}
+@media(max-width:1000px){
+ .catalogue-page .product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .catalogue-page .product-tools{grid-template-columns:1fr 1fr}
+ .catalogue-page .filters{grid-column:1/-1;overflow-x:auto;flex-wrap:nowrap;padding-bottom:5px}
+ .catalogue-page .filter{white-space:nowrap}
+}
+@media(max-width:680px){
+ .catalogue-hero{padding:54px 22px 42px}
+ .catalogue-hero h1{font-size:43px;letter-spacing:-2px}
+ .catalogue-hero p{font-size:13px}
+ .catalogue-highlights{gap:9px 15px;font-size:8px}
+ .catalogue-page .products-section{padding:45px 16px 58px}
+ .catalogue-page .product-tools{display:flex;flex-direction:column;align-items:stretch}
+ .catalogue-page .filters{width:100%;overflow-x:auto;flex-wrap:nowrap}
+ .catalogue-page .search-wrap{width:100%;min-width:0}
+ .catalogue-page .product-tools select{width:100%}
+ .catalogue-page .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .catalogue-page .product-image{height:145px}
+ .catalogue-page .product-info{padding:12px}
+ .catalogue-page .product-info h3{font-size:14px;line-height:1.3}
+ .catalogue-page .product-info p{font-size:10px;min-height:88px}
+ .catalogue-page .product-bottom{align-items:stretch;flex-direction:column;gap:9px}
+ .catalogue-page .price{font-size:13px}
+ .catalogue-page .add-btn{width:100%;padding:10px 6px}
+ .catalogue-page .details-btn{font-size:9px}
+ .catalogue-help{align-items:flex-start;flex-direction:column;padding:42px 22px}
+}
+@media(max-width:390px){
+ .catalogue-page .product-grid{grid-template-columns:1fr}
+ .catalogue-page .product-image{height:190px}
+ .catalogue-page .product-info p{min-height:0}
+}
