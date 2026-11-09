@@ -1799,3 +1799,120 @@ input:focus,textarea:focus,select:focus{border-color:#55c8dc!important;box-shado
 @media(prefers-reduced-motion:reduce){
  .page-products .capabilities-grid article,.page-products .product-card{transition:none}
 }
+
+
+/* NIRVO — Midnight Sapphire / Champagne Metal colour direction */
+:root{
+ --bg:#070b16;
+ --panel:#101a2b;
+ --panel2:#17243a;
+ --line:#30425c;
+ --text:#f4f6fb;
+ --muted:#a6b2c5;
+ --cyan:#8dc8e8;
+ --blue:#527fe0;
+ --nirvo-gold:#d8bd83;
+ --nirvo-gold-soft:#f0dfb5;
+ --nirvo-sapphire:#416fca;
+}
+body{background:#070b16;color:#f4f6fb}
+.announcement{
+ background:#111b2c!important;color:#d8c9a4!important;
+ border-bottom:1px solid #695a3d!important;
+}
+.announcement span{color:var(--nirvo-gold-soft)!important}
+.header{
+ background:rgba(7,13,25,.96)!important;
+ border-bottom:1px solid #293950!important;
+ box-shadow:0 12px 38px #0005;
+}
+.brand small,.eyebrow,.section-label{color:#b9c8dc}
+.header nav a:hover,.text-link:hover{color:var(--nirvo-gold-soft)!important}
+.cart-btn{
+ background:linear-gradient(135deg,#243b61,#172942)!important;
+ border:1px solid #8c7954!important;color:#f7f2e8!important;
+}
+.cart-btn b{background:var(--nirvo-gold)!important;color:#15130e!important}
+.hero{
+ background:
+  radial-gradient(ellipse at 78% 34%,#315da94a,transparent 36%),
+  radial-gradient(ellipse at 8% 95%,#8c75401c,transparent 34%),
+  linear-gradient(118deg,#070c18 0%,#101d33 58%,#11182a 100%)!important;
+}
+.hero h1 em,.section h2 em,.feature-copy h2 em,.contact-grid h2 em{
+ color:var(--nirvo-gold-soft)!important;
+}
+.eyebrow i,.live-dot{background:var(--nirvo-gold)!important;box-shadow:0 0 12px #d8bd8370!important}
+.primary{
+ background:linear-gradient(115deg,#d9c18e,#b99a60)!important;
+ color:#17140e!important;border:1px solid #e7d6ad!important;
+ box-shadow:0 9px 28px #b99a6028!important;
+}
+.primary:hover{filter:brightness(1.08);box-shadow:0 12px 34px #c7a96a45!important}
+.secondary{border-color:#64758f!important;background:#101b2d;color:#edf2fa!important}
+.ticker{
+ background:#111d30!important;color:#d6ddea!important;
+ border-color:#35455e!important;
+}
+.ticker b{color:var(--nirvo-gold-soft)!important}
+.domain,.product-card{
+ background:linear-gradient(145deg,#142239,#0d1728)!important;
+ border-color:#2b405d!important;
+ box-shadow:0 14px 34px #0003;
+}
+.domain:hover,.product-card:hover{border-color:#9b855a!important;box-shadow:0 18px 40px #0006}
+.domain-icon,.product-info .product-meta,.price{color:#d8c18f!important}
+.filter.active{
+ background:#253653!important;border-color:#9c8559!important;color:#f0dfb5!important;
+}
+.add-btn{
+ background:#1a2c47!important;border-color:#927d55!important;color:#e7d4a7!important;
+}
+.add-btn:hover{background:#2a3e5d!important;color:#fff!important}
+.feature-band{background:linear-gradient(110deg,#111d31,#0b1424)!important}
+.feature-visual{background:radial-gradient(circle,#263f67,#0a1425 68%)!important}
+.feature-orbit{border-color:#d8bd8366!important;box-shadow:0 0 60px #c4a56a20,inset 0 0 40px #c4a56a14!important}
+.feature-mark span{color:var(--nirvo-gold-soft)!important}
+.contact-section{background:linear-gradient(120deg,#111d31,#0a1322)!important;border-color:#30415a!important}
+form input,form select,form textarea{background:#0c1728!important;border-color:#34465f!important}
+form input:focus,form textarea:focus,form select:focus{border-color:#c9ad76!important;box-shadow:0 0 0 3px #c9ad7618}
+.cart-drawer{background:#0d1829!important;border-color:#45536b!important}
+.modal{background:#111e32!important;border-color:#75664b!important}
+.page-products{
+ --shop-bg:#080e1a;--shop-panel:#111d30;--shop-panel2:#192943;
+ --shop-line:#344760;--shop-ice:#f0f3f8;--shop-muted:#aab6c8;
+ --shop-teal:#d8bd83;--shop-blue:#648de0;
+ background:#080e1a!important;color:#f0f3f8!important;
+}
+.page-products .announcement{background:#111b2c!important;color:#d8c9a4!important}
+.page-products .catalogue-hero{
+ background:
+  radial-gradient(ellipse at 80% 18%,#416fca38,transparent 37%),
+  radial-gradient(ellipse at 12% 100%,#b99a601b,transparent 40%),
+  linear-gradient(116deg,#080e1a,#14233a 58%,#17243a)!important;
+ border-color:#35465d!important;
+}
+.page-products .catalogue-hero .eyebrow,
+.page-products .capabilities-heading>span,
+.page-products .catalogue-toolbar-label>span{color:#ddc794!important}
+.page-products .catalogue-hero h1 em{
+ background:linear-gradient(100deg,#f0dfb5,#cbb27e 58%,#9bbbe8);
+ -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
+}
+.page-products .catalogue-highlights span{border-color:#62563f;background:#17243a;color:#e5d6b6}
+.page-products .nirvo-capabilities,.page-products .products-section{background:#080e1a!important}
+.page-products .capabilities-grid article,.page-products .product-card{
+ background:linear-gradient(145deg,#16243a,#101a2b)!important;border-color:#33445d!important;
+}
+.page-products .capabilities-grid article>b,.page-products .product-info .product-meta{color:#dfc58f!important}
+.page-products .capabilities-grid article:hover,.page-products .product-card:hover{border-color:#b69b68!important}
+.page-products .capabilities-note{background:#17243a;border-color:#64563d;color:#e1d4b8}
+.page-products .capability-dot{background:#d8bd83;box-shadow:0 0 12px #d8bd8388}
+.page-products .products-heading h2 em,.page-products .catalogue-help h2 em{color:#e3cca0!important}
+.page-products .products-heading .text-link{color:#dfc58f!important}
+.page-products .filter.active{background:#283b5a!important;border-color:#ad9565!important;color:#f0dfb5!important}
+.page-products .product-tools input,.page-products #productSort{background:#101d30!important;border-color:#3a4b64!important}
+.page-products .add-btn{background:#253653!important;border-color:#a38c5d!important;color:#f0dfb5!important}
+.page-products .catalogue-help{background:radial-gradient(ellipse at 90% 0%,#416fca2b,transparent 45%),linear-gradient(110deg,#17243a,#101b2d)!important;border-color:#766445!important}
+.page-products .catalogue-help .primary{background:linear-gradient(115deg,#d9c18e,#b99a60)!important;border-color:#e7d6ad!important;color:#17140e!important}
+@media(prefers-reduced-motion:reduce){.primary:hover{transform:none}}
