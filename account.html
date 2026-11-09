@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080d1b">
+<meta name="description" content="Sign in or create your NIRVO account.">
+<title>Your Account — NIRVO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-account">
+<div class="account-ambient" aria-hidden="true"><span></span><i></i></div>
+<header class="header account-header">
+ <a class="brand" href="index.html"><img src="nirvo-logo.svg" alt="NIRVO logo"><span>NIRVO<small>CREATE · BUILD · SOLVE</small></span></a>
+ <nav><a href="index.html">Home</a><a href="products.html">Products</a><a href="marketplace.html">Marketplace</a><a href="contact.html">Contact</a></nav>
+ <a class="account-back" href="index.html">← Back to NIRVO</a>
+</header>
+<main class="account-main">
+ <section class="account-story">
+  <div class="account-eyebrow"><i></i> YOUR NIRVO SPACE</div>
+  <div class="account-monogram">N<span>.</span></div>
+  <p class="account-overline">CREATE · BUILD · SOLVE</p>
+  <h1>Ideas move<br>when people <em>connect.</em></h1>
+  <p class="account-description">Create an account to keep your NIRVO experience connected. Sign in to continue exploring products, projects and engineering opportunities.</p>
+  <div class="account-points"><span><b>01</b> One account for your NIRVO journey</span><span><b>02</b> A space for future account features</span><span><b>03</b> Built around practical technology</span></div>
+ </section>
+ <section class="account-panel" aria-labelledby="accountTitle">
+  <div id="accountForms">
+   <div class="account-panel-top"><span>ACCOUNT ACCESS</span><span class="secure-label"><i></i> PRIVATE SESSION</span></div>
+   <h2 id="accountTitle">Welcome <em>back.</em></h2>
+   <p class="account-panel-copy" id="accountSubtitle">Sign in to your NIRVO account.</p>
+   <div class="account-tabs" role="tablist" aria-label="Account access">
+    <button type="button" class="account-tab active" id="loginTab" role="tab" aria-selected="true">Sign in</button>
+    <button type="button" class="account-tab" id="signupTab" role="tab" aria-selected="false">Create account</button>
+   </div>
+   <form id="accountForm" novalidate>
+    <div class="account-field" id="nameField" hidden><label for="accountName">Full name</label><input id="accountName" name="name" autocomplete="name" maxlength="60" placeholder="Your name"></div>
+    <div class="account-field"><label for="accountEmail">Email address</label><input id="accountEmail" name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com" required></div>
+    <div class="account-field"><label for="accountPassword">Password</label><input id="accountPassword" name="password" type="password" autocomplete="current-password" minlength="10" maxlength="128" placeholder="At least 10 characters" required></div>
+    <p class="account-password-note" id="passwordNote">Use the password you created for NIRVO.</p>
+    <button class="account-submit" id="accountSubmit" type="submit"><span>Sign in to NIRVO</span><b>↗</b></button>
+    <p class="account-message" id="accountMessage" role="status" aria-live="polite"></p>
+   </form>
+   <p class="account-legal">By continuing, you agree to use your account responsibly. Email verification and self-service password recovery are not enabled yet; use an email address you control and keep your password safe.</p>
+  </div>
+  <div class="account-dashboard" id="accountDashboard" hidden>
+   <div class="account-panel-top"><span>NIRVO ACCOUNT</span><span class="secure-label"><i></i> SIGNED IN</span></div>
+   <div class="account-avatar" id="accountAvatar">N</div>
+   <p class="account-overline">WELCOME TO NIRVO</p>
+   <h2 id="dashboardName">You're <em>connected.</em></h2>
+   <p class="account-panel-copy" id="dashboardEmail"></p>
+   <div class="account-dashboard-note"><b>Your account is active.</b><span>More account tools will appear here as NIRVO services grow.</span></div>
+   <div class="account-dashboard-links"><a href="products.html">Explore products <span>↗</span></a><a href="marketplace.html">Visit marketplace <span>↗</span></a><a href="contact.html">Contact NIRVO <span>↗</span></a></div>
+   <button type="button" class="account-signout" id="accountSignout">Sign out</button>
+   <p class="account-message" id="dashboardMessage" role="status" aria-live="polite"></p>
+  </div>
+ </section>
+</main>
+<footer class="account-footer"><span>© <span id="accountYear"></span> NIRVO · KERALA, INDIA</span><span>THOUGHTFUL ENGINEERING. PRACTICAL TECHNOLOGY.</span></footer>
+<script src="account.js"></script>
+</body></html>
