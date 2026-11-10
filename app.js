@@ -2,6 +2,17 @@
 (function(){
  const loader=document.getElementById("nirvoLoader");
  if(!loader)return;
+ // Play the cinematic intro once per tab; keep repeat navigation instant.
+ let seenThisSession=false;
+ try{
+  seenThisSession=sessionStorage.getItem("nirvoIntroSeen")==="1";
+  if(!seenThisSession)sessionStorage.setItem("nirvoIntroSeen","1");
+ }catch(_){}
+ if(seenThisSession||window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+  document.body.classList.add("site-ready");
+  loader.remove();
+  return;
+ }
  const content=loader.querySelector(".loader-content");
  if(!content)return;
  const fill=loader.querySelector(".loader-track span");
