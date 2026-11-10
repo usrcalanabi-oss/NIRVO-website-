@@ -2,10 +2,10 @@ const Busboy=require("busboy"),crypto=require("node:crypto");
 const {json,put,saveRecord}=require("./_lib");
 const LIMIT=1200*1024;
 const required={
- listing:["product-name","category","asking-price","condition","seller-name","seller-phone","seller-email","seller-location","product-description"],
- project:["project-name","project-category","project-owner","project-phone","project-email","project-location","project-description"],
- order:["customer-name","customer-email","customer-phone","delivery-location","order-items","order-total"],
- enquiry:["name","email","interest","message"]
+ listing:["product-name","category","asking-price","condition","seller-name","seller-phone","seller-location","product-description"],
+ project:["project-name","project-category","project-owner","project-phone","project-location","project-description"],
+ order:["customer-name","customer-phone","delivery-location","order-items","order-total"],
+ enquiry:["name","interest","message"]
 };
 const emailOk=s=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s||"");
 const emailFor=(type,data)=>type==="listing"?data["seller-email"]:type==="project"?data["project-email"]:type==="order"?data["customer-email"]:data.email;
@@ -35,7 +35,7 @@ module.exports=async function(req,res){
    const type=String(fields.type||"");if(!required[type])return json(res,400,{error:"Unknown submission type."});
    if(String(fields.website||"").trim())return json(res,200,{ok:true});
    for(const k of required[type])if(!String(fields[k]||"").trim())return json(res,400,{error:"Please complete all required fields."});
-   const email=emailFor(type,fields);if(!emailOk(email))return json(res,400,{error:"Please enter a valid email address."});
+   const email=emailFor(type,fields);if(email&&!emailOk(email))return json(res,400,{error:"Please enter a valid email address."});
    if((type==="listing"||type==="project")&&files.length!==3)return json(res,400,{error:"Please upload all three required photos."});
    if(type!=="listing"&&type!=="project"&&files.length)return json(res,400,{error:"Unexpected file upload."});
    if(files.some(f=>!["image/jpeg","image/png","image/webp"].includes(f.type)))return json(res,400,{error:"Only JPG, PNG and WEBP images are accepted."});
@@ -48,7 +48,7 @@ module.exports=async function(req,res){
    const ref=id.slice(0,8).toUpperCase();
    const adminSent=await sendMail("usrcalanabi@gmail.com","NIRVO "+type.toUpperCase()+" · "+ref,"A new NIRVO website submission was received.\n\nReference: "+id+"\nType: "+type+"\n\n"+summary+"\n\nReview it in the private NIRVO Control Room.");
    const customerSent=await sendMail(email,"We received your message · NIRVO","Hello "+personFor(type,data)+",\n\nThank you for contacting NIRVO. Your "+type+" submission has been received and is waiting for review.\n\nReference: "+ref+"\n\nOur team will contact you after reviewing the details. This is not an order confirmation or payment receipt.\n\nNIRVO · Create. Build. Solve.");
-   return json(res,201,{ok:true,id,stored:true,adminEmailSent:adminSent,customerEmailSent:customerSent,message:"Your submission has been securely saved. Reference: "+ref,notificationNote:adminSent&&customerSent?"Email confirmation sent and NIRVO notified.":adminSent?"NIRVO has been notified by email. A customer confirmation email could not be sent.":customerSent?"A confirmation email was sent. NIRVO will review the submission in Control Room.":"Saved in NIRVO Control Room. Email alerts are not configured yet."});
+   return json(res,201,{ok:true,id,stored:true,adminEmailSent:adminSent,customerEmailSent:customerSent,message:"Your submission has been securely saved. Reference: "+ref,notificationNote:adminSent&&customerSent?"Email confirmation sent and NIRVO notified.":adminSent?"NIRVO has been notified by email. A customer confirmation email could not be sent.":customerSent?"A confirmation email was sent. NIRVO will review the submission in Control Room.":"Saved in NIRVO Control Room. Continue in WhatsApp to notify NIRVO."});
   }catch(e){return json(res,500,{error:"We could not save your submission. Please retry or contact NIRVO."})}
  });
  req.pipe(bb);
