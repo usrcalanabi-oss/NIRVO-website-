@@ -28,7 +28,7 @@
  </section>
  <section class="account-panel" aria-labelledby="accountTitle">
   <div id="accountForms">
-   <div class="account-panel-top"><span>ACCOUNT ACCESS</span><span class="secure-label"><i></i> PRIVATE SESSION</span></div>
+   <div class="account-panel-top"><span>YOUR NIRVO ACCOUNT</span><span class="secure-label"><i></i> PRIVATE SESSION</span></div>
    <h2 id="accountTitle">Welcome <em>back.</em></h2>
    <p class="account-panel-copy" id="accountSubtitle">Sign in to your NIRVO account.</p>
    <div class="account-tabs" role="tablist" aria-label="Account access">
@@ -38,12 +38,13 @@
    <form id="accountForm" novalidate>
     <div class="account-field" id="nameField" hidden><label for="accountName">Full name</label><input id="accountName" name="name" autocomplete="name" maxlength="60" placeholder="Your name"></div>
     <div class="account-field"><label for="accountEmail">Email address</label><input id="accountEmail" name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com" required></div>
-    <div class="account-field"><label for="accountPassword">Password</label><input id="accountPassword" name="password" type="password" autocomplete="current-password" minlength="10" maxlength="128" placeholder="At least 10 characters" required></div>
+    <div class="account-field"><label for="accountPassword">Password</label><div class="account-password-wrap"><input id="accountPassword" name="password" type="password" autocomplete="current-password" minlength="10" maxlength="128" placeholder="Enter your password" required><button class="password-toggle" type="button" data-password-toggle="accountPassword" aria-label="Show password" aria-pressed="false">SHOW</button></div></div>
+    <div class="account-field account-confirm-field" id="confirmField" hidden><label for="accountConfirm">Confirm password</label><div class="account-password-wrap"><input id="accountConfirm" name="confirmPassword" type="password" autocomplete="new-password" minlength="10" maxlength="128" placeholder="Re-enter your password"><button class="password-toggle" type="button" data-password-toggle="accountConfirm" aria-label="Show confirm password" aria-pressed="false">SHOW</button></div></div>
     <p class="account-password-note" id="passwordNote">Use the password you created for NIRVO.</p>
     <button class="account-submit" id="accountSubmit" type="submit"><span>Sign in to NIRVO</span><b>↗</b></button>
     <p class="account-message" id="accountMessage" role="status" aria-live="polite"></p>
    </form>
-   <p class="account-legal">By continuing, you agree to use your account responsibly. Email verification and self-service password recovery are not enabled yet; use an email address you control and keep your password safe.</p>
+   <p class="account-legal">By continuing, you agree to use your account responsibly. Email verification and password reset are not available yet. Use an email address you control and keep your password safe.</p>
   </div>
   <div class="account-dashboard" id="accountDashboard" hidden>
    <div class="account-panel-top"><span>NIRVO ACCOUNT</span><span class="secure-label"><i></i> SIGNED IN</span></div>
