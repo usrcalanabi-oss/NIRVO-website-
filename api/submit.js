@@ -5,11 +5,12 @@ const required={
  listing:["product-name","category","asking-price","condition","seller-name","seller-phone","seller-location","product-description"],
  project:["project-name","project-category","project-owner","project-phone","project-location","project-description"],
  order:["customer-name","customer-phone","delivery-location","order-items","order-total"],
- enquiry:["name","interest","message"]
+ enquiry:["name","interest","message"],
+ review:["reviewer-name","product-id","product-name","rating","review-title","review-text"]
 };
 const emailOk=s=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s||"");
 const emailFor=(type,data)=>type==="listing"?data["seller-email"]:type==="project"?data["project-email"]:type==="order"?data["customer-email"]:data.email;
-const personFor=(type,data)=>type==="listing"?data["seller-name"]:type==="project"?data["project-owner"]:type==="order"?data["customer-name"]:data.name;
+const personFor=(type,data)=>type==="listing"?data["seller-name"]:type==="project"?data["project-owner"]:type==="order"?data["customer-name"]:type==="review"?data["reviewer-name"]:data.name;
 async function sendMail(to,subject,text){
  if(!process.env.RESEND_API_KEY||!process.env.RESEND_FROM_EMAIL||!to)return false;
  try{
@@ -36,6 +37,8 @@ module.exports=async function(req,res){
    if(String(fields.website||"").trim())return json(res,200,{ok:true});
    for(const k of required[type])if(!String(fields[k]||"").trim())return json(res,400,{error:"Please complete all required fields."});
    const email=emailFor(type,fields);if(email&&!emailOk(email))return json(res,400,{error:"Please enter a valid email address."});
+   if(type==="review"&&(!/^[1-5]$/.test(String(fields.rating))||String(fields["review-text"]||"").trim().length<12))return json(res,400,{error:"Choose a 1–5 star rating and write at least 12 characters."});
+   if(type==="review"&&String(fields["review-text"]||"").length>1200)return json(res,400,{error:"Please keep your review under 1,200 characters."});
    if((type==="listing"||type==="project")&&files.length!==3)return json(res,400,{error:"Please upload all three required photos."});
    if(type!=="listing"&&type!=="project"&&files.length)return json(res,400,{error:"Unexpected file upload."});
    if(files.some(f=>!["image/jpeg","image/png","image/webp"].includes(f.type)))return json(res,400,{error:"Only JPG, PNG and WEBP images are accepted."});
