@@ -256,10 +256,21 @@ if(shelf&&!document.body.classList.contains("page-products")){
  document.querySelectorAll(".photo-slot input[type=file]").forEach(input=>{
   input.addEventListener("change",()=>{
    const file=input.files?.[0],slot=input.closest(".photo-slot");
-   slot.classList.toggle("has-file",!!file);
    const label=slot.querySelector("small");
+   let preview=slot.querySelector(".photo-preview");
+   if(file&&file.size>1200*1024){
+    alert("Each photo must be 1.2 MB or smaller so it can be uploaded securely.");
+    input.value="";slot.classList.remove("has-file");preview?.remove();
+    if(label)label.textContent="Choose image";
+    return;
+   }
+   slot.classList.toggle("has-file",!!file);
    if(label)label.textContent=file?file.name:"Choose image";
-   if(file&&file.size>2*1024*1024){alert("Each photo must be 2 MB or smaller.");input.value="";slot.classList.remove("has-file");if(label)label.textContent="Choose image";}
+   if(file&&file.type.startsWith("image/")){
+    if(!preview){preview=document.createElement("img");preview.className="photo-preview";preview.alt="Selected project photo preview";slot.appendChild(preview);}
+    if(preview.dataset.objectUrl)URL.revokeObjectURL(preview.dataset.objectUrl);
+    const objectUrl=URL.createObjectURL(file);preview.src=objectUrl;preview.dataset.objectUrl=objectUrl;
+   }else if(!file){preview?.remove();}
   });
  });
  async function submitForm(form,buttonText,successTitle,successCopy){
