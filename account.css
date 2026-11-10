@@ -62,3 +62,63 @@
 @media(max-width:850px){.page-account .account-main{grid-template-columns:1fr minmax(320px,.9fr);gap:34px}.page-account .account-story h1{font-size:clamp(42px,6vw,62px)}.page-account .account-header nav{display:none}}
 @media(max-width:650px){.page-account .account-header{padding:14px 17px}.page-account .account-back{font-size:9px;padding:9px}.page-account .account-main{display:flex;flex-direction:column;align-items:stretch;padding:45px 17px 55px;gap:35px;min-height:auto}.page-account .account-monogram{font-size:58px;margin:28px 0 14px}.page-account .account-story h1{font-size:48px}.page-account .account-description{font-size:12px;margin:17px 0 20px}.page-account .account-points{gap:10px}.page-account .account-panel{padding:23px 19px}.page-account .account-footer{flex-direction:column;font-size:7px;padding:16px 18px 22px}}
 @media(prefers-reduced-motion:reduce){.page-account *{scroll-behavior:auto!important;transition:none!important}}
+
+
+/* FINAL ACCOUNT EXPERIENCE — NIRVO SIGN-IN / CREATE ACCOUNT */
+.page-account{background:#060c18}
+.page-account .account-ambient:before{width:900px;height:900px;top:-260px;left:-300px;background:radial-gradient(circle,#286bd83b,transparent 66%)}
+.page-account .account-ambient:after{width:780px;height:780px;right:-260px;top:120px;background:radial-gradient(circle,#20b9db1c,transparent 68%)}
+.page-account .account-header{border-bottom:1px solid #ffffff10}
+.page-account .account-header nav a:hover{color:#7ce5ff}
+.page-account .account-back{border-color:#5b8cb45c;border-radius:30px;color:#c5eaff;background:#ffffff05;padding:11px 17px}
+.page-account .account-back:hover{border-color:#80dfff;background:#72d8ff12}
+.page-account .account-main{max-width:1320px;grid-template-columns:minmax(0,1.08fr) minmax(390px,.82fr);gap:clamp(55px,8vw,125px);padding-top:clamp(50px,7vw,94px);padding-bottom:clamp(50px,7vw,94px)}
+.page-account .account-eyebrow,.page-account .account-panel-top,.page-account .account-overline{color:#82dfff}
+.page-account .account-eyebrow i{background:#68d9ff;box-shadow:0 0 15px #68d9ff}
+.page-account .account-monogram{width:104px;height:104px;display:grid;place-items:center;margin:36px 0 27px;border:1px solid #73d7ff50;border-radius:29px;background:linear-gradient(145deg,#173c65,#0b1a30);box-shadow:0 20px 70px #0006,0 0 50px #2ba8e51c,inset 0 1px #fff2;font-size:65px;letter-spacing:-.1em}
+.page-account .account-monogram span{color:#69d9ff}
+.page-account .account-story h1{font-size:clamp(48px,6.1vw,76px);letter-spacing:-.07em}
+.page-account .account-story h1 em{color:#78dfff}
+.page-account .account-description{color:#b3c4d8;max-width:490px}
+.page-account .account-points{gap:15px}
+.page-account .account-points b{color:#73dfff}
+.page-account .account-panel{position:relative;overflow:hidden;padding:clamp(28px,3.4vw,43px);border:1px solid #6abde14d;border-radius:22px;background:linear-gradient(150deg,#122944f2 0%,#0c1a2df7 55%,#0a1527fa 100%);box-shadow:0 35px 100px #0008,0 0 70px #2c9cd512,inset 0 1px #ffffff12}
+.page-account .account-panel:before{content:"";position:absolute;top:-120px;right:-100px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,#48c9ff20,transparent 68%);pointer-events:none}
+.page-account .account-panel>*{position:relative}
+.page-account .secure-label{color:#b7d0e3}
+.page-account .secure-label i{background:#66e4bd;box-shadow:0 0 12px #66e4bd}
+.page-account .account-panel h2 em{color:#79dfff}
+.page-account .account-panel-copy{color:#a9bed3}
+.page-account .account-tabs{border-color:#35516e;border-radius:11px;background:#071426;padding:5px;gap:5px}
+.page-account .account-tab{border-radius:8px;padding:13px 8px;color:#9bb0c7;transition:background .2s,color .2s,box-shadow .2s}
+.page-account .account-tab.active{background:linear-gradient(115deg,#1b527a,#164066);color:#e9f9ff;box-shadow:0 5px 18px #0005,inset 0 1px #ffffff16}
+.page-account .account-field{gap:9px;margin-bottom:17px}
+.page-account .account-field label{color:#d6e6f5;font-size:11px}
+.page-account .account-password-wrap{position:relative}
+.page-account .account-field input{min-height:51px;padding:0 78px 0 15px;border-color:#34516e;border-radius:9px;background:#071426;color:#f4faff;font-size:13px;transition:border-color .2s,box-shadow .2s}
+.page-account .account-field input:focus{border-color:#62d8ff;box-shadow:0 0 0 3px #62d8ff18}
+.page-account .account-field input::placeholder{color:#7189a3}
+.page-account .password-toggle{position:absolute;right:9px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:#7bcdf0;font:700 9px "DM Sans",sans-serif;letter-spacing:1px;padding:8px;cursor:pointer}
+.page-account .password-toggle:hover{color:#fff}
+.page-account .account-password-note{color:#8fa7bf;font-size:10px;margin:-4px 0 18px}
+.page-account .account-submit{min-height:54px;border:1px solid #8fe8ff;border-radius:9px;background:linear-gradient(105deg,#70d8f5,#3daedc 58%,#348fc8);color:#041523;padding:0 18px;font-size:12px;box-shadow:0 12px 32px #24a9e52b,inset 0 1px #ffffff80;transition:transform .2s,filter .2s,box-shadow .2s}
+.page-account .account-submit:hover{filter:brightness(1.08);transform:translateY(-2px);box-shadow:0 16px 38px #24a9e540}
+.page-account .account-message{font-size:11px}
+.page-account .account-message.error{color:#ffaaa9}
+.page-account .account-legal{border-color:#ffffff15;color:#879cb3;font-size:9px}
+.page-account .account-avatar{background:linear-gradient(135deg,#72ddff,#277db7);color:#041523;border-color:#9cecff70}
+.page-account .account-dashboard-note{border-color:#3c6681;background:#09192a}
+.page-account .account-dashboard-note b,.page-account .account-dashboard-links a span{color:#7de1ff}
+.page-account .account-dashboard-links a{border-color:#ffffff14}
+.page-account .account-signout{border-color:#54809e;color:#c4deef;border-radius:8px}
+.page-account .account-footer{border-color:#ffffff16;color:#8198b1}
+@media(max-width:850px){.page-account .account-main{grid-template-columns:1fr minmax(320px,.9fr);gap:34px}}
+@media(max-width:650px){
+ .page-account .account-main{padding:38px 17px 48px;gap:30px}
+ .page-account .account-monogram{width:78px;height:78px;font-size:50px;border-radius:23px;margin:24px 0 22px}
+ .page-account .account-story h1{font-size:46px}
+ .page-account .account-panel{padding:25px 20px;border-radius:18px}
+ .page-account .account-panel h2{margin-top:26px}
+ .page-account .account-field input{min-height:50px}
+ .page-account .account-footer{gap:8px}
+}
