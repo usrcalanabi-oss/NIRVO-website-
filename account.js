@@ -11,6 +11,8 @@
   $("loginTab").setAttribute("aria-selected", String(!signup));
   $("signupTab").setAttribute("aria-selected", String(signup));
   $("nameField").hidden = !signup;
+  $("confirmField").hidden = !signup;
+  $("accountConfirm").required = signup;
   $("accountName").required = signup;
   $("accountPassword").autocomplete = signup ? "new-password" : "current-password";
   $("accountTitle").innerHTML = signup ? 'Start something <em>new.</em>' : 'Welcome <em>back.</em>';
@@ -49,6 +51,7 @@
   if (mode === "signup" && name.length < 2) return message($("accountMessage"), "Please enter your name.", "error");
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return message($("accountMessage"), "Enter a valid email address.", "error");
   if (password.length < 10) return message($("accountMessage"), "Password must be at least 10 characters.", "error");
+  if (mode === "signup" && password !== $("accountConfirm").value) return message($("accountMessage"), "Your passwords do not match.", "error");
   busy = true;
   const button = $("accountSubmit"); button.disabled = true;
   button.querySelector("span").textContent = mode === "signup" ? "Creating your account…" : "Signing you in…";
@@ -75,6 +78,16 @@
    dashboard.hidden = true; forms.hidden = false; form.reset(); setMode("login");
   } catch { message($("dashboardMessage"), "Could not sign out. Please retry.", "error"); }
   finally { button.disabled = false; button.textContent = "Sign out"; }
+ });
+ document.querySelectorAll("[data-password-toggle]").forEach(toggle => {
+  toggle.addEventListener("click", () => {
+   const input = $(toggle.dataset.passwordToggle);
+   const reveal = input.type === "password";
+   input.type = reveal ? "text" : "password";
+   toggle.textContent = reveal ? "HIDE" : "SHOW";
+   toggle.setAttribute("aria-label", (reveal ? "Hide " : "Show ") + (input.id === "accountConfirm" ? "confirm password" : "password"));
+   toggle.setAttribute("aria-pressed", String(reveal));
+  });
  });
  $("accountYear").textContent = new Date().getFullYear();
  setMode("login");
