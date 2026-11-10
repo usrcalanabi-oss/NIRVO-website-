@@ -35,7 +35,7 @@ const products=[
 // Curated reference photography from public product-image searches.
 const params=new URLSearchParams(location.search);
 const product=products.find(p=>p[5]===params.get("id"))||products[0];
-const image="https://images.unsplash.com/"+product[6]+"?auto=format&fit=crop&w=1400&q=88";
+const image=window.NIRVOProductVisual(product);
 const safe=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 document.title=product[0]+" — NIRVO";
 document.querySelector('meta[name="description"]').content=product[0]+" — "+product[2]+" Explore this NIRVO product concept.";
