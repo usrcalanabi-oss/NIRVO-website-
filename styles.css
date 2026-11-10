@@ -2854,3 +2854,45 @@ footer{gap:clamp(14px,3vw,36px)}
  .loader-bottom>span{max-width:100%;text-align:center;overflow-wrap:anywhere}
  .loader-skip{white-space:nowrap}
 }
+
+
+/* NIRVO genuine product review experience */
+.nirvo-reviews{max-width:1180px;margin:clamp(55px,8vw,105px) auto;padding:0 clamp(18px,4vw,42px)}
+.reviews-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:28px}
+.reviews-heading h2{margin:10px 0;font:600 clamp(27px,4vw,42px) var(--display);letter-spacing:-1.5px;color:#f1f6ff}
+.reviews-heading h2 em{color:#82c9ed;font-style:normal}
+.reviews-heading p{max-width:570px;color:#91a8c2;font-size:13px;line-height:1.7}
+.reviews-summary{min-width:170px;padding:17px 20px;border:1px solid #294967;border-radius:12px;background:linear-gradient(145deg,#102a46,#0a192c);display:flex;flex-direction:column;gap:4px}
+.reviews-summary strong{font:600 30px var(--display);color:#e9f8ff}
+.reviews-summary span{font-size:10px;color:#8eabc8}
+.reviews-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(290px,.9fr);gap:18px;align-items:start}
+.reviews-list{display:grid;gap:11px}
+.review-card,.review-empty,.review-form{border:1px solid #29435f;border-radius:13px;background:linear-gradient(145deg,#0e2036,#091626)}
+.review-card{padding:19px 21px}
+.review-card-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.review-stars{color:#ffc96b;font-size:15px;letter-spacing:2px}
+.review-card time{color:#728ba6;font-size:10px}
+.review-card h3{margin:12px 0 7px;color:#e8f3ff;font:600 17px var(--display)}
+.review-card p{margin:0;color:#a6bad0;font-size:12px;line-height:1.75;white-space:pre-wrap;overflow-wrap:anywhere}
+.review-card>small{display:block;margin-top:13px;color:#7ebfe1;font-size:10px}
+.review-empty{min-height:145px;padding:26px;display:flex;flex-direction:column;justify-content:center;gap:8px;color:#d8eaff}
+.review-empty span{color:#819bb7;font-size:12px;line-height:1.6}
+.review-form{padding:22px;display:grid;gap:13px}
+.review-form h3{margin:0;color:#f0f7ff;font:600 23px var(--display)}
+.review-form>p{margin:-6px 0 3px;color:#8fa7c2;font-size:11px;line-height:1.7}
+.review-form>label{display:grid;gap:7px;color:#d4e4f6;font-size:11px;font-weight:600}
+.review-form input:not([type=radio]),.review-form textarea{width:100%;box-sizing:border-box;padding:12px 13px;border:1px solid #304d6b;border-radius:7px;background:#081629;color:#f2f7ff;font:400 12px var(--font);outline:none}
+.review-form input:focus,.review-form textarea:focus{border-color:#66c8ef;box-shadow:0 0 0 3px #4db9e91c}
+.review-form textarea{resize:vertical;min-height:110px}
+.review-rating{margin:0;padding:0;border:0}
+.review-rating legend{margin-bottom:8px;color:#d4e4f6;font-size:11px;font-weight:600}
+.rating-options{display:flex;gap:6px}
+.rating-options label{cursor:pointer}
+.rating-options input{position:absolute;opacity:0;pointer-events:none}
+.rating-options span{display:block;padding:8px 9px;border:1px solid #314c68;border-radius:7px;color:#ffc96b;background:#0b1b30;font-size:12px;letter-spacing:1px;transition:.2s}
+.rating-options input:checked+span{border-color:#f3c66b;background:#3b2d16;box-shadow:0 0 0 2px #f3c66b1c}
+.rating-options input:focus-visible+span{outline:2px solid #80d9ff;outline-offset:2px}
+.review-form button{justify-self:start;min-width:160px}
+.review-form>small{color:#809bb7;font-size:10px;line-height:1.6}
+@media(max-width:760px){.reviews-heading{align-items:stretch;flex-direction:column}.reviews-summary{min-width:0;align-self:flex-start}.reviews-layout{grid-template-columns:1fr}.review-form{order:-1}}
+@media(max-width:380px){.nirvo-reviews{padding-left:13px;padding-right:13px}.review-card,.review-form{padding:16px}.review-card-top{align-items:flex-start;flex-direction:column;gap:5px}.rating-options{gap:4px}.rating-options span{padding:8px 7px;font-size:11px}}
