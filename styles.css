@@ -2836,3 +2836,21 @@ footer{gap:clamp(14px,3vw,36px)}
 @media(prefers-reduced-motion:reduce){
  .nirvo-loader:after,.loader-symbol-wrap:after,.loader-track span:after{animation:none!important}
 }
+
+
+/* Small-screen loader footer: prevent metadata and controls colliding */
+.loader-bottom{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;column-gap:14px;row-gap:10px}
+.loader-bottom>span{min-width:0;line-height:1.6;text-wrap:balance}
+@media(max-width:380px){
+ .loader-top,.loader-bottom{left:14px;right:14px}
+ .loader-top{gap:10px}
+ .loader-brand-mini{min-width:0;white-space:nowrap}
+ .loader-build{white-space:nowrap}
+ .loader-bottom{
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  gap:8px;padding-top:10px;bottom:12px;text-align:center;
+  font-size:6px;letter-spacing:.65px;
+ }
+ .loader-bottom>span{max-width:100%;text-align:center;overflow-wrap:anywhere}
+ .loader-skip{white-space:nowrap}
+}
