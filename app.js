@@ -363,12 +363,13 @@ const item=wishes[month+"-"+day]||dailyLines[dayIndex];
  title.textContent=item[0];copy.textContent=item[1];
  date.textContent=now.toLocaleDateString("en-IN",{weekday:"long",day:"numeric",month:"long",year:"numeric"}).toUpperCase();
  if(wishes[month+"-"+day])section.classList.add("is-special");
- share?.addEventListener("click",async()=>{
-  const text=item[0]+"\n"+item[1]+"\n— NIRVO | CREATE · BUILD · SOLVE";
-  try{
-   if(navigator.share)await navigator.share({title:"NIRVO Daily Wish",text});
-   else if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(text);share.textContent="Copied to clipboard ✓";}
-   else{window.prompt("Copy today's NIRVO wish:",text);}
-  }catch(error){if(error?.name!=="AbortError")share.textContent="Share unavailable";}
- });
+ if(share){
+  share.type="button";
+  share.addEventListener("click",()=>{
+   const message=item[0]+"\n"+item[1]+"\n— NIRVO | CREATE · BUILD · SOLVE";
+   const url="https://wa.me/?text="+encodeURIComponent(message);
+   const opened=window.open(url,"_blank","noopener,noreferrer");
+   if(!opened){window.location.href=url;}
+  });
+ }
 })();
