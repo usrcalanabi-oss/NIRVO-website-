@@ -176,14 +176,16 @@ checkout.onclick=()=>{
 const contactForm=document.getElementById("enquiryForm");
 if(contactForm)contactForm.addEventListener("submit",async e=>{
  e.preventDefault();const form=e.currentTarget,data=new FormData(form);data.set("type","enquiry");
- const button=form.querySelector('button[type="submit"]'),original=button.textContent;button.disabled=true;button.textContent="Sending securely…";
+ const button=form.querySelector('button[type="submit"]'),original=button.textContent;button.disabled=true;button.textContent="Saving enquiry…";
+ const waWindow=window.open("about:blank","_blank");
  try{const response=await fetch("/api/submit",{method:"POST",body:data});const result=await response.json();if(!response.ok)throw new Error(result.error||"Could not submit");
  const ref=result.id.slice(0,8).toUpperCase();
  const details=[...data.entries()].filter(([key])=>!["type","website"].includes(key)).map(([key,value])=>key.replace(/[-_]/g," ")+": "+String(value)).join("\\n");
- const whatsappText="Hello NIRVO, I have submitted an enquiry through your website.\\nReference: "+ref+"\\n\\n"+details+"\\n\\nPlease review my enquiry and contact me.";
+ const whatsappText="NIRVO WEBSITE ENQUIRY\\nReference: "+ref+"\\n\\n"+details+"\\n\\nPlease review this enquiry and contact me.";
  const whatsappUrl="https://wa.me/919447682486?text="+encodeURIComponent(whatsappText);
- form.innerHTML='<div class="submission-success"><span>✓</span><h3>Enquiry received.</h3><p>'+result.message+'</p><p>Reference: <b>'+ref+'</b></p><p>Your enquiry is saved. Send its details directly to NIRVO on WhatsApp to start the conversation.</p><a class="primary" href="'+whatsappUrl+'" target="_blank" rel="noopener">Send enquiry on WhatsApp ↗</a></div>';
- }catch(error){button.disabled=false;button.textContent=original;alert(error.message||"Please try again.");}
+ if(waWindow&&!waWindow.closed)waWindow.location.href=whatsappUrl;
+ form.innerHTML='<div class="submission-success"><span>✓</span><h3>Enquiry saved.</h3><p>Reference: <b>'+ref+'</b></p><p>Your details are saved in NIRVO Control Room. WhatsApp opens with the message ready; tap Send to notify NIRVO.</p><a class="primary" href="'+whatsappUrl+'" target="_blank" rel="noopener">Open WhatsApp message ↗</a></div>';
+ }catch(error){if(waWindow&&!waWindow.closed)waWindow.close();button.disabled=false;button.textContent=original;alert(error.message||"Please try again.");}
 });
 // Reveal elements gently as visitors scroll; respect reduced-motion settings.
 if("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches){
