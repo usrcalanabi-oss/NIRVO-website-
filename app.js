@@ -243,6 +243,16 @@ if(shelf&&!document.body.classList.contains("page-products")){
   tabs.forEach(t=>t.classList.toggle("active",t===tab));
   listing.hidden=!showProduct;project.hidden=showProduct;
  }));
+ function openProjectForm(){
+  const projectTab=document.querySelector('[data-market-tab="project"]');
+  if(!projectTab)return;
+  projectTab.click();
+  project.hidden=false;
+  window.setTimeout(()=>project.scrollIntoView({behavior:"smooth",block:"start"}),80);
+ }
+ if(window.location.hash==="#projectForm")openProjectForm();
+ window.addEventListener("hashchange",()=>{if(window.location.hash==="#projectForm")openProjectForm()});
+
  document.querySelectorAll(".photo-slot input[type=file]").forEach(input=>{
   input.addEventListener("change",()=>{
    const file=input.files?.[0],slot=input.closest(".photo-slot");
