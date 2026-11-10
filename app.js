@@ -154,17 +154,23 @@ const checkout=document.getElementById("checkoutBtn");
 checkout.onclick=()=>{
  if(!cart.length)return;
  const m=document.getElementById("productModal");
- document.getElementById("modalContent").innerHTML=`<div class="product-meta">ORDER ENQUIRY · NIRVO</div><h2>Complete your enquiry</h2><p>This submits an order request. It does not collect payment or confirm stock.</p><form id="orderForm" class="order-form"><label class="hp-field" aria-hidden="true">Leave this field empty<input name="website" tabindex="-1" autocomplete="off"></label><label>Full name<input name="customer-name" required autocomplete="name"></label><label>Email<input name="customer-email" type="email" required autocomplete="email"></label><label>Phone / WhatsApp<input name="customer-phone" required autocomplete="tel"></label><label>Delivery location<textarea name="delivery-location" required rows="2"></textarea></label><label>Note (optional)<textarea name="customer-note" rows="2"></textarea></label><input type="hidden" name="order-items"><input type="hidden" name="order-total"><button class="primary submit" type="submit">Submit order enquiry ↗</button></form>`;
+ document.getElementById("modalContent").innerHTML=`<div class="product-meta">ORDER ENQUIRY · NIRVO</div><h2>Complete your enquiry</h2><p>This submits an order request. It does not collect payment or confirm stock.</p><form id="orderForm" class="order-form"><label class="hp-field" aria-hidden="true">Leave this field empty<input name="website" tabindex="-1" autocomplete="off"></label><label>Full name<input name="customer-name" required autocomplete="name"></label><label>Phone / WhatsApp<input name="customer-phone" required autocomplete="tel"></label><label>Delivery location<textarea name="delivery-location" required rows="2"></textarea></label><label>Note (optional)<textarea name="customer-note" rows="2"></textarea></label><input type="hidden" name="order-items"><input type="hidden" name="order-total"><button class="primary submit" type="submit">Submit order enquiry ↗</button></form>`;
  m.classList.add("open");
  const form=document.getElementById("orderForm");
  form.elements["order-items"].value=cart.map(x=>x.name+" × "+x.qty+" — "+x.price).join("\n");
  form.elements["order-total"].value=document.getElementById("subtotal").textContent;
  form.onsubmit=async ev=>{
   ev.preventDefault();const data=new FormData(form);data.set("type","order");
-  const btn=form.querySelector("button");btn.disabled=true;btn.textContent="Sending…";
+  const btn=form.querySelector("button");btn.disabled=true;btn.textContent="Saving enquiry…";
+  const waWindow=window.open("about:blank","_blank");
   try{const res=await fetch("/api/submit",{method:"POST",body:data});const result=await res.json();if(!res.ok)throw new Error(result.error||"Failed");
-   document.getElementById("modalContent").innerHTML="<h2>Order enquiry received</h2><p>"+result.message+"</p><p>Reference: <b>"+result.id.slice(0,8).toUpperCase()+"</b></p><p>"+(result.notificationNote||"")+"</p><p>We will confirm availability, final pricing, delivery and payment before accepting an order.</p>";cart=[];saveCart();
-  }catch(err){btn.disabled=false;btn.textContent="Try again";alert(err.message||"Could not submit. Please retry.");}
+   const ref=result.id.slice(0,8).toUpperCase();
+   const details=[...data.entries()].filter(([key])=>!["type","website"].includes(key)).map(([key,value])=>key+": "+String(value)).join("\n");
+   const waText="NIRVO WEBSITE ORDER ENQUIRY\nReference: "+ref+"\n\n"+details+"\n\nPlease review this order enquiry and contact the customer.";
+   const waUrl="https://wa.me/919447682486?text="+encodeURIComponent(waText);
+   if(waWindow&&!waWindow.closed)waWindow.location.href=waUrl;
+   document.getElementById("modalContent").innerHTML="<h2>Order enquiry saved</h2><p>Reference: <b>"+ref+"</b></p><p>Your order details have been saved in NIRVO Control Room.</p><p>WhatsApp will open with the order message ready. Tap Send in WhatsApp to deliver it.</p><a class='primary' href='"+waUrl+"' target='_blank' rel='noopener'>Open WhatsApp order message ↗</a><p>Availability, final price, delivery and payment will be confirmed separately. This is not a paid or confirmed order.</p>";cart=[];saveCart();
+  }catch(err){if(waWindow&&!waWindow.closed)waWindow.close();btn.disabled=false;btn.textContent="Try again";alert(err.message||"Could not submit. Please retry.");}
  };
 };
 const contactForm=document.getElementById("enquiryForm");
