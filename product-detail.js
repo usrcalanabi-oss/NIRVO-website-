@@ -48,6 +48,7 @@ root.innerHTML=[
 '<div class="standalone-actions"><button type="button" class="primary" id="addConcept">Add to enquiry ↗</button><a class="secondary" href="https://wa.me/919447682486?text='+encodeURIComponent("Hello NIRVO, I am interested in "+product[0]+". Please share the configuration and quotation.")+'" target="_blank" rel="noopener noreferrer">Ask NIRVO ↗</a></div>',
 '<div class="standalone-trust"><div><b>01</b><span>Discuss your use case</span></div><div><b>02</b><span>Confirm specifications</span></div><div><b>03</b><span>Receive a final quote</span></div></div></div></section>',
 '<section class="standalone-more"><div><span class="section-label">PRODUCT OVERVIEW</span><h2>Designed around <em>the application.</em></h2><p>'+safe(product[2])+'</p></div><aside><span>IMPORTANT INFORMATION</span><h3>Concept, not confirmed stock.</h3><p>This page describes a proposed NIRVO product concept. The displayed image is illustrative. Exact components, technical specifications, manufacturing feasibility, availability, price and delivery timeline must be reviewed and confirmed with NIRVO before an order is accepted.</p><a href="contact.html">Discuss a configuration ↗</a></aside></section>',
+'<section class="nirvo-reviews" id="customer-reviews"><div class="reviews-heading"><div><span class="section-label">CUSTOMER FEEDBACK</span><h2>Reviews from <em>the community.</em></h2><p>Share your experience or tell us what you think about this product concept.</p></div><div class="reviews-summary" id="reviewSummary"><strong>—</strong><span>Loading reviews</span></div></div><div class="reviews-layout"><div class="reviews-list" id="reviewList" aria-live="polite"><p class="review-empty">Loading approved reviews…</p></div><form class="review-form" id="reviewForm"><span class="section-label">WRITE A REVIEW</span><h3>Your feedback matters.</h3><p>Reviews are checked by NIRVO before appearing publicly. Please review only your genuine experience or assessment.</p><input type="hidden" name="type" value="review"><input type="hidden" name="product-id" value="'+product[5]+'"><input type="hidden" name="product-name" value="'+safe(product[0])+'"><label>Your name<input name="reviewer-name" maxlength="70" required placeholder="Name shown with your review"></label><fieldset class="review-rating"><legend>Your rating</legend><div class="rating-options">'+[1,2,3,4,5].map(n=>'<label><input type="radio" name="rating" value="'+n+'" required><span aria-label="'+n+' stars">'+('★'.repeat(n))+'</span></label>').join('')+'</div></fieldset><label>Review title<input name="review-title" maxlength="90" required placeholder="Summarise your feedback"></label><label>Your review<textarea name="review-text" minlength="12" maxlength="1200" required placeholder="What did you like? What could be improved?" rows="5"></textarea></label><button class="primary" type="submit">Submit review ↗</button><small id="reviewNotice" role="status">No review is published automatically. Approved reviews appear here.</small></form></div></section>',
 '<section class="standalone-related"><div><div class="section-label">EXPLORE THE COLLECTION</div><h2>More from <em>NIRVO.</em></h2></div><a class="primary" href="products.html">Back to all products ↗</a></section>'
 ].join("");
 document.getElementById("addConcept").addEventListener("click",()=>{
@@ -55,3 +56,29 @@ document.getElementById("addConcept").addEventListener("click",()=>{
  const item=cart.find(x=>x.id===product[5]);if(item)item.qty++;else cart.push({id:product[5],name:product[0],price:product[4],qty:1});
  try{localStorage.setItem("nirvo-cart",JSON.stringify(cart));location.href="products.html?cart=open"}catch(e){alert("Please enable browser storage to add this concept to your enquiry.")}
 });
+
+
+// Genuine product reviews: public display is limited to admin-approved submissions.
+(function(){
+ const form=document.getElementById("reviewForm"),list=document.getElementById("reviewList"),summary=document.getElementById("reviewSummary");
+ if(!form||!list||!summary)return;
+ const escReview=v=>String(v??"").replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+ const draw=payload=>{
+  const reviews=payload.reviews||[];
+  summary.innerHTML='<strong>'+(payload.count?Number(payload.average).toFixed(1):'—')+'</strong><span>'+(payload.count?('★ average · '+payload.count+' approved review'+(payload.count===1?'':'s')):'No approved reviews yet')+'</span>';
+  list.innerHTML=reviews.length?reviews.map(r=>'<article class="review-card"><div class="review-card-top"><span class="review-stars" aria-label="'+r.rating+' out of 5 stars">'+('★'.repeat(r.rating))+('☆'.repeat(5-r.rating))+'</span><time>'+new Date(r.createdAt).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})+'</time></div><h3>'+escReview(r.title)+'</h3><p>'+escReview(r.text)+'</p><small>'+escReview(r.name)+'</small></article>').join(''):'<div class="review-empty"><b>Be the first to share feedback.</b><span>There are no approved reviews for this concept yet.</span></div>';
+ };
+ fetch('/api/reviews?productId='+encodeURIComponent(product[5]),{headers:{Accept:'application/json'}}).then(r=>{if(!r.ok)throw new Error();return r.json()}).then(draw).catch(()=>{list.innerHTML='<p class="review-empty">Reviews are temporarily unavailable. Please try again later.</p>';summary.innerHTML='<strong>—</strong><span>Unavailable</span>'});
+ form.addEventListener('submit',async e=>{
+  e.preventDefault();const button=form.querySelector('button[type="submit"]'),notice=document.getElementById('reviewNotice'),original=button.textContent;
+  if(!form.querySelector('input[name="rating"]:checked')){notice.textContent='Please choose a star rating.';return}
+  button.disabled=true;button.textContent='Submitting…';notice.textContent='Sending your review securely…';
+  try{
+   const response=await fetch('/api/submit',{method:'POST',body:new FormData(form)});
+   const result=await response.json().catch(()=>({}));
+   if(!response.ok)throw new Error(result.error||'Could not submit your review.');
+   form.reset();notice.textContent='Thank you. Your review was saved and is waiting for NIRVO approval. It will appear here after moderation.';
+  }catch(err){notice.textContent=err.message||'Please try again.'}
+  finally{button.disabled=false;button.textContent=original}
+ });
+})();
