@@ -290,7 +290,6 @@ if(shelf&&!document.body.classList.contains("page-products")){
   const button=form.querySelector('button[type="submit"]');const original=button.innerHTML;
   button.disabled=true;button.textContent="Saving submission…";
   const data=new FormData(form);data.set("type",form===listing?"listing":"project");
-  const waWindow=window.open("about:blank","_blank");
   try{
    const response=await fetch("/api/submit",{method:"POST",body:data});
    const result=await response.json();if(!response.ok)throw new Error(result.error||"Submission failed");
@@ -299,9 +298,10 @@ if(shelf&&!document.body.classList.contains("page-products")){
    const photoNote="\nThree product/project photos were uploaded and saved in NIRVO Control Room.";
    const waText="NIRVO MARKETPLACE "+(form===listing?"PRODUCT LISTING":"PROJECT SUBMISSION")+"\nReference: "+ref+"\n\n"+details+photoNote+"\n\nPlease review this submission.";
    const waUrl="https://wa.me/919447682486?text="+encodeURIComponent(waText);
-   if(waWindow&&!waWindow.closed)waWindow.location.href=waUrl;
-   form.innerHTML='<div class="submission-success"><span>✓</span><h3>'+successTitle+'</h3><p>'+(result.message||successCopy)+'</p><p>Reference: <b>'+ref+'</b></p><p>Three photos are stored in NIRVO Control Room. WhatsApp will open with your submission details; tap Send to deliver them.</p><a class="primary" href="'+waUrl+'" target="_blank" rel="noopener">Open WhatsApp message ↗</a></div>';
-  }catch(error){if(waWindow&&!waWindow.closed)waWindow.close();button.disabled=false;button.innerHTML=original;alert("Your submission could not be saved. Please try again or contact NIRVO on WhatsApp +91 94476 82486.");}
+   form.innerHTML='<div class="submission-success"><span>✓</span><h3>'+successTitle+'</h3><p>'+(result.message||successCopy)+'</p><p>Reference: <b>'+ref+'</b></p><p>Opening WhatsApp with your submission details. Tap Send in WhatsApp to deliver the message.</p><a class="primary" href="'+waUrl+'">Open WhatsApp message ↗</a></div>';
+   // Same-tab navigation avoids mobile popup blockers after the asynchronous upload.
+   window.location.assign(waUrl);
+  }catch(error){button.disabled=false;button.innerHTML=original;alert("Your submission could not be saved. Please try again or contact NIRVO on WhatsApp +91 94476 82486.");}
  }
  listing.addEventListener("submit",e=>{e.preventDefault();submitForm(listing,"Submit product for review","Product submitted","Thank you. Your listing and three photos have been sent to NIRVO for review. We will contact you using the details provided.")});
  project.addEventListener("submit",e=>{e.preventDefault();submitForm(project,"Submit project for review","Project received","Thank you for sharing your project. NIRVO will review the description and photos and contact you if a follow-up is needed.")});
